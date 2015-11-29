@@ -1,0 +1,30 @@
+<link href="doubleslider.css" rel="stylesheet" type="text/css">
+<style>
+body{
+	background: #133;
+}
+#container{
+	padding:100px;
+}
+</style>
+
+<div id="container">
+	<div id="slider"></div>
+</div>
+
+<script src="doubleslider.js"></script>
+<script>
+var WHOO = new DoubleSlider(document.getElementById("slider"),{
+	backgrounds:[
+		{color:"#af17f7",icon:"ds_sad.png"},
+		{color:"#bf2ff5",icon:"ds_happy.png"},
+		{color:"#1345df",icon:"ds_sad.png"},
+        {color:"#2c2f6f",icon:"ds_happy.png"},
+        {color:"#9f130f",icon:"ds_sad.png"},
+        {color:"#cc2f6f",icon:"ds_happy.png"},
+        {color:"#ff130f",icon:"ds_sad.png"},
+        {color:"#dc2f6f",icon:"ds_happy.png"}
+	],
+	values:[0.2,0.4,0.6,0.8]
+});
+</script>
