@@ -273,7 +273,7 @@ window.reset = function(){
 				else if ((Math.random()<window.RATIO_CIRCLES)) {
 					draggable.color = "circle";
 				}
-				else if ((Math.random()<window.RATIO_CIRCLES)) {
+				else if ((Math.random()<window.RATIO_PENTAGONS)) {
 					draggable.color = "pentagon";
 				}
 				draggables.push(draggable);
