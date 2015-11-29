@@ -260,10 +260,9 @@ window.reset = function(){
 	stats_ctx.clearRect(0,0,stats_canvas.width,stats_canvas.height);
 
 	draggables = [];
-	numShapes = GRID_SIZE*GRID_SIZE / window.EMPTINESS
 	for(var x=0;x<GRID_SIZE;x++){
 		for(var y=0;y<GRID_SIZE;y++){
-			if(numShapes)){
+			if(Math.random()<(1-window.EMPTINESS)){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
 				rand = Math.random();
 				window.alert(window.RATIO_TRIANGLES)
