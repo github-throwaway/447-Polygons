@@ -265,6 +265,7 @@ window.reset = function(){
 			if(Math.random()<(1-window.EMPTINESS)){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
 				rand = Math.random();
+				window.alert(rand)
 				if((rand<window.RATIO_TRIANGLES)){ 
 					draggable.color = "triangle"; 
 				}
@@ -275,7 +276,7 @@ window.reset = function(){
 					draggable.color = "circle";
 				}
 				else {
-					draggable.color = "circle";
+					draggable.color = "pentagon";
 				}
 				draggables.push(draggable);
 			}
