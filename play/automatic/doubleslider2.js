@@ -13,7 +13,7 @@ new DoubleSlider(dom,{
 });
 
 ***/
-function DoubleSlider(dom,config){
+function DoubleSlider2(dom,config){
 
 	var self = this;
 	self.dom = dom;
