@@ -265,7 +265,7 @@ window.reset = function(){
 			if(Math.random()<(1-window.EMPTINESS)){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
 				rand = Math.random();
-				window.alert(window.RATIO_TRIANGLES)
+				window.alert(window.RATIO_CIRCLES)
 				if((rand<window.RATIO_TRIANGLES)){ 
 					draggable.color = "triangle"; 
 				}
