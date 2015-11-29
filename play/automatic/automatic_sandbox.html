@@ -78,15 +78,19 @@ var whatever = new DoubleSlider(document.getElementById("slider2"),{
 		{color:"#567DFF",icon:"ds_happy.png"},
 		{color:"#000",icon:"ds_sad.png"}
 	],
-	values:[0.40,0.80],
+	values:[0.20,0.40,0.60,0.80],
 	onChange:function(values){
 
 		// Actual values
 		var VALUE_1 = values[0];
 		var VALUE_2 = values[1];
+		var VALUE_3 = values[2];
+		var VALUE_4 = values[3]
 		window.EMPTINESS = 1-VALUE_2;
 		window.RATIO_TRIANGLES = VALUE_1/VALUE_2;
 		window.RATIO_SQUARES = (VALUE_2-VALUE_1)/VALUE_2;
+		window.RATIO_CIRCLES = (VALUE_2-VALUE_1)/VALUE_2;
+		window.RATIO_PENTAGONS = (VALUE_2-VALUE_1)/VALUE_2;
 
 		// Write stats
 		START_SIM = false;
