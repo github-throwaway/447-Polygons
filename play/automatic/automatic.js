@@ -204,13 +204,29 @@ function Draggable(x,y){
 			}else{
 				img = images.yayTriangle;
 			}
-		}else{
+		}else if(self.color=="square"){
 			if(self.shaking){
 				img = images.sadSquare;
 			}else if(self.bored){
 				img = images.mehSquare;
 			}else{
 				img = images.yaySquare;
+			}
+		}else if(self.color=="circle"){
+			if(self.shaking){
+				img = images.sadCircle;
+			}else if(self.bored){
+				img = images.mehCircle;
+			}else{
+				img = images.yayCircle;
+			}
+		}else{
+			if(self.shaking){
+				img = images.sadPentagon;
+			}else if(self.bored){
+				img = images.mehPentagon;
+			}else{
+				img = images.yayPentagon;
 			}
 		}
 
