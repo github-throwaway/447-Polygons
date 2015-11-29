@@ -275,9 +275,9 @@ window.reset = function(){
 				else if ((rand>=window.RATIO_SQUARES && rand<window.RATIO_CIRCLES)) {
 					draggable.color = "circle";
 				}
-				else {
-					draggable.color = "pentagon";
-				}
+				//else {
+				//	draggable.color = "pentagon";
+				//}
 				draggables.push(draggable);
 			}
 		}
