@@ -275,7 +275,7 @@ window.reset = function(){
 					draggable.color = "circle";
 				}
 				else {
-					draggable.color = "pentagon";
+					draggable.color = "circle";
 				}
 				draggables.push(draggable);
 			}
