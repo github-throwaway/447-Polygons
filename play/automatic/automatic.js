@@ -264,7 +264,18 @@ window.reset = function(){
 		for(var y=0;y<GRID_SIZE;y++){
 			if(Math.random()<(1-window.EMPTINESS)){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = (Math.random()<window.RATIO_TRIANGLES) ? "triangle" : "square";
+				if((Math.random()<window.RATIO_TRIANGLES)){ 
+					draggable.color = "triangle"; 
+				}
+				else if ((Math.random()<window.RATIO_SQUARES)) {
+					draggable.color = "square";
+				}
+				else if ((Math.random()<window.RATIO_CIRCLES)) {
+					draggable.color = "circle";
+				}
+				else ((Math.random()<window.RATIO_TRIANGLES)) {
+					draggable.color = "pentagon";
+				}
 				draggables.push(draggable);
 			}
 		}
