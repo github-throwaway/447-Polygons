@@ -264,16 +264,17 @@ window.reset = function(){
 		for(var y=0;y<GRID_SIZE;y++){
 			if(Math.random()<(1-window.EMPTINESS)){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				if((Math.random()<window.RATIO_TRIANGLES)){ 
+				rand = Math.random();
+				if((rand<window.RATIO_TRIANGLES)){ 
 					draggable.color = "triangle"; 
 				}
-				else if ((Math.random()<window.RATIO_SQUARES)) {
+				else if ((rand>=window.RATIO_TRIANGLES && rand < window.RATIO_SQUARES)) {
 					draggable.color = "square";
 				}
-				else if ((Math.random()<window.RATIO_CIRCLES)) {
+				else if ((rand>=window.RATIO_SQUARES && rand<window.RATIO_CIRCLES)) {
 					draggable.color = "circle";
 				}
-				else if ((Math.random()<window.RATIO_PENTAGONS)) {
+				else if ((rand>=window.RATIO_CIRCLES && rand <= window.RATIO_PENTAGONS)) {
 					draggable.color = "pentagon";
 				}
 				draggables.push(draggable);
