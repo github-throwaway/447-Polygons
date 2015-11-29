@@ -13,9 +13,11 @@ var DIAGONAL_SQUARED = (TILE_SIZE+5)*(TILE_SIZE+5) + (TILE_SIZE+5)*(TILE_SIZE+5)
 
 
 
-window.RATIO_TRIANGLES = 0.5;
-window.RATIO_SQUARES = 0.5;
-window.EMPTINESS = 0.2;
+window.RATIO_TRIANGLES = 0.20;
+window.RATIO_SQUARES = 0.20;
+window.RATIO_CIRCLES = 0.20;
+window.RATIO_PENTAGONS = 0.20;
+window.EMPTINESS = 0.20;
 
 
 var assetsLeft = 0;
@@ -36,6 +38,12 @@ addAsset("sadTriangle","../img/sad_triangle.png");
 addAsset("yaySquare","../img/yay_square.png");
 addAsset("mehSquare","../img/meh_square.png");
 addAsset("sadSquare","../img/sad_square.png");
+addAsset("yayCircle","../img/yay_circle.png");
+addAsset("mehCircle","../img/meh_circle.png");
+addAsset("sadCircle","../img/sad_circle.png");
+addAsset("yayPentagon","../img/yay_pentagon.png");
+addAsset("mehPentagon","../img/meh_pentagon.png");
+addAsset("sadPentagon","../img/sad_pentagon.png");
 
 var IS_PICKING_UP = false;
 var lastMouseX, lastMouseY;
