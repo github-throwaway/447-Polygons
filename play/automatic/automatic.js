@@ -12,7 +12,7 @@ var GRID_SIZE = 20;
 var DIAGONAL_SQUARED = (TILE_SIZE+5)*(TILE_SIZE+5) + (TILE_SIZE+5)*(TILE_SIZE+5);
 var MAX_MOVES = 10000;
 
-window.NUM_TRIANGES_MOVED = 0;
+window.NUM_TRIANGLES_MOVED = 0;
 window.NUM_SQUARES_MOVED = 0;
 window.NUM_CIRCLES_MOVED = 0;
 window.NUM_PENTAGONS_MOVED = 0;
@@ -161,6 +161,18 @@ function Draggable(x,y){
 			}
 			if(neighbors==0){
 				self.shaking = false;
+			}
+			if(self.color = "triangle"){
+				window.NUM_TRIANGLES_MOVED += 1;	
+			}
+			else if(self.color = "square"){
+				window.NUM_SQUARES_MOVED += 1;	
+			}
+			else if(self.color = "circle"){
+				window.NUM_CIRCLES_MOVED += 1;	
+			}
+			else if(self.color = "pentagon"){
+				window.NUM_PENTAGONS_MOVED += 1;	
 			}
 		}
 
