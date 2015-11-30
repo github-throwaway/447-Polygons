@@ -133,7 +133,10 @@ function Draggable(x,y){
 		// Shakiness?
 		self.shaking = false;
 		self.bored = false;
-
+	console.log(RATIO_TRIANGLES);
+	console.log(RATIO_SQUARES);
+	console.log(RATIO_CIRCLES);
+	console.log(RATIO_PENTAGONS);
 		if(!self.dragged){
 			var neighbors = 0;
 			var same = 0;
