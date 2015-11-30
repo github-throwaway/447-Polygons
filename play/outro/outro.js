@@ -132,10 +132,18 @@ swingers.push(s);
 var s = new Swinger();
 s.x = 640+90;
 s.swing = x*0.1;
-s.y = 210;
+s.y = 210+20;
 s.color = 2;
 swingers.push(s);
 window.PENTAGON = s;
+
+var s = new Swinger();
+s.x = 640-90;
+s.swing = x*0.1;
+s.y = 210+20;
+s.color = 3;
+swingers.push(s);
+
 
 swingers = swingers.sort(function(a,b){
 	return a.y-b.y;
