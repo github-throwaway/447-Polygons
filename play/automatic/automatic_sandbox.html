@@ -9,7 +9,7 @@
 		margin-bottom: 15px;
 	}
 	</style>
-
+<!-- The Counter section displays the number of moves each shape has made on the grid -->
 	<div id="Counter">
 		<div id="tot_moves">
 			<font face="Arial Black" color="#FFFFFF"  >Moves made: </font>
@@ -33,6 +33,7 @@
 				<canvas id="stats_canvas" width="370" height="270"></canvas>
 				<div id="stats_text"></div>
 			</div>
+<!-- This modification displays the percentage of each shape currently on the board -->
 
 			I'll move if <span class="highlight">&lt;<span id="bias_text">33%</span></span> 
 			or <span class="highlight">&gt;<span id="nonconform_text">100%</span></span> of my neighbors are like me.
@@ -60,6 +61,7 @@
 <script src="../lib/Mouse.js"></script>
 <script src="automatic.js"></script>
 <script src="doubleslider.js"></script>
+<!-- Included new doubleslider2 js file-->
 <script src="doubleslider2.js"></script>
 <script>
 window.PICK_UP_ANYONE = true;
@@ -90,21 +92,23 @@ var whatever = new DoubleSlider(document.getElementById("slider"),{
 
 var whatever = new DoubleSlider2(document.getElementById("slider2"),{
 	backgrounds:[
+		//added backgrounds for the new shape colors on the slider bar
 		{color:"#FFDD56",icon:"ds_happy.png"},
 		{color:"#567DFF",icon:"ds_happy.png"},
 		{color:"#C342FF",icon:"ds_happy.png"},
 		{color:"#56FF9C",icon:"ds_happy.png"},
 		{color:"#000",icon:"ds_sad.png"}
 	],
+	//sets up the initial position of the sliders on the bar
 	values:[0.20,0.40,0.60,0.80],
 	onChange:function(values){
 
-		// Actual values
+		// stores the position of each slider on the bar
 		var VALUE_1 = values[0];
 		var VALUE_2 = values[1];
 		var VALUE_3 = values[2];
 		var VALUE_4 = values[3];
-	
+		//calculates the ratio of each shape
 		window.EMPTINESS = 1 - VALUE_4;
 		window.RATIO_TRIANGLES = VALUE_1;
 		window.RATIO_SQUARES = VALUE_2 - VALUE_1;
