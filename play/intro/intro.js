@@ -87,9 +87,9 @@ for(var i=0;i<1280;i+=40){
 		var y = 220 - 170*Math.pow(t,2);
 
 		if(i>640){
-			y += j*70 + Math.random()*20-10;
+			y += j*40 + Math.random()*20-10;
 		}else{
-			y += j*70 + Math.random()*20-10;
+			y += j*20 + Math.random()*20-10;
 		}
 
 		if(x>500&&x<1280-500) continue;
