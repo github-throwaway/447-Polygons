@@ -111,7 +111,7 @@ for(var i=0;i<1280;i+=50){
 }
 
 var s = new Swinger();
-s.x = 640 + 20;
+s.x = 640 + 30;
 s.swing = s.x*0.1;
 s.y = 210 + 30;
 swingers.push(s);
@@ -129,7 +129,7 @@ s.y = 210-30;
 swingers.push(s);
 
 var s = new Swinger();
-s.x = 640 - 20;
+s.x = 640 - 30;
 s.swing = x*0.1;
 s.y = 210+30;
 swingers.push(s);
