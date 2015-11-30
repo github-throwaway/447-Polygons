@@ -90,11 +90,11 @@ var whatever = new DoubleSlider2(document.getElementById("slider2"),{
 		var VALUE_3 = values[2];
 		var VALUE_4 = values[3];
 	
-		window.EMPTINESS = 1-VALUE_4;
+		window.EMPTINESS = 1 - VALUE_4;
 		window.RATIO_TRIANGLES = VALUE_1;
-		window.RATIO_SQUARES = (VALUE_2-VALUE_1);
-		window.RATIO_CIRCLES = (VALUE_3-VALUE_2);
-		window.RATIO_PENTAGONS = (VALUE_4-VALUE_3);
+		window.RATIO_SQUARES = VALUE_2 - VALUE_1;
+		window.RATIO_CIRCLES = VALUE_3 - VALUE_2;
+		window.RATIO_PENTAGONS = VALUE_4 - VALUE_3;
 
 		// Write stats
 		START_SIM = false;
