@@ -13,6 +13,9 @@ var DIAGONAL_SQUARED = (TILE_SIZE+5)*(TILE_SIZE+5) + (TILE_SIZE+5)*(TILE_SIZE+5)
 var MAX_MOVES = 10000;
 
 window.NUM_TRIANGLES_MOVED = 0;
+window.NUM_SQUARES_MOVED = 0;
+window.NUM_CIRCLES_MOVED = 0;
+window.NUM_PENTAGONS_MOVED = 0;
 
 window.RATIO_TRIANGLES = 0.20;
 window.RATIO_SQUARES = 0.20;
@@ -438,6 +441,18 @@ function step(){
 		window.NUM_TRIANGLES_MOVED++;
 		document.getElementById("triangles_moved").innerHTML = window.NUM_TRIANGLES_MOVED;
 
+	}
+	else if (shaker.color == "square"){
+		window.NUM_SQUARES_MOVED++;
+		document.getElementById("squares_moved").innerHTML = window.NUM_SQUARES_MOVED;
+	}
+	else if (shaker.color == "circle"){
+		window.NUM_CIRCLES_MOVED++;
+		document.getElementById("circles_moved").innerHTML = window.NUM_CIRCLES_MOVED;
+	}
+	else if (shaker.color == "pentagon"){
+		window.NUM_PENTAGONS_MOVED++;
+		document.getElementById("pentagons_moved").innerHTML = window.NUM_PENTAGONS_MOVED;
 	}
 	
 	// Go through every spot, get all empty ones
