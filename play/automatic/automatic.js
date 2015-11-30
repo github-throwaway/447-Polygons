@@ -262,6 +262,10 @@ window.reset = function(){
 	window.NUM_SQUARES_MOVED = 0;
 	window.NUM_CIRCLES_MOVED = 0;
 	window.NUM_PENTAGONS_MOVED = 0;
+	document.getElementById("triangles_moved").innerHTML = window.NUM_TRIANGLES_MOVED;
+	document.getElementById("squares_moved").innerHTML = window.NUM_SQUARES_MOVED;
+	document.getElementById("circles_moved").innerHTML = window.NUM_CIRCLES_MOVED;
+	document.getElementById("pentagons_moved").innerHTML = window.NUM_PENTAGONS_MOVED;
 
 	STATS = {
 		steps:0,
