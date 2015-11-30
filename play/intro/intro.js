@@ -56,7 +56,7 @@ function Swinger(){
 		else if (self.x <= 640){
 			img = images.mehTriangle;
 		}
-		else if (self.x <= 640 && self.y > 205){
+		else if (self.y > 205){
 			img = images.mehPentagon;
 		}
 		else {
