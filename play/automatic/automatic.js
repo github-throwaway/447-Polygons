@@ -20,10 +20,6 @@ window.RATIO_CIRCLES = 0.0;
 window.RATIO_PENTAGONS = 0.0;
 window.EMPTINESS = 0.0;
 
-console.log(RATIO_TRIANGLES);
-console.log(RATIO_SQUARES);
-console.log(RATIO_CIRCLES);
-console.log(RATIO_PENTAGONS);
 
 
 var assetsLeft = 0;
@@ -66,7 +62,10 @@ function Draggable(x,y){
 	var offsetX, offsetY;
 	var pickupX, pickupY;
 	self.pickup = function(){
-
+		console.log(RATIO_TRIANGLES);
+		console.log(RATIO_SQUARES);
+		console.log(RATIO_CIRCLES);
+		console.log(RATIO_PENTAGONS);
 		IS_PICKING_UP = true;
 
 		pickupX = (Math.floor(self.x/TILE_SIZE)+0.5)*TILE_SIZE;
@@ -133,10 +132,7 @@ function Draggable(x,y){
 		// Shakiness?
 		self.shaking = false;
 		self.bored = false;
-	console.log(RATIO_TRIANGLES);
-	console.log(RATIO_SQUARES);
-	console.log(RATIO_CIRCLES);
-	console.log(RATIO_PENTAGONS);
+
 		if(!self.dragged){
 			var neighbors = 0;
 			var same = 0;
