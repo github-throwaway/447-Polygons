@@ -40,7 +40,7 @@
 			<div id="slider2"></div>
 			<br>
 
-			<div class="ui" id="moving" onclick="START_SIM=!START_SIM; doneBuffer = 60; window.writeStats()"></div>
+			<div class="ui" id="moving" onclick="START_SIM=!START_SIM; doneBuffer = 60; window.writeStats();window.updateMoveStats() "></div>
 			<div class="ui" id="reset" onclick="reset()" style="margin-left:9px"></div>
 
 		</div>
@@ -53,7 +53,7 @@
 			<font face="Arial Black" color="#FFFFFF"  >Moves made: </font>
 		</div>
 		<div id="labels">
-			<font face="cursive" color="#FFDD56">Triangles: <span id="triangles_moved">0</span></font><span id="tritext">0</span>
+			<font face="cursive" color="#FFDD56">Triangles: <span id="triangles_moved">0</span></font><span id="tritext"></span>
 			<font face="cursive" color="#567DFF">Squares: </font><span id="sqtext">0</span>
 			<font face="cursive" color="#C342FF">Circles: </font><span id="cirtext">0</span>
 			<font face="cursive" color="#56FF9C">Pentagons: </font><span id="pentext">0</span>
@@ -68,9 +68,7 @@
 <script src="doubleslider2.js"></script>
 <script>
 window.NUM_TRIANGLES_MOVED = 0;
-	window.NUM_TRIANGLES_MOVED.onchange = function()  {
-		document.getElementById("triangles_moved").innerHTML = window.NUM_TRIANGLES_MOVED;
-	}
+
 window.PICK_UP_ANYONE = true;
 var bias_text = document.getElementById("bias_text");
 var nonconform_text = document.getElementById("nonconform_text");
