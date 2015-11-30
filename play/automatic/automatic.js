@@ -426,11 +426,8 @@ function step(){
 	// Pick unhappiest shape
 	if(shaking.length==0) return;
 	//OLD VERSION
-	//var shaker = shaking[Math.floor(Math.random()*shaking.length)]; 
-	var min = shaking[0].sameness;
-	for (var i = 1; i < shaking.length; i++) {
-		if(shaking[i].sameness < min) min = shaking[i].sameness;
-	}
+	var shaker = shaking[Math.floor(Math.random()*shaking.length)]; 
+	
 	var shaker = min;
 	// Go through every spot, get all empty ones
 	var empties = [];
