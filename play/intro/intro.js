@@ -92,7 +92,7 @@ for(var i=0;i<1280;i+=40){
 			y += j*20 + Math.random()*20-10;
 		}
 
-		if(x>500&&x<1280-500) continue;
+		if(x>300&&x<1280-300) continue;
 
 		var t = (x-640)/640;
 
