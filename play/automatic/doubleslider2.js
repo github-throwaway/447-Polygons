@@ -36,7 +36,7 @@ function DoubleSlider2(dom,config){
 		// CSS
 		dom.style.backgroundColor = config.backgrounds[3-i].color;
 		dom.style.backgroundImage = "url("+config.backgrounds[3-i].icon+")";
-		if(i==0) dom.style.width = "100%";
+	//	if(i==0) dom.style.width = "100%";
 
 	}
 	for(var i=0;i<4;i++){
