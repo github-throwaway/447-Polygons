@@ -60,7 +60,7 @@ function Swinger(){
 			img = images.mehPentagon;
 		}
 		else {
-			img = images.mehCircle;
+			img = images.mehPentagon;
 		}
 
 		ctx.drawImage(img,-30,-30,60,60);
