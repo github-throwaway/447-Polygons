@@ -39,7 +39,7 @@ function DoubleSlider2(dom,config){
 	//	if(i==0) dom.style.width = "100%";
 
 	}
-	for(var i=0;i<3;i++){
+	for(var i=0;i<4;i++){
 		
 		var dom = document.createElement("div");
 		dom.className = "ds_slider";
