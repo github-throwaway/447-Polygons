@@ -26,9 +26,9 @@
 			<div id="slider"></div>
 			<br>
 			There are 
-			<span class="highlight"><span id="ratio_text_triangles">40</span></span> triangles, <span id="ratio_text_squares">40</span>%</span>
-			squares, <span class="highlight"><span id="ratio_text_circles">40</span>% circles, and <span id="ratio_text_pentagons">40</span></span>
-			% pentagons on the board. 
+			<span class="highlight"><span id="ratio_text_triangles">40%</span></span> triangles, <span id="ratio_text_squares">40%</span></span>
+			squares, <span class="highlight"><span id="ratio_text_circles">40</span>%</span> circles, and <span id="ratio_text_pentagons">40%</span></span>
+			 pentagons on the board. 
 			Board is
 			<span class="highlight" id="empty_text">20% empty</span>
 			<br>
@@ -101,8 +101,8 @@ var whatever = new DoubleSlider2(document.getElementById("slider2"),{
 		START_SIM = false;
 		document.getElementById("ratio_text_triangles").innerHTML = Math.round(window.RATIO_TRIANGLES*100);
 		document.getElementById("ratio_text_squares").innerHTML = Math.round(window.RATIO_SQUARES*100);
-		//document.getElementById("ratio_text_circles").innerHTML = Math.round(window.RATIO_CIRCLES*100);
-		//document.getElementById("ratio_text_pentagons").innerHTML = Math.round(window.RATIO_PENTAGONS*100);
+		document.getElementById("ratio_text_circles").innerHTML = Math.round(window.RATIO_CIRCLES*100);
+		document.getElementById("ratio_text_pentagons").innerHTML = Math.round(window.RATIO_PENTAGONS*100);
 		document.getElementById("empty_text").innerHTML = Math.round(window.EMPTINESS*100)+"% empty";
 
 	},
