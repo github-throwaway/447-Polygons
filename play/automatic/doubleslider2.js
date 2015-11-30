@@ -39,7 +39,6 @@ function DoubleSlider2(dom,config){
 		if(i==0) dom.style.width = "100%";
 
 	}
-	//CHANGES HERE: changed i for this for loop from 2 to 4, adds two new sliders
 	for(var i=0;i<4;i++){
 		
 		var dom = document.createElement("div");
@@ -66,7 +65,6 @@ function DoubleSlider2(dom,config){
 
 	    	var index = self.draggingSliderIndex;
 	    	var sliderWidth = 0;//0.025;
-	    //CHANGES HERE: changed how the boundaries of the sliders are calculated. Set it up so sliders can't cross each other
 	    if(index==0){
 	    	var edge = self.values[1]-sliderWidth;
 	    	if(val>edge) val=edge;
@@ -77,7 +75,6 @@ function DoubleSlider2(dom,config){
 		var front_edge = self.values[2] - sliderWidth;
 			if(val > front_edge) val = front_edge;
 	    }
-	    //CHANGES HERE: The two else ifs below. Calculates the boundaries of the new sliders
    	    else if(index==2){
 	    	var back_edge = self.values[1]+ sliderWidth;
 	    		if(val<back_edge) val=back_edge;
@@ -136,7 +133,6 @@ function DoubleSlider2(dom,config){
 		}
 
 		var bg;
-		//CHANGES HERE: This section is what sets up the color between the sliders. Not sure if I did it totally correctly
 		var v0=self.values[0]*400, v1=self.values[1]*400,  v2=self.values[2]*400,  v3=self.values[3]*400, v4=self.values[4]*400;
 		bg = self.backgrounds[0];
 		bg.style.width = v0+"px";
