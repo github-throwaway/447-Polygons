@@ -117,13 +117,13 @@ s.y = 210 + 30;
 swingers.push(s);
 
 var s = new Swinger();
-s.x = 640 + 50;
+s.x = 640 + 60;
 s.swing = x*0.1;
 s.y = 210 - 30;
 swingers.push(s);
 
 var s = new Swinger();
-s.x = 640 - 50;
+s.x = 640 - 60;
 s.swing = x*0.1;
 s.y = 210-30;
 swingers.push(s);
