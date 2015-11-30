@@ -365,10 +365,10 @@ window.writeStats = function(){
 	var total = 0;
 	for(var i=0;i<draggables.length;i++){
 		var d = draggables[i];
-		total += d.sameness || 0;
+		total += d.sameness;// || 0;
 	}
 	var avg = total/draggables.length;
-	if(isNaN(avg)) debugger;
+	//if(isNaN(avg)) debugger;
 
 	// If stats oversteps, bump back
 	if(STATS.steps>320+STATS.offset){
