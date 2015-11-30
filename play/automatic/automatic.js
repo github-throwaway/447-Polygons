@@ -159,6 +159,9 @@ function Draggable(x,y){
 			if(neighbors==0){
 				self.shaking = false;
 			}
+			if(self.color == "triangle"){
+				window.NUM_TRIANGLES_MOVED++;
+			}
 		}
 
 		// Dragging
