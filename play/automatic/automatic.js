@@ -12,14 +12,12 @@ var GRID_SIZE = 20;
 var DIAGONAL_SQUARED = (TILE_SIZE+5)*(TILE_SIZE+5) + (TILE_SIZE+5)*(TILE_SIZE+5);
 
 
-//CHANGES HERE: Lines 18, 19. Although I don't think these are used. At least their default values. They get passed in from 
-//automatic_sandbox.html
+//CHANGES HERE: Lines 18, 19
 window.RATIO_TRIANGLES = 0.20;
 window.RATIO_SQUARES = 0.20;
 window.RATIO_CIRCLES = 0.20;
 window.RATIO_PENTAGONS = 0.20;
 window.EMPTINESS = 0.20;
-
 
 
 var assetsLeft = 0;
@@ -62,10 +60,7 @@ function Draggable(x,y){
 	var offsetX, offsetY;
 	var pickupX, pickupY;
 	self.pickup = function(){
-		console.log(RATIO_TRIANGLES);
-		console.log(RATIO_SQUARES);
-		console.log(RATIO_CIRCLES);
-		console.log(RATIO_PENTAGONS);
+
 		IS_PICKING_UP = true;
 
 		pickupX = (Math.floor(self.x/TILE_SIZE)+0.5)*TILE_SIZE;
@@ -270,22 +265,21 @@ window.reset = function(){
 	for(var x=0;x<GRID_SIZE;x++){
 		for(var y=0;y<GRID_SIZE;y++){
 			if(Math.random()<(1-window.EMPTINESS)){
-				//CHANGES HERE: Lines 268-283 - This is where the board is initialized
-				//currently it is messy nd not working right
+				//CHANGES HERE: Lines 268-283
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				//The original code works a little differently. It's worth checking out the original for this. 
-				/rand = Math.random();
-				if(rand < window.RATIO_TRIANGLES){ 
-					draggable.color = "square"; 
+				rand = Math.random();
+				window.alert(window.RATIO_CIRCLES)
+				if((rand<window.RATIO_TRIANGLES)){ 
+					draggable.color = "triangle"; 
 				}
-				else if (rand < window.RATIO_TRIANGLES + window.RATIO_SQUARES) {
+				else if ((rand< window.RATIO_TRIANGLES + window.RATIO_SQUARES)) {
 					draggable.color = "square";
 				}
-				else if (rand < window.RATIO_SQUARES + window.RATIO_CIRCLES + window.RATIO_TRIANGLES) {
+				else if ((rand < window.RATIO_SQUARES + window.RATIO_CIRCLES + window.RATIO_TRIANGLES)) {
 					draggable.color = "circle";
 				}
 				else {
-				draggable.color = "pentagon";
+					draggable.color = "pentagon";
 				}
 				draggables.push(draggable);
 			}
