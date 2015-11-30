@@ -130,7 +130,7 @@ s.color = 0;
 swingers.push(s);
 
 var s = new Swinger();
-s.x = 640+30;
+s.x = 640+60;
 s.swing = x*0.1;
 s.y = 210;
 s.color = 2;
