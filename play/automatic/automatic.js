@@ -276,7 +276,7 @@ window.reset = function(){
 				//The original code works a little differently. It's worth checking out the original for this. 
 				rand = Math.random();
 				if(rand < window.RATIO_TRIANGLES){ 
-					draggable.color = "triangle"; 
+					draggable.color = "pentagon"; 
 				}
 				else if (rand < window.RATIO_TRIANGLES + window.RATIO_SQUARES) {
 					draggable.color = "square";
