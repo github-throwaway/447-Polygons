@@ -274,7 +274,7 @@ window.reset = function(){
 				//currently it is messy nd not working right
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
 				//The original code works a little differently. It's worth checking out the original for this. 
-				rand = Math.random();
+				//rand = Math.random();
 				//if(rand < window.RATIO_TRIANGLES){ 
 				//	draggable.color = "square"; 
 				//}
