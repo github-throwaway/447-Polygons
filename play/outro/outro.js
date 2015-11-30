@@ -129,13 +129,13 @@ s.y = 210;
 s.color = 0;
 swingers.push(s);
 
-/*var s = new Swinger();
+var s = new Swinger();
 s.x = 640+30;
 s.swing = x*0.1;
 s.y = 210;
 s.color = 2;
 swingers.push(s);
-window.PENTAGON = s;*/
+window.PENTAGON = s;
 
 swingers = swingers.sort(function(a,b){
 	return a.y-b.y;
