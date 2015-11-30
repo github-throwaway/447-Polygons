@@ -15,6 +15,8 @@ function addAsset(name,src){
 }
 addAsset("mehTriangle","meh_triangle.png");
 addAsset("mehSquare","meh_square.png");
+addAsset("mehCircle", "../img/meh_circle.png");
+addAsset("mehPentagon", "../img/meh_pentagon.png")
 
 
 function Swinger(){
