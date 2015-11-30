@@ -67,14 +67,8 @@
 <script src="doubleslider2.js"></script>
 <script>
 window.PICK_UP_ANYONE = true;
-//window.NUM_TRIANGLES_MOVED = 0;
-//window.NUM_SQUARES_MOVED = 0;
-//window.NUM_CIRCLES_MOVED = 0;
-//window.NUM_PENTAGONS_MOVED = 0;
-
 var bias_text = document.getElementById("bias_text");
 var nonconform_text = document.getElementById("nonconform_text");
-
 var whatever = new DoubleSlider(document.getElementById("slider"),{
 	backgrounds:[
 		{color:"#555",icon:"ds_sad.png"},
@@ -86,16 +80,13 @@ var whatever = new DoubleSlider(document.getElementById("slider"),{
 		
 		window.BIAS = values[0];
 		window.NONCONFORM = values[1];
-
 		// Write stats
 		START_SIM = false;
 		window.writeStats();
 		bias_text.innerHTML = Math.round(window.BIAS*100)+"%";
 		nonconform_text.innerHTML = Math.round(window.NONCONFORM*100)+"%";
-
 	}
 });
-
 var whatever = new DoubleSlider2(document.getElementById("slider2"),{
 	backgrounds:[
 		//added backgrounds for the new shape colors on the slider bar
@@ -108,7 +99,6 @@ var whatever = new DoubleSlider2(document.getElementById("slider2"),{
 	//sets up the initial position of the sliders on the bar
 	values:[0.20,0.40,0.60,0.80],
 	onChange:function(values){
-
 		// stores the position of each slider on the bar
 		var VALUE_1 = values[0];
 		var VALUE_2 = values[1];
@@ -120,7 +110,6 @@ var whatever = new DoubleSlider2(document.getElementById("slider2"),{
 		window.RATIO_SQUARES = VALUE_2 - VALUE_1;
 		window.RATIO_CIRCLES = VALUE_3 - VALUE_2;
 		window.RATIO_PENTAGONS = VALUE_4 - VALUE_3;
-
 		// Write stats
 		START_SIM = false;
 		document.getElementById("ratio_text_triangles").innerHTML = Math.round(window.RATIO_TRIANGLES*100);
@@ -128,16 +117,9 @@ var whatever = new DoubleSlider2(document.getElementById("slider2"),{
 		document.getElementById("ratio_text_circles").innerHTML = Math.round(window.RATIO_CIRCLES*100);
 		document.getElementById("ratio_text_pentagons").innerHTML = Math.round(window.RATIO_PENTAGONS*100);
 		document.getElementById("empty_text").innerHTML = Math.round(window.EMPTINESS*100)+"%";
-
-		//document.getElementById("triangles_moved").innerHTML = window.NUM_TRIANGLES_MOVED;
-		//document.getElementById("squares_moved").innerHTML = window.NUM_SQUARES_MOVED;
-		//document.getElementById("circles_moved").innerHTML = window.NUM_CIRCLES_MOVED;
-		//document.getElementById("pentagons_moved").innerHTML = window.NUM_PENTAGONS_MOVED;
-
 	},
 	onLetGo:function(){
 		reset();
 	}
 });
-
 </script>
