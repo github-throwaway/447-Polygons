@@ -16,7 +16,7 @@ window.NUM_TRIANGLES_MOVED = 0;
 window.NUM_SQUARES_MOVED = 0;
 window.NUM_CIRCLES_MOVED = 0;
 window.NUM_PENTAGONS_MOVED = 0;
-
+window.TOTAL_MOVES = 0;
 window.RATIO_TRIANGLES = 0.20;
 window.RATIO_SQUARES = 0.20;
 //default ratios for the new shapes
@@ -262,6 +262,7 @@ window.reset = function(){
 	window.NUM_SQUARES_MOVED = 0;
 	window.NUM_CIRCLES_MOVED = 0;
 	window.NUM_PENTAGONS_MOVED = 0;
+	window.TOTAL_MOVES = 0;
 	document.getElementById("triangles_moved").innerHTML = window.NUM_TRIANGLES_MOVED;
 	document.getElementById("squares_moved").innerHTML = window.NUM_SQUARES_MOVED;
 	document.getElementById("circles_moved").innerHTML = window.NUM_CIRCLES_MOVED;
@@ -424,6 +425,7 @@ window.writeStats = function(){
 var doneAnimFrame = 0;
 var doneBuffer = 30;
 function isDone(){
+	if(window.TOTAL_MOVES >= MAX_MOVES) return true;
 	if(Mouse.pressed) return false;
 	for(var i=0;i<draggables.length;i++){
 		var d = draggables[i];
@@ -447,15 +449,18 @@ function step(){
 	var shaker = shaking[Math.floor(Math.random()*shaking.length)]; 
 	if (shaker.color == "triangle"){
 		window.NUM_TRIANGLES_MOVED++;
+		window.TOTAL_MOVES++;
 		document.getElementById("triangles_moved").innerHTML = window.NUM_TRIANGLES_MOVED;
 
 	}
 	else if (shaker.color == "square"){
 		window.NUM_SQUARES_MOVED++;
+		window.TOTAL_MOVES++;
 		document.getElementById("squares_moved").innerHTML = window.NUM_SQUARES_MOVED;
 	}
 	else if (shaker.color == "circle"){
 		window.NUM_CIRCLES_MOVED++;
+		window.TOTAL_MOVES++;
 		document.getElementById("circles_moved").innerHTML = window.NUM_CIRCLES_MOVED;
 	}
 	else if (shaker.color == "pentagon"){
