@@ -1,4 +1,4 @@
- var canvas = document.getElementById("canvas");
+  var canvas = document.getElementById("canvas");
  var ctx = canvas.getContext("2d");
  
  var stats_canvas = document.getElementById("stats_canvas");
@@ -12,14 +12,12 @@
  var DIAGONAL_SQUARED = (TILE_SIZE+5)*(TILE_SIZE+5) + (TILE_SIZE+5)*(TILE_SIZE+5);
  
  
- //CHANGES HERE: Lines 18, 19. Although I don't think these are used. At least their default values. They get passed in from 
- //automatic_sandbox.html
+ 
  window.RATIO_TRIANGLES = 0.20;
  window.RATIO_SQUARES = 0.20;
  window.RATIO_CIRCLES = 0.20;
  window.RATIO_PENTAGONS = 0.20;
  window.EMPTINESS = 0.20;
- 
  
  
  var assetsLeft = 0;
@@ -34,7 +32,6 @@
  	images[name].onload = onImageLoaded;
  	images[name].src = src;
  }
- //CHANGES HERE: Lines 42-47
  addAsset("yayTriangle","../img/yay_triangle.png");
  addAsset("mehTriangle","../img/meh_triangle.png");
  addAsset("sadTriangle","../img/sad_triangle.png");
@@ -62,10 +59,7 @@
  	var offsetX, offsetY;
  	var pickupX, pickupY;
  	self.pickup = function(){
- 		console.log(RATIO_TRIANGLES);
- 		console.log(RATIO_SQUARES);
- 		console.log(RATIO_CIRCLES);
- 		console.log(RATIO_PENTAGONS);
+ 
  		IS_PICKING_UP = true;
  
  		pickupX = (Math.floor(self.x/TILE_SIZE)+0.5)*TILE_SIZE;
@@ -202,7 +196,7 @@
  
  		// Draw thing
  		var img;
- 		if(self.color="triangle"){
+ 		if(self.color=="triangle"){
  			if(self.shaking){
  				img = images.sadTriangle;
  			}else if(self.bored){
@@ -218,7 +212,6 @@
  			}else{
  				img = images.yaySquare;
  			}
- 		//CHANGES HERE: lines 216-233
  		}else if(self.color=="circle"){
  			if(self.shaking){
  				img = images.sadCircle;
@@ -270,35 +263,228 @@
  	for(var x=0;x<GRID_SIZE;x++){
  		for(var y=0;y<GRID_SIZE;y++){
  			if(Math.random()<(1-window.EMPTINESS)){
- 				//CHANGES HERE: Lines 268-283 - This is where the board is initialized
- 				//currently it is messy nd not working right
  				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
- 				//The original code works a little differently. It's worth checking out the original for this. 
--				//rand = Math.random();
--				//if(rand < window.RATIO_TRIANGLES){ 
--				//	draggable.color = "square"; 
--				//}
--				//else if (rand < window.RATIO_TRIANGLES + window.RATIO_SQUARES) {
--				//	draggable.color = "square";
--				//}
--				//else if (rand < window.RATIO_SQUARES + window.RATIO_CIRCLES + window.RATIO_TRIANGLES) {
--				//	draggable.color = "circle";
--				//}
+ 				rand = Math.random();
+ 				window.alert(window.RATIO_CIRCLES)
+ 				if((rand<window.RATIO_TRIANGLES)){ 
+ 					draggable.color = "triangle"; 
+ 				}
+-				else if ((rand>=window.RATIO_TRIANGLES && rand < window.RATIO_SQUARES)) {
++				else if ((rand< window.RATIO_TRIANGLES + window.RATIO_SQUARES)) {
+ 					draggable.color = "square";
+ 				}
+-				else if ((rand>=window.RATIO_SQUARES && rand<window.RATIO_CIRCLES)) {
++				else if ((rand < window.RATIO_SQUARES + window.RATIO_CIRCLES + window.RATIO_TRIANGLES)) {
+ 					draggable.color = "circle";
+ 				}
 -				//else {
-+				/rand = Math.random();
-+				if(rand < window.RATIO_TRIANGLES){ 
-+					draggable.color = "square"; 
-+				}
-+				else if (rand < window.RATIO_TRIANGLES + window.RATIO_SQUARES) {
-+					draggable.color = "square";
-+				}
-+				else if (rand < window.RATIO_SQUARES + window.RATIO_CIRCLES + window.RATIO_TRIANGLES) {
-+					draggable.color = "circle";
-+				}
-+				else {
- 				draggable.color = "pentagon";
+-				//	draggable.color = "pentagon";
 -				//}
++				else {
++					draggable.color = "pentagon";
 +				}
  				draggables.push(draggable);
  			}
  		}
+ 	}
+ 
+ 	// Write stats for first time
+ 	for(var i=0;i<draggables.length;i++){
+ 		draggables[i].update();
+ 	}
+ 	writeStats();
+ 
+ }
+ 
+ window.render = function(){
+ 
+ 	if(assetsLeft>0 || !draggables) return;
+ 	
+ 	// Is Stepping?
+ 	if(START_SIM){
+ 		step();
+ 	}
+ 
+ 	// Draw
+ 	Mouse.isOverDraggable = IS_PICKING_UP;
+ 	ctx.clearRect(0,0,canvas.width,canvas.height);
+ 	for(var i=0;i<draggables.length;i++){
+ 		var d = draggables[i];
+ 		d.update();
+ 
+ 		if(d.shaking || window.PICK_UP_ANYONE){
+ 			var dx = Mouse.x-d.x;
+ 			var dy = Mouse.y-d.y;
+ 			if(Math.abs(dx)<PEEP_SIZE/2 && Math.abs(dy)<PEEP_SIZE/2){
+ 				Mouse.isOverDraggable = true;
+ 			}
+ 		}
+ 
+ 	}
+ 	for(var i=0;i<draggables.length;i++){
+ 		draggables[i].draw();
+ 	}
+ 
+ 	// Done stepping?
+ 	if(isDone()){
+ 		doneBuffer--;
+ 		if(doneBuffer==0){
+ 			doneAnimFrame = 30;
+ 			START_SIM = false;
+ 			console.log("DONE");
+ 			writeStats();
+ 		}
+ 	}else if(START_SIM){
+ 		
+ 		STATS.steps++;
+ 		doneBuffer = 30;
+ 
+ 		// Write stats
+ 		writeStats();
+ 
+ 	}
+ 	if(doneAnimFrame>0){
+ 		doneAnimFrame--;
+ 		var opacity = ((doneAnimFrame%15)/15)*0.2;
+ 		canvas.style.background = "rgba(255,255,255,"+opacity+")";
+ 	}else{
+ 		canvas.style.background = "none";
+ 	}
+ 
+ 	// Mouse
+ 	lastMouseX = Mouse.x;
+ 	lastMouseY = Mouse.y;
+ 
+ }
+ var stats_text = document.getElementById("stats_text");
+ 
+ var tmp_stats = document.createElement("canvas");
+ tmp_stats.width = stats_canvas.width;
+ tmp_stats.height = stats_canvas.height;
+ 
+ window.writeStats = function(){
+ 
+ 	if(!draggables || draggables.length==0) return;
+ 
+ 	// Average Sameness Ratio
+ 	var total = 0;
+ 	for(var i=0;i<draggables.length;i++){
+ 		var d = draggables[i];
+ 		total += d.sameness || 0;
+ 	}
+ 	var avg = total/draggables.length;
+ 	if(isNaN(avg)) debugger;
+ 
+ 	// If stats oversteps, bump back
+ 	if(STATS.steps>320+STATS.offset){
+ 		STATS.offset += 120;
+ 		var tctx = tmp_stats.getContext("2d");
+ 		tctx.clearRect(0,0,tmp_stats.width,tmp_stats.height);
+ 		tctx.drawImage(stats_canvas,0,0);
+ 		stats_ctx.clearRect(0,0,stats_canvas.width,stats_canvas.height);
+ 		stats_ctx.drawImage(tmp_stats,-119,0);
+ 	}
+ 
+ 	// AVG -> SEGREGATION
+ 	var segregation = (avg-0.5)*2;
+ 	if(segregation<0) segregation=0;
+ 
+ 	// Graph it
+ 	stats_ctx.fillStyle = "#cc2727";
+ 	var x = STATS.steps - STATS.offset;
+ 	var y = 250 - segregation*250+10;
+ 	stats_ctx.fillRect(x,y,1,5);
+ 
+ 	// Text
+ 	stats_text.innerHTML = Math.floor(segregation*100)+"%";
+ 	stats_text.style.top = Math.round(y-15)+"px";
+ 	stats_text.style.left = Math.round(x+35)+"px";
+ 
+ 	// Button
+ 	if(START_SIM){
+ 		document.getElementById("moving").classList.add("moving");
+ 	}else{
+ 		document.getElementById("moving").classList.remove("moving");
+ 	}
+ 
+ }
+ 
+ var doneAnimFrame = 0;
+ var doneBuffer = 30;
+ function isDone(){
+ 	if(Mouse.pressed) return false;
+ 	for(var i=0;i<draggables.length;i++){
+ 		var d = draggables[i];
+ 		if(d.shaking) return false;
+ 	}
+ 	return true;
+ }
+ 
+ function step(){
+ 
+ 	// Get all shakers
+ 	var shaking = [];
+ 	for(var i=0;i<draggables.length;i++){
+ 		var d = draggables[i];
+ 		if(d.shaking) shaking.push(d);
+ 	}
+ 
+ 	// Pick a random shaker
+ 	if(shaking.length==0) return;
+ 	var shaker = shaking[Math.floor(Math.random()*shaking.length)];
+ 
+ 	// Go through every spot, get all empty ones
+ 	var empties = [];
+ 	for(var x=0;x<GRID_SIZE;x++){
+ 		for(var y=0;y<GRID_SIZE;y++){
+ 
+ 			var spot = {
+ 				x: (x+0.5)*TILE_SIZE,
+ 				y: (y+0.5)*TILE_SIZE
+ 			}
+ 
+ 			var spotTaken = false;
+ 			for(var i=0;i<draggables.length;i++){
+ 				var d = draggables[i];
+ 				var dx = d.gotoX-spot.x;
+ 				var dy = d.gotoY-spot.y;
+ 				if(dx*dx+dy*dy<10){
+ 					spotTaken=true;
+ 					break;
+ 				}
+ 			}
+ 
+ 			if(!spotTaken){
+ 				empties.push(spot);
+ 			}
+ 
+ 		}
+ 	}
+ 
+ 	// Go to a random empty spot
+ 	var spot = empties[Math.floor(Math.random()*empties.length)];
+ 	if(!spot) return;
+ 	shaker.gotoX = spot.x;
+ 	shaker.gotoY = spot.y;
+ 
+ }
+ 
+ ////////////////////
+ // ANIMATION LOOP //
+ ////////////////////
+ window.requestAnimFrame = window.requestAnimationFrame ||
+ 	window.webkitRequestAnimationFrame ||
+ 	window.mozRequestAnimationFrame ||
+ 	function(callback){ window.setTimeout(callback, 1000/60); };
+ (function animloop(){
+ 	requestAnimFrame(animloop);
+ 	if(window.IS_IN_SIGHT){
+ 		render();
+ 	}
+ })();
+ 
+ window.IS_IN_SIGHT = false;
+ 
+ window.onload=function(){
+ 	reset();
+ }
