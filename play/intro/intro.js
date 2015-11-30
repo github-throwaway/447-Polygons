@@ -89,7 +89,7 @@ for(var i=0;i<1280;i+=40){
 		if(i>640){
 			y += j*50 + Math.random()*20-10;
 		}else{
-			y += j*50 + Math.random()*20-10;
+			y += j*70 + Math.random()*20-10;
 		}
 
 		if(x>500&&x<1280-500) continue;
