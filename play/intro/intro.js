@@ -50,7 +50,7 @@ function Swinger(){
 		ctx.translate(0,-20);
 
 		var img;
-		if(self.x>640 && self.y > 210){
+		if(self.x>640 && self.y > 205){
 			img = images.mehSquare;
 		}else if (self.x < 640){
 			img = images.mehTriangle;
