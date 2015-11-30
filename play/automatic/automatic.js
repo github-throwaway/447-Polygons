@@ -14,11 +14,11 @@ var DIAGONAL_SQUARED = (TILE_SIZE+5)*(TILE_SIZE+5) + (TILE_SIZE+5)*(TILE_SIZE+5)
 
 //CHANGES HERE: Lines 18, 19. Although I don't think these are used. At least their default values. They get passed in from 
 //automatic_sandbox.html
-window.RATIO_TRIANGLES = 0.00;
-window.RATIO_SQUARES = 0.0;
-window.RATIO_CIRCLES = 0.0;
-window.RATIO_PENTAGONS = 0.0;
-window.EMPTINESS = 0.0;
+window.RATIO_TRIANGLES = 0.20;
+window.RATIO_SQUARES = 0.20;
+window.RATIO_CIRCLES = 0.20;
+window.RATIO_PENTAGONS = 0.20;
+window.EMPTINESS = 0.20;
 
 
 
