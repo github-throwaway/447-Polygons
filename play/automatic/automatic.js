@@ -446,7 +446,8 @@ function step(){
 	// Pick unhappiest shape
 	if(shaking.length==0) return;
 	//OLD VERSION
-	var shaker = shaking[Math.floor(Math.random()*shaking.length)]; 
+	var shaker = shaking[Math.floor(Math.random()*shaking.length)];
+	//Will add code for unhappiest shape here, replace shaker
 	if (shaker.color == "triangle"){
 		window.NUM_TRIANGLES_MOVED++;
 		window.TOTAL_MOVES++;
