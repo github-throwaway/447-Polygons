@@ -16,7 +16,7 @@ function addAsset(name,src){
 addAsset("yayTriangle","yay_triangle.png");
 addAsset("yaySquare","yay_square.png");
 addAsset("yayPentagon","yay_pentagon.png");
-//addAsset("yayCircle", "yay_circle.png")
+addAsset("yayCircle", "../img/yay_circle.png")
 
 
 function Swinger(){
