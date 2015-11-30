@@ -70,20 +70,20 @@ function DoubleSlider2(dom,config){
 	    	if(val>edge) val=edge;
 	    }
 	    else if(index==1){
-	    	var back_edge = self.values[0]+ sliderWidth;
+	    	var back_edge = self.values[0] + sliderWidth;
 	    	if(val<back_edge) val=back_edge;
 		var front_edge = self.values[2] - sliderWidth;
 			if(val > front_edge) val = front_edge;
 	    }
    	    else if(index==2){
-	    	var back_edge = self.values[1]+ sliderWidth;
+	    	var back_edge = self.values[1] + sliderWidth;
 	    		if(val<back_edge) val=back_edge;
 			var front_edge = self.values[3] - sliderWidth;
 			if(val > front_edge) val = front_edge;
 	    }
 	    else if(index==3){
-	    		var front_edge = self.values[2]+ sliderWidth;
-	    		if(val<front_edge) val=back_edge;
+	    		var front_edge = self.values[2] + sliderWidth;
+	    	//	if(val<front_edge) val=back_edge;
 			
 	     }
 	    	var edge = sliderWidth/2;
