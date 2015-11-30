@@ -266,7 +266,8 @@ window.reset = function(){
 	for(var x=0;x<GRID_SIZE;x++){
 		for(var y=0;y<GRID_SIZE;y++){
 			if(Math.random()<(1-window.EMPTINESS)){
-				//CHANGES HERE: Lines 268-283
+				//CHANGES HERE: Lines 268-283 - This is where the board is initialized
+				//currently it is messy
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
 				rand = Math.random();
 				window.alert(window.RATIO_CIRCLES)
