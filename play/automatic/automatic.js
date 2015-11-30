@@ -159,10 +159,7 @@ function Draggable(x,y){
 			if(neighbors==0){
 				self.shaking = false;
 			}
-			if(self.color == "triangle"){
-				window.NUM_TRIANGLES_MOVED++;
-				console.log(window.NUM_TRIANGLES_MOVED);
-			}
+			
 		}
 
 		// Dragging
@@ -471,6 +468,9 @@ function step(){
 	if(!spot) return;
 	shaker.gotoX = spot.x;
 	shaker.gotoY = spot.y;
+	if (shaker.color == "triangle"){
+		window.NUM_TRIANGLES_MOVED++;
+	}
 
 }
 
