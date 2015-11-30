@@ -133,7 +133,7 @@ function DoubleSlider2(dom,config){
 		}
 
 		var bg;
-		var v0=self.values[0]*400, v1=self.values[1]*400,  v2=self.values[2]*400,  v3=self.values[3]*400, v4=self.values[4]*400;
+		var v0=self.values[0]*400, v1=self.values[1]*400,  v2=self.values[2]*400,  v3=self.values[3]*400;// v4=self.values[4]*400;
 		bg = self.backgrounds[0];
 		bg.style.width = v0+"px";
 		bg = self.backgrounds[1];
