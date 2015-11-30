@@ -1,4 +1,4 @@
- var canvas = document.getElementById("canvas");
+var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
 var stats_canvas = document.getElementById("stats_canvas");
@@ -12,7 +12,7 @@ var GRID_SIZE = 20;
 var DIAGONAL_SQUARED = (TILE_SIZE+5)*(TILE_SIZE+5) + (TILE_SIZE+5)*(TILE_SIZE+5);
 
 
-//CHANGES HERE: Lines 18, 19
+
 window.RATIO_TRIANGLES = 0.20;
 window.RATIO_SQUARES = 0.20;
 window.RATIO_CIRCLES = 0.20;
@@ -32,7 +32,6 @@ function addAsset(name,src){
 	images[name].onload = onImageLoaded;
 	images[name].src = src;
 }
-//CHANGES HERE: Lines 42-47
 addAsset("yayTriangle","../img/yay_triangle.png");
 addAsset("mehTriangle","../img/meh_triangle.png");
 addAsset("sadTriangle","../img/sad_triangle.png");
@@ -197,7 +196,7 @@ function Draggable(x,y){
 
 		// Draw thing
 		var img;
-		if(self.color="triangle"){
+		if(self.color=="triangle"){
 			if(self.shaking){
 				img = images.sadTriangle;
 			}else if(self.bored){
@@ -213,7 +212,6 @@ function Draggable(x,y){
 			}else{
 				img = images.yaySquare;
 			}
-		//CHANGES HERE: lines 216-233
 		}else if(self.color=="circle"){
 			if(self.shaking){
 				img = images.sadCircle;
@@ -265,20 +263,17 @@ window.reset = function(){
 	for(var x=0;x<GRID_SIZE;x++){
 		for(var y=0;y<GRID_SIZE;y++){
 			if(Math.random()<(1-window.EMPTINESS)){
-				//CHANGES HERE: Lines 268-283
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				rand = Math.random();
-				window.alert(window.RATIO_CIRCLES)
-				if((rand<window.RATIO_TRIANGLES)){ 
+				if((Math.random()<window.RATIO_TRIANGLES)){ 
 					draggable.color = "triangle"; 
 				}
-				else if ((rand< window.RATIO_TRIANGLES + window.RATIO_SQUARES)) {
+				else if ((Math.random()<window.RATIO_SQUARES)) {
 					draggable.color = "square";
 				}
-				else if ((rand < window.RATIO_SQUARES + window.RATIO_CIRCLES + window.RATIO_TRIANGLES)) {
+				else if ((Math.random()<window.RATIO_CIRCLES)) {
 					draggable.color = "circle";
 				}
-				else {
+				else{
 					draggable.color = "pentagon";
 				}
 				draggables.push(draggable);
