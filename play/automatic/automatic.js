@@ -20,6 +20,11 @@ window.RATIO_CIRCLES = 0.0;
 window.RATIO_PENTAGONS = 0.0;
 window.EMPTINESS = 0.0;
 
+console.log(RATIO_TRIANGLES);
+console.log(RATIO_SQUARES);
+console.log(RATIO_CIRCLES);
+console.log(RATIO_PENTAGONS);
+
 
 var assetsLeft = 0;
 var onImageLoaded = function(){
@@ -272,8 +277,6 @@ window.reset = function(){
 				//The original code works a little differently. It's worth checking out the original for this. 
 				rand = Math.random();
 				console.log(rand);
-				console.log(window.RATIO_TRIANGLES);
-				console.log(window.RATIO_SQUARES);
 				if((rand<window.RATIO_TRIANGLES)){ 
 					draggable.color = "triangle"; 
 				}
