@@ -111,25 +111,25 @@ for(var i=0;i<1280;i+=50){
 }
 
 var s = new Swinger();
-s.x = 640 + 30;
+s.x = 640 + 20;
 s.swing = s.x*0.1;
 s.y = 210 + 30;
 swingers.push(s);
 
 var s = new Swinger();
-s.x = 640 + 60;
+s.x = 640 + 50;
 s.swing = x*0.1;
 s.y = 210 - 30;
 swingers.push(s);
 
 var s = new Swinger();
-s.x = 640 - 60;
+s.x = 640 - 50;
 s.swing = x*0.1;
 s.y = 210-30;
 swingers.push(s);
 
 var s = new Swinger();
-s.x = 640 - 30;
+s.x = 640 - 20;
 s.swing = x*0.1;
 s.y = 210+30;
 swingers.push(s);
