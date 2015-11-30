@@ -71,7 +71,7 @@ function Swinger(){
 }
 
 var swingers = [];
-for(var i=0;i<1280;i+=50){
+for(var i=0;i<1280;i+=25){
 
 	var tt = (i-640)/640;
 	var num;
