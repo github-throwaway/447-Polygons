@@ -57,7 +57,7 @@ function Swinger(){
 			img = images.mehTriangle;
 		}
 		else if (self.y >= 205){
-			img = images.mehPentagon;
+			img = images.mehCircle;
 		}
 		else {
 			img = images.mehPentagon;
