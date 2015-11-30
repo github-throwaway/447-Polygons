@@ -115,6 +115,12 @@ s.swing = x*0.1;
 s.y = 210;
 swingers.push(s);
 
+var s = new Swinger();
+s.x = 640;
+s.swing = x*0.1;
+s.y = 210-50;
+swingers.push(s);
+
 swingers = swingers.sort(function(a,b){
 	return a.y-b.y;
 });
