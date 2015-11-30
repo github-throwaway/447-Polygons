@@ -271,10 +271,10 @@ window.reset = function(){
 				else if (rand < window.RATIO_TRIANGLES + window.RATIO_SQUARES) {
 					draggable.color = "square";
 				}
-				else if ((rand < window.RATIO_TRIANGLES + window.RATIO_SQUARES + window.RATIO_CIRCLES)) {
+				else if (rand < window.RATIO_TRIANGLES + window.RATIO_SQUARES + window.RATIO_CIRCLES) {
 					draggable.color = "circle";
 				}
-				else{
+				else if (rand < window.RATIO_TRIANGLES + window.RATIO_SQUARES + window.RATIO_CIRCLES + window.RATIO_PENTAGONS){
 					draggable.color = "pentagon";
 				}
 				draggables.push(draggable);
