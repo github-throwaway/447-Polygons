@@ -436,7 +436,8 @@ function step(){
 	var shaker = shaking[Math.floor(Math.random()*shaking.length)]; 
 	if (shaker.color == "triangle"){
 		window.NUM_TRIANGLES_MOVED++;
-		console.log(window.NUM_TRIANGLES_MOVED);
+		document.getElementById("triangles_moved").innerHTML = window.NUM_TRIANGLES_MOVED;
+
 	}
 	
 	// Go through every spot, get all empty ones
@@ -476,9 +477,7 @@ function step(){
 
 }
 
-window.updateMoveStats = function() {
-	document.getElementById("triangles_moved").innerHTML = window.NUM_TRIANGLES_MOVED;
-}
+
 ////////////////////
 // ANIMATION LOOP //
 ////////////////////
