@@ -25,8 +25,20 @@ function Swinger(){
 	
 	self.swing = 0;
 	self.baseRotation = 0;
-
-	self.color = (Math.random()<0.5) ? 0 : 1;
+	
+	rand = Math.random();
+	if (rand < 0.25) {
+		self.color = 0;
+	}
+	else if (rand < 0.5){
+		self.color = 1;
+	}
+	else if (rand < 0.75){
+		self.color = 2;
+	}
+	else {
+		self.color = 3;
+	}
 
 	self.update = function(){
 
