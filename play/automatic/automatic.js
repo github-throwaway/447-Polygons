@@ -220,7 +220,7 @@ function Draggable(x,y){
 			}else{
 				img = images.yayCircle;
 			}
-		}else{
+		}else if(self.color=="pentagon"){
 			if(self.shaking){
 				img = images.sadPentagon;
 			}else if(self.bored){
