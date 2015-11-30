@@ -15,10 +15,10 @@
 			<font face="Arial Black" color="#FFFFFF"  >Moves made: </font>
 		</div>
 		<div id="labels">
-			<font face="cursive" color="#FFDD56">Triangles: </font><span id="tritext">0</span>
-			<font face="cursive" color="#567DFF">Squares: </font><span id="sqtext">0</span>
-			<font face="cursive" color="#C342FF">Circles: </font><span id="cirtext">0</span>
-			<font face="cursive" color="#56FF9C">Pentagons: </font><span id="pentext">0</span>
+			<font face="cursive" color="#FFDD56">Triangles: <span id="triangles_moved">0</span></font><span id="tritext">0</span>
+			<font face="cursive" color="#567DFF">Squares:<span id="squares_moved">0</span> </font><span id="sqtext">0</span>
+			<font face="cursive" color="#C342FF">Circles: <span id="circles_moved">0</span></font><span id="cirtext">0</span>
+			<font face="cursive" color="#56FF9C">Pentagons:<span id="pentagons_moved">0</span> </font><span id="pentext">0</span>
 			<br><br>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 <script src="doubleslider2.js"></script>
 <script>
 window.PICK_UP_ANYONE = true;
-window.NUM_TRIANGES_MOVED = 0;
+window.NUM_TRIANGLES_MOVED = 0;
 window.NUM_SQUARES_MOVED = 0;
 window.NUM_CIRCLES_MOVED = 0;
 window.NUM_PENTAGONS_MOVED = 0;
@@ -128,6 +128,11 @@ var whatever = new DoubleSlider2(document.getElementById("slider2"),{
 		document.getElementById("ratio_text_circles").innerHTML = Math.round(window.RATIO_CIRCLES*100);
 		document.getElementById("ratio_text_pentagons").innerHTML = Math.round(window.RATIO_PENTAGONS*100);
 		document.getElementById("empty_text").innerHTML = Math.round(window.EMPTINESS*100)+"%";
+
+		document.getElementById("triangles_moved").innerHTML = window.NUM_TRIANGLES_MOVED;
+		document.getElementById("squares_moved").innerHTML = window.NUM_SQUARES_MOVED;
+		document.getElementById("circles_moved").innerHTML = window.NUM_CIRCLES_MOVED;
+		document.getElementById("pentagons_moved").innerHTML = window.NUM_PENTAGONS_MOVED;
 
 	},
 	onLetGo:function(){
