@@ -15,6 +15,7 @@ var MAX_MOVES = 10000;
 
 window.RATIO_TRIANGLES = 0.20;
 window.RATIO_SQUARES = 0.20;
+//default ratios for the new shapes
 window.RATIO_CIRCLES = 0.20;
 window.RATIO_PENTAGONS = 0.20;
 window.EMPTINESS = 0.20;
@@ -38,6 +39,7 @@ addAsset("sadTriangle","../img/sad_triangle.png");
 addAsset("yaySquare","../img/yay_square.png");
 addAsset("mehSquare","../img/meh_square.png");
 addAsset("sadSquare","../img/sad_square.png");
+//include the new shape images
 addAsset("yayCircle","../img/yay_circle.png");
 addAsset("mehCircle","../img/meh_circle.png");
 addAsset("sadCircle","../img/sad_circle.png");
@@ -212,6 +214,7 @@ function Draggable(x,y){
 			}else{
 				img = images.yaySquare;
 			}
+		//sets up image associations corresponding to the new shapes
 		}else if(self.color=="circle"){
 			if(self.shaking){
 				img = images.sadCircle;
@@ -262,6 +265,8 @@ window.reset = function(){
 	for(var x=0;x<GRID_SIZE;x++){
 		for(var y=0;y<GRID_SIZE;y++){
 			rand = Math.random();
+			//randomly includes shapes within the grid. Determines shape type randomly based on percentage of shapes
+			//determined by the sliders on the page
 			if(rand < (1-window.EMPTINESS)){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
 				
