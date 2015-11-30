@@ -258,6 +258,10 @@ window.START_SIM = false;
 var draggables;
 var STATS;
 window.reset = function(){
+	window.NUM_TRIANGLES_MOVED = 0;
+	window.NUM_SQUARES_MOVED = 0;
+	window.NUM_CIRCLES_MOVED = 0;
+	window.NUM_PENTAGONS_MOVED = 0;
 
 	STATS = {
 		steps:0,
