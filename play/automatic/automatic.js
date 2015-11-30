@@ -262,9 +262,10 @@ window.reset = function(){
 	draggables = [];
 	for(var x=0;x<GRID_SIZE;x++){
 		for(var y=0;y<GRID_SIZE;y++){
-			if(Math.random()<(1-window.EMPTINESS)){
+			rand = Math.random();
+			if(rand < (1-window.EMPTINESS)){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				rand = Math.random();
+				
 				if(rand < window.RATIO_TRIANGLES){ 
 					draggable.color = "triangle"; 
 				}
