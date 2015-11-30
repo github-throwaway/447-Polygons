@@ -465,6 +465,7 @@ function step(){
 	}
 	else if (shaker.color == "pentagon"){
 		window.NUM_PENTAGONS_MOVED++;
+		window.TOTAL_MOVES++;
 		document.getElementById("pentagons_moved").innerHTML = window.NUM_PENTAGONS_MOVED;
 	}
 	
