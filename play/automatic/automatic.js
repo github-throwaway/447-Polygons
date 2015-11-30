@@ -279,7 +279,6 @@ window.reset = function(){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
 				//The original code works a little differently. It's worth checking out the original for this. 
 				rand = Math.random();
-				console.log(rand);
 				if((rand<window.RATIO_TRIANGLES)){ 
 					draggable.color = "triangle"; 
 				}
