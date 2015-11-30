@@ -285,8 +285,8 @@ window.reset = function(){
 				//	draggable.color = "circle";
 				//}
 				//else {
-					draggable.color = "pentagon";
-				}
+				draggable.color = "pentagon";
+				//}
 				draggables.push(draggable);
 			}
 		}
