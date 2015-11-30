@@ -16,7 +16,7 @@ function addAsset(name,src){
 addAsset("yayTriangle","yay_triangle.png");
 addAsset("yaySquare","yay_square.png");
 addAsset("yayPentagon","yay_pentagon.png");
-addAsset("yayCircle", "yay_circle.png")
+//addAsset("yayCircle", "yay_circle.png")
 
 
 function Swinger(){
@@ -58,9 +58,9 @@ function Swinger(){
 			img = images.yayTriangle;
 		}else if(self.color==2){
 			img = images.yayPentagon;
-		}else if(self.color==3){
-			img = images.yayCircle;
-		}
+		}//else if(self.color==3){
+		//	img = images.yayCircle;
+		//}
 
 		ctx.drawImage(img,-30,-30,60,60);
 		ctx.restore();
