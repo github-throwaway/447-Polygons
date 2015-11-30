@@ -80,8 +80,8 @@ function DoubleSlider2(dom,config){
 			if(val > front_edge) val = front_edge;
 	    }
 	    else if(index==3){
-	    		var front_edge = self.values[2]+ sliderWidth;
-	    		if(val<front_edge) val=back_edge;
+	    		var back_edge = self.values[2]+ sliderWidth;
+	    		if(val<back_edge) val=back_edge;
 			
 	     }
 	    	var edge = sliderWidth/2;
