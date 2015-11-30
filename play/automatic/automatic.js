@@ -258,7 +258,7 @@ window.reset = function(){
 	START_SIM = false;
 
 	stats_ctx.clearRect(0,0,stats_canvas.width,stats_canvas.height);
-
+	console.log(RATIO_PENTAGONS)
 	draggables = [];
 	for(var x=0;x<GRID_SIZE;x++){
 		for(var y=0;y<GRID_SIZE;y++){
