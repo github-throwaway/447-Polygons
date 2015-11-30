@@ -1,17 +1,12 @@
 /***
-
 new DoubleSlider(dom,{
-
 	backgrounds:[
 		{color:"#cc2727"},
 		{color:"#bada55"},
 		{color:"#2095dc"}
 	],
-
 	values:[0.1,0.9]
-
 });
-
 ***/
 function DoubleSlider2(dom,config){
 
@@ -36,9 +31,10 @@ function DoubleSlider2(dom,config){
 		// CSS
 		dom.style.backgroundColor = config.backgrounds[3-i].color;
 		dom.style.backgroundImage = "url("+config.backgrounds[3-i].icon+")";
-	//	if(i==0) dom.style.width = "100%";
+		if(i==0) dom.style.width = "100%";
 
 	}
+	//CHANGES HERE: changed i for this for loop from 2 to 4, adds two new sliders
 	for(var i=0;i<4;i++){
 		
 		var dom = document.createElement("div");
@@ -65,24 +61,26 @@ function DoubleSlider2(dom,config){
 
 	    	var index = self.draggingSliderIndex;
 	    	var sliderWidth = 0;//0.025;
+	    //CHANGES HERE: changed how the boundaries of the sliders are calculated. Set it up so sliders can't cross each other
 	    if(index==0){
 	    	var edge = self.values[1]-sliderWidth;
 	    	if(val>edge) val=edge;
 	    }
 	    else if(index==1){
-	    	var back_edge = self.values[0] + sliderWidth;
+	    	var back_edge = self.values[0]+ sliderWidth;
 	    	if(val<back_edge) val=back_edge;
 		var front_edge = self.values[2] - sliderWidth;
 			if(val > front_edge) val = front_edge;
 	    }
+	    //CHANGES HERE: The two else ifs below. Calculates the boundaries of the new sliders
    	    else if(index==2){
-	    	var back_edge = self.values[1] + sliderWidth;
+	    	var back_edge = self.values[1]+ sliderWidth;
 	    		if(val<back_edge) val=back_edge;
 			var front_edge = self.values[3] - sliderWidth;
 			if(val > front_edge) val = front_edge;
 	    }
 	    else if(index==3){
-	    		var front_edge = self.values[2] + sliderWidth;
+	    		var front_edge = self.values[2]+ sliderWidth;
 	    		if(val<front_edge) val=back_edge;
 			
 	     }
@@ -133,21 +131,19 @@ function DoubleSlider2(dom,config){
 		}
 
 		var bg;
-		var v0=self.values[0]*400, v1=self.values[1]*400,  v2=self.values[2]*400,  v3=self.values[3]*400;// v4=self.values[4]*400;
+		//CHANGES HERE: This section is what sets up the color between the sliders. Not sure if I did it totally correctly
+		var v0=self.values[0]*400, v1=self.values[1]*400,  v2=self.values[2]*400,  v3=self.values[3]*400, v4=self.values[4]*400;
 		bg = self.backgrounds[0];
 		bg.style.width = v0+"px";
-		
 		bg = self.backgrounds[1];
 		bg.style.left = v0+"px";
 		bg.style.width = (v1-v0)+"px";
-		
 		bg = self.backgrounds[2];
 		bg.style.left = v1+"px";
 		bg.style.width = (v2-v1)+"px";
-		
 		bg = self.backgrounds[3];
 		bg.style.left = v2+"px";
-		bg.style.width = (v3-v2+1)+"px";
+		bg.style.width = (v3-v2)+"px";
 			 
 
 	};
