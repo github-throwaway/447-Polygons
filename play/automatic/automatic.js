@@ -10,7 +10,7 @@ var TILE_SIZE = 30;
 var PEEP_SIZE = 30;
 var GRID_SIZE = 20;
 var DIAGONAL_SQUARED = (TILE_SIZE+5)*(TILE_SIZE+5) + (TILE_SIZE+5)*(TILE_SIZE+5);
-
+var MAX_MOVES = 10000;
 
 
 window.RATIO_TRIANGLES = 0.20;
@@ -258,7 +258,6 @@ window.reset = function(){
 	START_SIM = false;
 
 	stats_ctx.clearRect(0,0,stats_canvas.width,stats_canvas.height);
-	console.log(RATIO_PENTAGONS)
 	draggables = [];
 	for(var x=0;x<GRID_SIZE;x++){
 		for(var y=0;y<GRID_SIZE;y++){
@@ -424,10 +423,15 @@ function step(){
 		if(d.shaking) shaking.push(d);
 	}
 
-	// Pick a random shaker
+	// Pick unhappiest shape
 	if(shaking.length==0) return;
-	var shaker = shaking[Math.floor(Math.random()*shaking.length)];
-
+	//OLD VERSION
+	//var shaker = shaking[Math.floor(Math.random()*shaking.length)]; 
+	var min = shaking[0].sameness;
+	for (var i = 1; i < shaking.length; i++) {
+		if(shaking[i].sameness < min) min = shaking[i].sameness;
+	}
+	var shaker = min;
 	// Go through every spot, get all empty ones
 	var empties = [];
 	for(var x=0;x<GRID_SIZE;x++){
