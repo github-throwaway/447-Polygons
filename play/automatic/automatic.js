@@ -476,6 +476,9 @@ function step(){
 
 }
 
+window.updateMoveStats = function() {
+	document.getElementById("triangles_moved").innerHTML = window.NUM_TRIANGLES_MOVED;
+}
 ////////////////////
 // ANIMATION LOOP //
 ////////////////////
