@@ -161,6 +161,7 @@ function Draggable(x,y){
 			}
 			if(self.color == "triangle"){
 				window.NUM_TRIANGLES_MOVED++;
+				console.log(window.NUM_TRIANGLES_MOVED);
 			}
 		}
 
