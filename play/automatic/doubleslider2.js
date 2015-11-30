@@ -64,7 +64,7 @@ function DoubleSlider2(dom,config){
 	    	var val = x/400;
 
 	    	var index = self.draggingSliderIndex;
-	    	var sliderWidth = 0;//0.025;
+	    	var sliderWidth = 0.025;//0.025;
 	    if(index==0){
 	    	var edge = self.values[1]-sliderWidth;
 	    	if(val>edge) val=edge;
@@ -83,7 +83,7 @@ function DoubleSlider2(dom,config){
 	    }
 	    else if(index==3){
 	    		var front_edge = self.values[2] + sliderWidth;
-	    	//	if(val<front_edge) val=back_edge;
+	    		if(val<front_edge) val=back_edge;
 			
 	     }
 	    	var edge = sliderWidth/2;
