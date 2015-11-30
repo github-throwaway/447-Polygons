@@ -68,6 +68,9 @@
 <script src="doubleslider2.js"></script>
 <script>
 window.NUM_TRIANGLES_MOVED = 0;
+	onChange:function(window.NUM_TRIANGLES_MOVED) {
+		document.getElementById("triangles_moved").innerHTML = window.NUM_TRIANGLES_MOVED;
+	}
 window.PICK_UP_ANYONE = true;
 var bias_text = document.getElementById("bias_text");
 var nonconform_text = document.getElementById("nonconform_text");
@@ -120,7 +123,6 @@ var whatever = new DoubleSlider2(document.getElementById("slider2"),{
 		document.getElementById("ratio_text_pentagons").innerHTML = Math.round(window.RATIO_PENTAGONS*100);
 		document.getElementById("empty_text").innerHTML = Math.round(window.EMPTINESS*100)+"%";
 		
-		document.getElementById("triangles_moved").innerHTML = window.NUM_TRIANGLES_MOVED;
 	},
 	onLetGo:function(){
 		reset();
