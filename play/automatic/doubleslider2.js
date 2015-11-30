@@ -21,16 +21,16 @@ function DoubleSlider2(dom,config){
 
 	// Create DOM
 	self.dom.className = "ds";
-	for(var i=0;i<4;i++){
+	for(var i=0;i<5;i++){
 
 		var dom = document.createElement("div");
 		dom.className = "ds_bg";
 		self.dom.appendChild(dom);
-		self.backgrounds[3-i] = dom;
+		self.backgrounds[4-i] = dom;
 
 		// CSS
-		dom.style.backgroundColor = config.backgrounds[3-i].color;
-		dom.style.backgroundImage = "url("+config.backgrounds[3-i].icon+")";
+		dom.style.backgroundColor = config.backgrounds[4-i].color;
+		dom.style.backgroundImage = "url("+config.backgrounds[4-i].icon+")";
 		if(i==0) dom.style.width = "100%";
 
 	}
