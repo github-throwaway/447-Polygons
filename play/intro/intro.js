@@ -84,12 +84,12 @@ for(var i=0;i<1280;i+=40){
 	for(var j=0;j<num+1;j++){
 
 		var x = i + Math.random()*20-10;
-		var y = 220 - 170*Math.pow(t,2);
+		var y = 200 - 170*Math.pow(t,2);
 
 		if(i>640){
-			y += j*10 + Math.random()*20-10;
+			y += j*30 + Math.random()*20-10;
 		}else{
-			y += j*80 + Math.random()*20-10;
+			y += j*30 + Math.random()*20-10;
 		}
 
 		if(x>500&&x<1280-500) continue;
