@@ -451,7 +451,7 @@ function step(){
 	if(shaking.length==0) return;
 	//OLD VERSION
 	var shaker = shaking[0];
-	console.log(shaking[0].sameness);
+	console.log(draggables[0].sameness);
 
 	var minShaker = shaking[0];
 	var maxShaker = shaking[0];
