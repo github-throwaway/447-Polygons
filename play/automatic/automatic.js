@@ -430,7 +430,7 @@ window.writeStats = function(){
 var doneAnimFrame = 0;
 var doneBuffer = 30;
 function isDone(){
-	if(window.TOTAL_MOVES >= MAX_MOVES) return true;
+	if(window.TOTAL_MOVES >= MAX_MOVES-29) return true;
 	if(Mouse.pressed) return false;
 	for(var i=0;i<draggables.length;i++){
 		var d = draggables[i];
