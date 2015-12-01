@@ -456,14 +456,11 @@ function step(){
 	var minShaker = shaking[0];
 	var maxShaker = shaking[0];
 	for (var i = 0; i < shaking.length; i++){
-		if (shaking[i].sameness === "undefined"){
-			  console.log('the property is not available...'); // print into console
+		if (shaking[i].sameness < minShaker.sameness) {
+			minShaker = shaking[i];
 		}
-		if (shaker[i] && minShaker && shaker[i].sameness < minShaker.sameness) {
-			minShaker = shaker[i];
-		}
-		else if(shaker[i] && maxShaker && shaker[i].nonconform && shaker[i].sameness > maxShaker.sameness) {
-			maxShaker = shaker[i];
+		else if(shaking[i].nonconform && shaking[i].sameness > maxShaker.sameness) {
+			maxShaker = shaking[i];
 		}
 	}
 	if((BIAS - minShaker.sameness) < (NONCONFORM - maxShaker.sameness)) {
