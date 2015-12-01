@@ -465,16 +465,18 @@ function step(){
 		}
 	}
 	
-	if(minShaker.sameness < BIAS && NONCONFORM < maxShaker.sameness && (BIAS - minShaker.sameness) < (NONCONFORM - maxShaker.sameness)) {
+	if(minShaker.sameness < BIAS && NONCONFORM < maxShaker.sameness && Math.abs(BIAS - minShaker.sameness) < Math.abs(NONCONFORM - maxShaker.sameness)) {
 		shaker = maxShaker;
 	}
-	else if (minShaker.sameness < BIAS && NONCONFORM < maxShaker.sameness && (BIAS - minShaker.sameness) >= (NONCONFORM - maxShaker.sameness)) {
+	else if (minShaker.sameness < BIAS && NONCONFORM < maxShaker.sameness && Math.abs(BIAS - minShaker.sameness) >= Math.abs(NONCONFORM - maxShaker.sameness)) {
 		shaker = minShaker;
+		console.log("something is wrong if i'm here")
 	}
 	else if (NONCONFORM < maxShaker.sameness) {
 		shaker = maxShaker;
 	}
 	else { 
+		console.log("shouldn't be in this else")
 		shaker = minShaker;
 	}
 	
