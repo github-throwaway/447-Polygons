@@ -457,10 +457,10 @@ function step(){
 	var minShaker = shaking[0];
 	var maxShaker = shaking[0];
 	for (var i = 0; i < shaking.length; i++){
-		if (shaker[i].sameness < minShaker.sameness) {
+		if (shaker[i] && minShaker && shaker[i].sameness < minShaker.sameness) {
 			minShaker = shaker[i];
 		}
-		else if(shaker[i].nonconform && shaker[i].sameness > maxShaker.sameness) {
+		else if(shaker[i] && maxShaker && shaker[i].nonconform && shaker[i].sameness > maxShaker.sameness) {
 			maxShaker = shaker[i];
 		}
 	}
