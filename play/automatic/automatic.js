@@ -535,7 +535,7 @@ function step(){
 window.requestAnimFrame = window.requestAnimationFrame ||
 	window.webkitRequestAnimationFrame ||
 	window.mozRequestAnimationFrame ||
-	function(callback){ window.setTimeout(callback, 1000/60); };
+	function(callback){ window.setTimeout(callback, 100/60); };
 (function animloop(){
 	requestAnimFrame(animloop);
 	if(window.IS_IN_SIGHT){
