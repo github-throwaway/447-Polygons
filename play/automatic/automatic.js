@@ -455,6 +455,7 @@ function step(){
 
 	var minShaker = shaking[0];
 	var maxShaker = shaking[0];
+
 	for (var i = 0; i < shaking.length; i++){
 		if (shaking[i].sameness < minShaker.sameness) {
 			minShaker = shaking[i];
@@ -463,12 +464,18 @@ function step(){
 			maxShaker = shaking[i];
 		}
 	}
-	if((BIAS - minShaker.sameness) < (NONCONFORM - maxShaker.sameness)) {
+	
+	if(minShaker.sameness < BIAS && NONCONFORM < maxShaker.sameness && (BIAS - minShaker.sameness) < (NONCONFORM - maxShaker.sameness)) {
 		shaker = maxShaker;
 	}
-	else if ((BIAS - minShaker.sameness) >= (NONCONFORM - maxShaker.sameness)) {
+	else if (minShaker.sameness < BIAS &&  && (BIAS - minShaker.sameness) >= (NONCONFORM - maxShaker.sameness)) {
 		shaker = minShaker;
 	}
+	else if (NONCONFORM < maxShaker.sameness) {
+		shaker = maxShaker;
+	}
+	else { 
+		shaker = minShaker;
 
 	
 	// Go through every spot, get all empty ones
