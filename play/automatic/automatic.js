@@ -476,7 +476,7 @@ function step(){
 	}
 	else { 
 		shaker = minShaker;
-
+	}
 	
 	// Go through every spot, get all empty ones
 	var empties = [];
