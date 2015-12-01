@@ -456,6 +456,9 @@ function step(){
 	var minShaker = shaking[0];
 	var maxShaker = shaking[0];
 	for (var i = 0; i < shaking.length; i++){
+		if (shaking[i].sameness === "undefined"){
+			  console.log('the property is not available...'); // print into console
+		}
 		if (shaker[i] && minShaker && shaker[i].sameness < minShaker.sameness) {
 			minShaker = shaker[i];
 		}
