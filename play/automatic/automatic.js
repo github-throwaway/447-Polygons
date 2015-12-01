@@ -470,28 +470,7 @@ function step(){
 	else {
 		shaker = minShaker;
 	}
-	//Will add code for unhappiest shape here, replace shaker
-	if (shaker.color == "triangle"){
-		window.NUM_TRIANGLES_MOVED++;
-		window.TOTAL_MOVES++;
-		document.getElementById("triangles_moved").innerHTML = window.NUM_TRIANGLES_MOVED;
 
-	}
-	else if (shaker.color == "square"){
-		window.NUM_SQUARES_MOVED++;
-		window.TOTAL_MOVES++;
-		document.getElementById("squares_moved").innerHTML = window.NUM_SQUARES_MOVED;
-	}
-	else if (shaker.color == "circle"){
-		window.NUM_CIRCLES_MOVED++;
-		window.TOTAL_MOVES++;
-		document.getElementById("circles_moved").innerHTML = window.NUM_CIRCLES_MOVED;
-	}
-	else if (shaker.color == "pentagon"){
-		window.NUM_PENTAGONS_MOVED++;
-		window.TOTAL_MOVES++;
-		document.getElementById("pentagons_moved").innerHTML = window.NUM_PENTAGONS_MOVED;
-	}
 	
 	// Go through every spot, get all empty ones
 	var empties = [];
@@ -527,7 +506,27 @@ function step(){
 	shaker.gotoX = spot.x;
 	shaker.gotoY = spot.y;
 
+	if (shaker.color == "triangle"){
+		window.NUM_TRIANGLES_MOVED++;
+		window.TOTAL_MOVES++;
+		document.getElementById("triangles_moved").innerHTML = window.NUM_TRIANGLES_MOVED;
 
+	}
+	else if (shaker.color == "square"){
+		window.NUM_SQUARES_MOVED++;
+		window.TOTAL_MOVES++;
+		document.getElementById("squares_moved").innerHTML = window.NUM_SQUARES_MOVED;
+	}
+	else if (shaker.color == "circle"){
+		window.NUM_CIRCLES_MOVED++;
+		window.TOTAL_MOVES++;
+		document.getElementById("circles_moved").innerHTML = window.NUM_CIRCLES_MOVED;
+	}
+	else if (shaker.color == "pentagon"){
+		window.NUM_PENTAGONS_MOVED++;
+		window.TOTAL_MOVES++;
+		document.getElementById("pentagons_moved").innerHTML = window.NUM_PENTAGONS_MOVED;
+	}
 }
 
 
