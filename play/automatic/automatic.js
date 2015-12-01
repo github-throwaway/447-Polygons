@@ -133,6 +133,7 @@ function Draggable(x,y){
 		self.shaking = false;
 		self.bored = false;
 		self.nonconform = false;
+		self.sameness = 0;
 
 		if(!self.dragged){
 			var neighbors = 0;
