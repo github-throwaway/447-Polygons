@@ -467,11 +467,13 @@ function step(){
 	
 	if(minShaker.sameness < BIAS && NONCONFORM < maxShaker.sameness && Math.abs(BIAS - minShaker.sameness) < Math.abs(NONCONFORM - maxShaker.sameness)) {
 		shaker = maxShaker;
-		console.log("I should be here")
+		console.log("I should be here");
 	}
 	else if (minShaker.sameness < BIAS && NONCONFORM < maxShaker.sameness && Math.abs(BIAS - minShaker.sameness) >= Math.abs(NONCONFORM - maxShaker.sameness)) {
 		shaker = minShaker;
-		console.log("something is wrong if i'm here")
+		console.log("something is wrong if i'm here");
+		console.log(BIAS - minShaker.sameness);
+		console.log(NONCONFORM - maxShaker.sameness);
 	}
 	else if (NONCONFORM < maxShaker.sameness) {
 		shaker = maxShaker;
