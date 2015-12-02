@@ -404,7 +404,7 @@ window.writeStats = function(){
 	}
 
 	// AVG -> SEGREGATION
-	var segregation = (avg-0.25)*4;
+	var segregation = (avg-0.25)*2;
 	if(segregation<0) segregation=0;
 
 	// Graph it
