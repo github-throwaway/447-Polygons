@@ -504,7 +504,7 @@ window.writeStats = function(){
 	if(segregation<0) segregation=0;
 
 	// AVG -> SEGREGATION
-	var triSeg = (avg-0.25)*(4/3);
+	var triSeg = (triAvg-0.25)*(4/3);
 	if(triSeg<0) triSeg=0;
 
 	// Graph it
