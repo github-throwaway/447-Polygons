@@ -529,6 +529,12 @@ window.writeStats = function(){
 	var y = 250 - triangleSeg*250+10;
 	stats_ctx.fillRect(x,y,1,5);
 	
+		// Text
+	triangle_stats.innerHTML = Math.floor(triangleSeg*100)+"%";
+	triangle_stats.style.top = Math.round(y-15)+"px";
+	triangle_stats.style.left = Math.round(x+35)+"px";
+
+	
 		// Graph it
 	stats_ctx.fillStyle = "#567DFF";
 	var x = STATS.steps - STATS.offset;
@@ -555,10 +561,6 @@ window.writeStats = function(){
 	stats_text.style.top = Math.round(y-15)+"px";
 	stats_text.style.left = Math.round(x+35)+"px";
 
-	// Text
-	triangle_stats.innerHTML = Math.floor(triangleSeg*100)+"%";
-	triangle_stats.style.top = Math.round(y-15)+"px";
-	triangle_stats.style.left = Math.round(x+35)+"px";
 
 	// Button
 	if(START_SIM){
