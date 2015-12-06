@@ -488,8 +488,8 @@ window.writeStats = function(){
 
 	var triangleAvg = totTriangles / numTriangles || 0;
 	var squareAvg = totSquares / numSquares || 0;
-	var circleAvg = totCircles / numCircles;
-	var pentagonAvg = totPentagons / numPentagons;
+	var circleAvg = totCircles / numCircles || 0;
+	var pentagonAvg = totPentagons / numPentagons || 0;
 	
 	if(isNaN(avg)) debugger;
 
@@ -523,52 +523,54 @@ window.writeStats = function(){
 	var pentagonSeg = (pentagonAvg-0.25)*(4/3);
 	if(pentagonSeg<0) pentagonSeg=0;
 
-
-	// Graph it
-	stats_ctx.fillStyle = "#FFDD56";
-	var x = STATS.steps - STATS.offset;
-	var y = 250 - triangleSeg*250+10;
-	stats_ctx.fillRect(x,y,1,5);
+	if(totTriangles > 0) { 
+		// Graph it
+		stats_ctx.fillStyle = "#FFDD56";
+		var x = STATS.steps - STATS.offset;
+		var y = 250 - triangleSeg*250+10;
+		stats_ctx.fillRect(x,y,1,5);
 	
 		// Text
-	triangle_stats.innerHTML = Math.floor(triangleSeg*100)+"%";
-	triangle_stats.style.top = Math.round(y-15)+"px";
-	triangle_stats.style.left = Math.round(x+35)+"px";
-
-	
+		triangle_stats.innerHTML = Math.floor(triangleSeg*100)+"%";
+		triangle_stats.style.top = Math.round(y-15)+"px";
+		triangle_stats.style.left = Math.round(x+35)+"px";
+	}
+	if (totSquares > 0) {	
 		// Graph it
-	stats_ctx.fillStyle = "#567DFF";
-	var x = STATS.steps - STATS.offset;
-	var y = 250 - squareSeg*250+10;
-	stats_ctx.fillRect(x,y,1,5);
-	
-	// Text
-	square_stats.innerHTML = Math.floor(squareSeg*100)+"%";
-	square_stats.style.top = Math.round(y-15)+"px";
-	square_stats.style.left = Math.round(x+35)+"px";
-
-	// Graph it
-	stats_ctx.fillStyle = "#C342FF";
-	var x = STATS.steps - STATS.offset;
-	var y = 250 - circleSeg*250+10;
-	stats_ctx.fillRect(x,y,1,5);
+		stats_ctx.fillStyle = "#567DFF";
+		var x = STATS.steps - STATS.offset;
+		var y = 250 - squareSeg*250+10;
+		stats_ctx.fillRect(x,y,1,5);
 	
 		// Text
-	circle_stats.innerHTML = Math.floor(circleSeg*100)+"%";
-	circle_stats.style.top = Math.round(y-15)+"px";
-	circle_stats.style.left = Math.round(x+35)+"px";
-	
+		square_stats.innerHTML = Math.floor(squareSeg*100)+"%";
+		square_stats.style.top = Math.round(y-15)+"px";
+		square_stats.style.left = Math.round(x+35)+"px";
+	}
+	if (totCircles > 0) {
 		// Graph it
-	stats_ctx.fillStyle = "#56FF9C";
-	var x = STATS.steps - STATS.offset;
-	var y = 250 - pentagonSeg*250+10;
-	stats_ctx.fillRect(x,y,1,5);
+		stats_ctx.fillStyle = "#C342FF";
+		var x = STATS.steps - STATS.offset;
+		var y = 250 - circleSeg*250+10;
+		stats_ctx.fillRect(x,y,1,5);
+	
+		// Text
+		circle_stats.innerHTML = Math.floor(circleSeg*100)+"%";
+		circle_stats.style.top = Math.round(y-15)+"px";
+		circle_stats.style.left = Math.round(x+35)+"px";
+	}	
+	if (totPentagons > 0) {
+		// Graph it
+		stats_ctx.fillStyle = "#56FF9C";
+		var x = STATS.steps - STATS.offset;
+		var y = 250 - pentagonSeg*250+10;
+		stats_ctx.fillRect(x,y,1,5);
 
-	// Text
-	pentagon_stats.innerHTML = Math.floor(pentagonSeg*100)+"%";
-	pentagon_stats.style.top = Math.round(y-15)+"px";
-	pentagon_stats.style.left = Math.round(x+35)+"px";
-
+		// Text
+		pentagon_stats.innerHTML = Math.floor(pentagonSeg*100)+"%";
+		pentagon_stats.style.top = Math.round(y-15)+"px";
+		pentagon_stats.style.left = Math.round(x+35)+"px";
+	}
 
 	// Button
 	if(START_SIM){
