@@ -467,19 +467,19 @@ window.writeStats = function(){
 	for(var i=0;i<draggables.length;i++){
 		var d = draggables[i];
 		total += d.sameness || 0;
-		if (d.color = "triangle") {
+		if (d.color == "triangle") {
 			totTriangles += d.sameness || 0;
 			numTriangles++;
 		}
-		else if (d.color = "square") {
+		else if (d.color == "square") {
 			totSquares += d.sameness || 0;
 			numSquares++;
 		}
-		else if (d.color = "circle") {
+		else if (d.color == "circle") {
 			totCircles += d.sameness || 0;
 			numCircles++;
 		}
-		else if (d.color = "pentagon") {
+		else if (d.color == "pentagon") {
 			totPentagons += d.sameness || 0;
 			numPentagons++;
 		}
@@ -505,7 +505,7 @@ window.writeStats = function(){
 
 	// AVG -> SEGREGATION
 	var triSeg = (avg-0.25)*(4/3);
-	if(segregation<0) segregation=0;
+	if(triSeg<0) triSeg=0;
 
 	// Graph it
 	stats_ctx.fillStyle = "#cc2727";
