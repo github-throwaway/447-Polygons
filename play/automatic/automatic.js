@@ -485,8 +485,9 @@ window.writeStats = function(){
 		}
 	}
 	var avg = total/draggables.length;
-	var triangleAvg = totTriangles / numTriangles;
-	var squareAvg = totSquares / numSquares;
+
+	var triangleAvg = totTriangles / numTriangles || 0;
+	var squareAvg = totSquares / numSquares || 0;
 	var circleAvg = totCircles / numCircles;
 	var pentagonAvg = totPentagons / numPentagons;
 	
