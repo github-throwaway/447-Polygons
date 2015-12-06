@@ -531,8 +531,29 @@ window.writeStats = function(){
 	// Graph it
 	stats_ctx.fillStyle = "#2cff27";
 	var x = STATS.steps - STATS.offset;
-	var y = 250 - triSeg*250+10;
+	var y = 250 - triangleSeg*250+10;
 	stats_ctx.fillRect(x,y,1,5);
+	
+		// Graph it
+	stats_ctx.fillStyle = "#abcf27";
+	var x = STATS.steps - STATS.offset;
+	var y = 250 - squareSeg*250+10;
+	stats_ctx.fillRect(x,y,1,5);
+
+
+	// Graph it
+	stats_ctx.fillStyle = "#111f27";
+	var x = STATS.steps - STATS.offset;
+	var y = 250 - circleSeg*250+10;
+	stats_ctx.fillRect(x,y,1,5);
+	
+		// Graph it
+	stats_ctx.fillStyle = "#222227";
+	var x = STATS.steps - STATS.offset;
+	var y = 250 - pentagonSeg*250+10;
+	stats_ctx.fillRect(x,y,1,5);
+
+
 
 	// Text
 	stats_text.innerHTML = Math.floor(segregation*100)+"%";
