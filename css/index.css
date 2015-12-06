@@ -22,12 +22,20 @@ a:hover{
 	color: #ddd;
 }
 
-#intro_container, #outro_container{
+#intro_container{
 	width:100%; height:550px;
 	overflow: hidden;
 	position: relative;
 	background: #000;
 }
+
+#outro_container{
+	width:100%; height:550px;
+	overflow: hidden;
+	position: relative;
+	background: #000;
+}
+
 #intro, #outro{
 	position: absolute;
 	width:0; height:0;
