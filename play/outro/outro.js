@@ -131,7 +131,7 @@ var s = new Swinger();
 s.x = 640-30;
 s.swing = s.x*0.1;
 s.y = 210+60;
-s.color = 1;
+s.color = 3;
 swingers.push(s);
 
 var s = new Swinger();
@@ -153,7 +153,7 @@ var s = new Swinger();
 s.x = 640-80;
 s.swing = x*0.1;
 s.y = 210+20;
-s.color = 3;
+s.color = 1;
 swingers.push(s);
 
 
