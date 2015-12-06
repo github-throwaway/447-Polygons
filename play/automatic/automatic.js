@@ -433,7 +433,7 @@ window.render = function(){
 
 //initialize stats
 var stats_text = document.getElementById("stats_text");
-
+var triangle_stats = document.getElementById("triangle_stats");
 var tmp_stats = document.createElement("canvas");
 tmp_stats.width = stats_canvas.width;
 tmp_stats.height = stats_canvas.height;
@@ -556,9 +556,9 @@ window.writeStats = function(){
 	stats_text.style.left = Math.round(x+35)+"px";
 
 	// Text
-	stats_text.innerHTML = Math.floor(triangleSeg*100)+"%";
-	stats_text.style.top = Math.round(y-15)+"px";
-	stats_text.style.left = Math.round(x+35)+"px";
+	triangle_stats.innerHTML = Math.floor(triangleSeg*100)+"%";
+	triangle_stats.style.top = Math.round(y-15)+"px";
+	triangle_stats.style.left = Math.round(x+35)+"px";
 
 	// Button
 	if(START_SIM){
