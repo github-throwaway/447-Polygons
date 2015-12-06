@@ -18,7 +18,7 @@
 	<div id="container">
 		<canvas id="canvas" width="600" height="600"></canvas>
 		<div id="stats">
-
+<!--sets up graph for updating segregation stats for each shape-->
 			<div id="stats_canvas_container">
 				<canvas id="stats_canvas" width="370" height="270"></canvas>
 				<div id="stats_text"></div>
@@ -130,6 +130,7 @@ var whatever = new Quadslider(document.getElementById("slider2"),{
 		window.RATIO_PENTAGONS = VALUE_4 - VALUE_3;
 		// Write stats
 		START_SIM = false;
+		//determines the ratio of each shape on the board
 		document.getElementById("ratio_text_triangles").innerHTML = Math.round(window.RATIO_TRIANGLES*100);
 		document.getElementById("ratio_text_squares").innerHTML = Math.round(window.RATIO_SQUARES*100);
 		document.getElementById("ratio_text_circles").innerHTML = Math.round(window.RATIO_CIRCLES*100);
