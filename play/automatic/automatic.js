@@ -1,9 +1,17 @@
+/*******************
+Name: automatic.js
+Pre-condition: none
+Post-condition: The program has been/is running
+Description: This file serves as the main controller
+of the program. It handles all the logic, algorithms,
+and functionality required to run this program
+*******************/
+
+//setup a canvas for the grid
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
-
 var stats_canvas = document.getElementById("stats_canvas");
 var stats_ctx = stats_canvas.getContext("2d");
-
 var NONCONFORM = 1.00;
 var BIAS = 0.33;
 var TILE_SIZE = 30;
@@ -12,6 +20,7 @@ var GRID_SIZE = 20;
 var DIAGONAL_SQUARED = (TILE_SIZE+5)*(TILE_SIZE+5) + (TILE_SIZE+5)*(TILE_SIZE+5);
 var MAX_MOVES = 10000;
 
+//Ratios for shapes and initialization of counters
 window.NUM_TRIANGLES_MOVED = 0;
 window.NUM_SQUARES_MOVED = 0;
 window.NUM_CIRCLES_MOVED = 0;
@@ -19,12 +28,11 @@ window.NUM_PENTAGONS_MOVED = 0;
 window.TOTAL_MOVES = 0;
 window.RATIO_TRIANGLES = 0.20;
 window.RATIO_SQUARES = 0.20;
-//default ratios for the new shapes
 window.RATIO_CIRCLES = 0.20;
 window.RATIO_PENTAGONS = 0.20;
 window.EMPTINESS = 0.20;
 
-
+//load images
 var assetsLeft = 0;
 var onImageLoaded = function(){
 	assetsLeft--;
@@ -37,13 +45,15 @@ function addAsset(name,src){
 	images[name].onload = onImageLoaded;
 	images[name].src = src;
 }
+
+//import image files
 addAsset("yayTriangle","../img/yay_triangle.png");
 addAsset("mehTriangle","../img/meh_triangle.png");
 addAsset("sadTriangle","../img/sad_triangle.png");
 addAsset("yaySquare","../img/yay_square.png");
 addAsset("mehSquare","../img/meh_square.png");
 addAsset("sadSquare","../img/sad_square.png");
-//include the new shape images
+//The new shape images
 addAsset("yayCircle","../img/yay_circle.png");
 addAsset("mehCircle","../img/meh_circle.png");
 addAsset("sadCircle","../img/sad_circle.png");
@@ -51,11 +61,23 @@ addAsset("yayPentagon","../img/yay_pentagon.png");
 addAsset("mehPentagon","../img/meh_pentagon.png");
 addAsset("sadPentagon","../img/sad_pentagon.png");
 
+//handles mouse actions
 var IS_PICKING_UP = false;
 var lastMouseX, lastMouseY;
 
+
+/*******************
+Name: Draggable function
+Pre-condition: all required assets have been imported
+Post-condition: A new draggable shape has been created
+Description: This function creates a new draggable shape
+each time it is called. Draggable shapes can be manually
+moved by the user. It also handles the logic of what happens
+when a user picks up or drops a draggable.
+*******************/
 function Draggable(x,y){
 	
+	//setup coordinates
 	var self = this;
 	self.x = x;
 	self.y = y;
@@ -64,10 +86,13 @@ function Draggable(x,y){
 
 	var offsetX, offsetY;
 	var pickupX, pickupY;
+
+	//called when user picks up a draggable
 	self.pickup = function(){
 
 		IS_PICKING_UP = true;
 
+		//handles coordinates
 		pickupX = (Math.floor(self.x/TILE_SIZE)+0.5)*TILE_SIZE;
 		pickupY = (Math.floor(self.y/TILE_SIZE)+0.5)*TILE_SIZE;
 		offsetX = Mouse.x-self.x;
@@ -85,10 +110,12 @@ function Draggable(x,y){
 
 	};
 
+	//called when a user drops a draggable
 	self.drop = function(){
 
 		IS_PICKING_UP = false;
 
+		//handles coordinates
 		var px = Math.floor(Mouse.x/TILE_SIZE);
 		var py = Math.floor(Mouse.y/TILE_SIZE);
 		if(px<0) px=0;
@@ -109,7 +136,8 @@ function Draggable(x,y){
 				break;
 			}
 		}
-
+		//if the spot is taken, move on
+		//otherwise put it in the new spot
 		if(spotTaken){
 			self.gotoX = pickupX;
 			self.gotoY = pickupY;
@@ -127,6 +155,9 @@ function Draggable(x,y){
 	}
 
 	var lastPressed = false;
+
+	//this function updates the grid UI
+	//after a change occurs
 	self.update = function(){
 
 		// Shakiness?
@@ -135,6 +166,9 @@ function Draggable(x,y){
 		self.nonconform = false;
 		self.sameness = 0;
 
+		//if the shape was NOT dragged
+		//calculate sameness
+		//else calculate a different way
 		if(!self.dragged){
 			var neighbors = 0;
 			var same = 0;
@@ -170,7 +204,7 @@ function Draggable(x,y){
 			
 		}
 
-		// Dragging
+		// Handles situations where the shape was or was not dragged
 		if(!self.dragged){
 			if((self.shaking||window.PICK_UP_ANYONE) && Mouse.pressed && !lastPressed){
 				var dx = Mouse.x-self.x;
@@ -195,6 +229,8 @@ function Draggable(x,y){
 	};
 
 	self.frame = 0;
+
+	//this function draws the actual grid
 	self.draw = function(){
 		ctx.save();
 		ctx.translate(self.x,self.y);
@@ -262,7 +298,17 @@ window.START_SIM = false;
 
 var draggables;
 var STATS;
+
+/*******************
+Name: window.reset()
+Pre-condition: all required assets are imported
+Post-condition: a new board is created
+Description: This function creates a brand new
+board whenever the reset button is pressed
+*******************/
 window.reset = function(){
+
+	//reset counters and setup corresponding HTML
 	window.NUM_TRIANGLES_MOVED = 0;
 	window.NUM_SQUARES_MOVED = 0;
 	window.NUM_CIRCLES_MOVED = 0;
@@ -273,6 +319,7 @@ window.reset = function(){
 	document.getElementById("circles_moved").innerHTML = window.NUM_CIRCLES_MOVED;
 	document.getElementById("pentagons_moved").innerHTML = window.NUM_PENTAGONS_MOVED;
 
+	//reset stats
 	STATS = {
 		steps:0,
 		offset:0
@@ -281,6 +328,8 @@ window.reset = function(){
 
 	stats_ctx.clearRect(0,0,stats_canvas.width,stats_canvas.height);
 	draggables = [];
+
+	//sets up ratios of shapes based upon the default values
 	for(var x=0;x<GRID_SIZE;x++){
 		for(var y=0;y<GRID_SIZE;y++){
 			rand = Math.random();
@@ -314,6 +363,13 @@ window.reset = function(){
 
 }
 
+/*******************
+Name: window.render
+Pre-condition: The grid is fully setup and ready to go
+Post-condition: one or more moves has been stepped through
+Description: This function handles the actual stepping of shapes
+and what changes each time a move is executed
+*******************/
 window.render = function(){
 
 	if(assetsLeft>0 || !draggables) return;
@@ -374,14 +430,26 @@ window.render = function(){
 	lastMouseY = Mouse.y;
 
 }
+
+//initialize stats
 var stats_text = document.getElementById("stats_text");
 
 var tmp_stats = document.createElement("canvas");
 tmp_stats.width = stats_canvas.width;
 tmp_stats.height = stats_canvas.height;
 
+/*******************
+Name: window.writeStats
+Pre-condition: the program is fully setup and
+ready to go
+Post-condition: The stats panel is setup and ready to go
+Description: This function sets up the stats
+panel, which will continually update as the program is
+run.
+*******************/
 window.writeStats = function(){
 
+	//if there are no draggables (i.e. empty space)
 	if(!draggables || draggables.length==0) return;
 
 	// Average Sameness Ratio
@@ -429,8 +497,24 @@ window.writeStats = function(){
 
 var doneAnimFrame = 0;
 var doneBuffer = 30;
+
+/*******************
+Name: isDone
+Pre-condition: The program is running
+Post-condition: The program is terminated or
+continues to run
+Description: This function checks whether
+the program has completed. It terminates the program
+when it is near the maximum number of moves. Otherwise,
+it keeps the program running.
+*******************/
 function isDone(){
+	//the below line cuts off the simulation when it reaches
+	//29 moves below the maximum
+	//this allows the simulation to finish moves already in
+	//progress and stop very near the max
 	if(window.TOTAL_MOVES >= MAX_MOVES-29) return true;
+
 	if(Mouse.pressed) return false;
 	for(var i=0;i<draggables.length;i++){
 		var d = draggables[i];
@@ -439,6 +523,15 @@ function isDone(){
 	return true;
 }
 
+/*******************
+Name: step
+Pre-condition: The simulation is in progress
+Post-condition: A move has been stepped through
+Description: This function handles individual shapes
+in individual movements. It is true to the name
+of "step" in that this function executes
+a singular move.
+*******************/
 function step(){
 
 	// Get all shakers
@@ -456,6 +549,9 @@ function step(){
 	var minShaker = shaking[0];
 	var maxShaker = shaking[0];
 
+	//algorithm for moving the unhappiest shapes first
+	//it calculates the happiest and unhappiest shakers
+	//by going through a list of shakers
 	for (var i = 0; i < shaking.length; i++){
 		if (shaking[i].sameness < minShaker.sameness) {
 			minShaker = shaking[i];
@@ -512,6 +608,7 @@ function step(){
 	shaker.gotoX = spot.x;
 	shaker.gotoY = spot.y;
 
+	//update the individual counters for each shape
 	if (shaker.color == "triangle"){
 		window.NUM_TRIANGLES_MOVED++;
 		window.TOTAL_MOVES++;
@@ -550,7 +647,7 @@ window.requestAnimFrame = window.requestAnimationFrame ||
 	}
 })();
 
-window.IS_IN_SIGHT = false;
+window.IS_IN_SIGHT = false;  /////////CRUCIAL ELEMENT RIGHT HERE. Needs to be true in order to test on a local machine
 
 window.onload=function(){
 	reset();

@@ -8,8 +8,20 @@ new DoubleSlider(dom,{
 	values:[0.1,0.9]
 });
 ***/
+
+/*******************
+Name: DoubleSlider2
+Pre-condition: The required assets exist and
+are ready to be used. Also all 4 shapes must
+exist and be created without error 
+Post-condition: The function creates a new slider
+with five options. There are four sliders (one 
+for each shape) and one additional slider
+for empty space
+*******************/
 function DoubleSlider2(dom,config){
 
+	//intialize required variables
 	var self = this;
 	self.dom = dom;
 	self.backgrounds = [];
@@ -55,6 +67,14 @@ function DoubleSlider2(dom,config){
 	}
 
 	// Slider logic
+	/*******************
+	Name: onMouseMove
+	Pre-condition: The mouse is moving and a corresponding
+	value is passed in related to this.
+	Post-condition: The sliders are updatedg
+	Description: This function updates sliders whenever they
+	are moved
+	*******************/
 	function onMouseMove(x){
 	    if(self.draggingSliderDOM){
 	    	var val = x/400;
@@ -95,6 +115,8 @@ function DoubleSlider2(dom,config){
 
 		}
 	}
+	//stops the dragging of the sliders when the user stops
+	//holding down the mouse
 	function onMouseUp(){
 		if(self.draggingSliderDOM){
 		    self.draggingSliderDOM = null;
@@ -103,6 +125,8 @@ function DoubleSlider2(dom,config){
 		    }
 		}
 	}
+	//sets up listeners for movement of stoppage
+	//of mouse or touch movements
 	document.body.addEventListener("mousemove",function(event){
 		var x = event.pageX - myX();
 		onMouseMove(x);
@@ -155,6 +179,15 @@ function DoubleSlider2(dom,config){
 
 }
 
+/*******************
+Name: findPos
+Pre-condition: The sliders exist
+Post-condition: The position of the sliders
+is recorded for future reference
+Description: This function finds the relative position
+of the sliders and records that position in order
+to execute required functions in the future.
+*******************/
 function findPos(obj){
     var curleft = 0;
     var curtop = 0;
