@@ -540,7 +540,11 @@ window.writeStats = function(){
 	var x = STATS.steps - STATS.offset;
 	var y = 250 - squareSeg*250+10;
 	stats_ctx.fillRect(x,y,1,5);
-
+	
+	// Text
+	stats_text.innerHTML = Math.floor(squareSeg*100)+"%";
+	stats_text.style.top = Math.round(y-15)+"px";
+	stats_text.style.left = Math.round(x+35)+"px";
 
 	// Graph it
 	stats_ctx.fillStyle = "#C342FF";
@@ -548,16 +552,19 @@ window.writeStats = function(){
 	var y = 250 - circleSeg*250+10;
 	stats_ctx.fillRect(x,y,1,5);
 	
+		// Text
+	stats_text.innerHTML = Math.floor(circleSeg*100)+"%";
+	stats_text.style.top = Math.round(y-15)+"px";
+	stats_text.style.left = Math.round(x+35)+"px";
+	
 		// Graph it
 	stats_ctx.fillStyle = "#56FF9C";
 	var x = STATS.steps - STATS.offset;
 	var y = 250 - pentagonSeg*250+10;
 	stats_ctx.fillRect(x,y,1,5);
 
-
-
 	// Text
-	stats_text.innerHTML = Math.floor(segregation*100)+"%";
+	stats_text.innerHTML = Math.floor(pentagonSeg*100)+"%";
 	stats_text.style.top = Math.round(y-15)+"px";
 	stats_text.style.left = Math.round(x+35)+"px";
 
