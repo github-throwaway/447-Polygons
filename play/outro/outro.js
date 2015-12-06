@@ -97,7 +97,7 @@ for(var i=0;i<1280;i+=50){
 	for(var j=0;j<num+1;j++){
 
 		var x = i + Math.random()*20-10;
-		var y = 220 - 170*Math.pow(t,2);
+		var y = 250 - 170*Math.pow(t,2);
 
 		if(i>640){
 			y += j*50 + Math.random()*20-10;
