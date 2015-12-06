@@ -45,7 +45,7 @@ a:hover{
 #intro > #intro_background{
 	display: block;
 	position: absolute;
-	left:-640px; top:-175px;
+	left:-640px; top:-205px;
 	width:1280px; height:550px;
 	border: none;
 }
