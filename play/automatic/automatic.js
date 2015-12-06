@@ -434,6 +434,9 @@ window.render = function(){
 //initialize stats
 var stats_text = document.getElementById("stats_text");
 var triangle_stats = document.getElementById("triangle_stats");
+var square_stats = document.getElementById("triangle_stats");
+var circle_stats = document.getElementById("triangle_stats");
+var pentagon_stats = document.getElementById("triangle_stats");
 var tmp_stats = document.createElement("canvas");
 tmp_stats.width = stats_canvas.width;
 tmp_stats.height = stats_canvas.height;
