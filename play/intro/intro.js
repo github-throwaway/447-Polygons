@@ -1,3 +1,6 @@
+//intro.js displays the segregated shapes at the top of the page. 
+//it has been modified to include the two new shapes added 
+
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
@@ -13,8 +16,10 @@ function addAsset(name,src){
 	images[name].onload = onImageLoaded;
 	images[name].src = src;
 }
+
 addAsset("mehTriangle","meh_triangle.png");
 addAsset("mehSquare","meh_square.png");
+//new shape image locations
 addAsset("mehCircle", "../img/meh_circle.png");
 addAsset("mehPentagon", "../img/meh_pentagon.png")
 
@@ -42,7 +47,7 @@ function Swinger(){
 	self.draw = function(ctx){
 
 		ctx.save();
-		
+		//translations and rotations repsonsible for moving shape
 		ctx.translate(self.x,self.y);
 		
 		ctx.translate(0,20);
@@ -50,6 +55,7 @@ function Swinger(){
 		ctx.translate(0,-20);
 
 		var img;
+		//original draw function updated to include new shapes
 		if(self.x>640 && self.y > 190){
 			img = images.mehSquare;
 		}
@@ -71,8 +77,10 @@ function Swinger(){
 }
 
 var swingers = [];
+//populate the area randomly withshapes
 for(var i=0;i<1280;i+=50){
 
+	//randomly generate coordinates for shapes
 	var tt = (i-640)/640;
 	var num;
 	if(i>640){
@@ -109,7 +117,7 @@ for(var i=0;i<1280;i+=50){
 	}
 
 }
-
+// the four succeeding blocks place one of each shape in the middle of the area
 var s = new Swinger();
 s.x = 640 + 30;
 s.swing = s.x*0.1;
