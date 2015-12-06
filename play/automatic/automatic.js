@@ -511,6 +511,7 @@ window.writeStats = function(){
 	if(segregation<0) segregation=0;
 
 	// AVG -> SEGREGATION
+	console.log(triangleAvg);
 	var triangleSeg = (triangleAvg-0.25)*(4/3);
 	if(triangleSeg<0) triangleSeg=0;
 	
