@@ -40,6 +40,16 @@ div{
 	color:#cc2727;
 	font-size: 20px;
 }
+#triangle_stats{
+	position: absolute;
+	color:#FFDD56;
+	font-size: 20px;
+}
+#square_stats{
+	position: absolute;
+	color:#567DFF;
+	font-size: 20px;
+}
 #stats_canvas_container{
 	background:url(../img/stats.png);
 	width:400px; height:300px;
