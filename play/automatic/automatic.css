@@ -50,6 +50,19 @@ div{
 	color:#567DFF;
 	font-size: 20px;
 }
+
+#circle_stats{
+	position: absolute;
+	color:#C342FF;
+	font-size: 20px;
+}
+
+#pentagon_stats{
+	position: absolute;
+	color:#56FF9C;
+	font-size: 20px;
+}
+
 #stats_canvas_container{
 	background:url(../img/stats.png);
 	width:400px; height:300px;
