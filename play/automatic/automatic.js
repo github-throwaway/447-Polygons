@@ -508,7 +508,7 @@ window.writeStats = function(){
 
 	// AVG -> SEGREGATION
 	var triangleSeg = (triangleAvg-0.25)*(4/3);
-	if(triSeg<0) triSeg=0;
+	if(triangleSeg<0) triangleSeg=0;
 	
 		// AVG -> SEGREGATION
 	var squareSeg = (squareAvg-0.25)*(4/3);
@@ -548,7 +548,7 @@ window.writeStats = function(){
 	stats_ctx.fillRect(x,y,1,5);
 	
 		// Graph it
-	stats_ctx.fillStyle = "#222227";
+	stats_ctx.fillStyle = "#224427";
 	var x = STATS.steps - STATS.offset;
 	var y = 250 - pentagonSeg*250+10;
 	stats_ctx.fillRect(x,y,1,5);
