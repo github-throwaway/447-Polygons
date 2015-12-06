@@ -514,7 +514,7 @@ window.writeStats = function(){
 	stats_ctx.fillRect(x,y,1,5);
 	
 	// Graph it
-	stats_ctx.fillStyle = "#2c2727";
+	stats_ctx.fillStyle = "#2cff27";
 	var x = STATS.steps - STATS.offset;
 	var y = 250 - triSeg*250+10;
 	stats_ctx.fillRect(x,y,1,5);
