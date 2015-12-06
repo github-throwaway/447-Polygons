@@ -538,6 +538,9 @@ window.writeStats = function(){
 		triangle_stats.style.top = Math.round(y-15)+"px";
 		triangle_stats.style.left = Math.round(x+35)+"px";
 	}
+	else {
+		triangle_stats.style.visibility = "hidden"
+	}
 	if (totSquares > 0) {	
 		// Graph it
 		stats_ctx.fillStyle = "#567DFF";
