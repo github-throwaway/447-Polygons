@@ -43,7 +43,7 @@ function Swinger(){
 	self.update = function(){
 
 		var dx = Mouse.x - self.x;
-		var dy = Mouse.y - (self.y+250+window.SCROLL*0.5);
+		var dy = Mouse.y - (self.y+275+window.SCROLL*0.7);
 		var dist = Math.sqrt(dx*dx+dy*dy);
 
 		self.swing += 0.05;
