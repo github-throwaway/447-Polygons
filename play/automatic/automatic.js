@@ -555,6 +555,11 @@ window.writeStats = function(){
 	stats_text.style.top = Math.round(y-15)+"px";
 	stats_text.style.left = Math.round(x+35)+"px";
 
+	// Text
+	stats_text.innerHTML = Math.floor(triangleSeg*100)+"%";
+	stats_text.style.top = Math.round(y-15)+"px";
+	stats_text.style.left = Math.round(x+35)+"px";
+
 	// Button
 	if(START_SIM){
 		document.getElementById("moving").classList.add("moving");
