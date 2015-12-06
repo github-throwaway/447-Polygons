@@ -527,6 +527,7 @@ window.writeStats = function(){
 	if(pentagonSeg<0) pentagonSeg=0;
 
 	if(totTriangles > 0) { 
+		triangle_stats.style.visibility = "visible";
 		// Graph it
 		stats_ctx.fillStyle = "#FFDD56";
 		var x = STATS.steps - STATS.offset;
@@ -539,9 +540,11 @@ window.writeStats = function(){
 		triangle_stats.style.left = Math.round(x+35)+"px";
 	}
 	else {
-		triangle_stats.style.visibility = "hidden"
+		triangle_stats.style.visibility = "hidden";
 	}
+	
 	if (totSquares > 0) {	
+		square_stats.style.visibility = "visible";
 		// Graph it
 		stats_ctx.fillStyle = "#567DFF";
 		var x = STATS.steps - STATS.offset;
@@ -553,7 +556,12 @@ window.writeStats = function(){
 		square_stats.style.top = Math.round(y-15)+"px";
 		square_stats.style.left = Math.round(x+35)+"px";
 	}
+	else {
+		square_stats.style.visibility = "hidden";	
+	}
+	
 	if (totCircles > 0) {
+		circle_stats.style.visibility = "visible";
 		// Graph it
 		stats_ctx.fillStyle = "#C342FF";
 		var x = STATS.steps - STATS.offset;
@@ -565,7 +573,12 @@ window.writeStats = function(){
 		circle_stats.style.top = Math.round(y-15)+"px";
 		circle_stats.style.left = Math.round(x+35)+"px";
 	}	
+	else {
+		circle_stats.style.visibility = "hidden";
+	}
+	
 	if (totPentagons > 0) {
+		pentagon_stats.style.visibility = "visible";
 		// Graph it
 		stats_ctx.fillStyle = "#56FF9C";
 		var x = STATS.steps - STATS.offset;
@@ -576,6 +589,9 @@ window.writeStats = function(){
 		pentagon_stats.innerHTML = Math.floor(pentagonSeg*100)+"%";
 		pentagon_stats.style.top = Math.round(y-15)+"px";
 		pentagon_stats.style.left = Math.round(x+35)+"px";
+	}
+	else {
+		pentagon_stats.style.visibility = "hidden";
 	}
 
 	// Button
