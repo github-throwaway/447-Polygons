@@ -542,9 +542,9 @@ window.writeStats = function(){
 	stats_ctx.fillRect(x,y,1,5);
 	
 	// Text
-	stats_text.innerHTML = Math.floor(squareSeg*100)+"%";
-	stats_text.style.top = Math.round(y-15)+"px";
-	stats_text.style.left = Math.round(x+35)+"px";
+	square_stats.innerHTML = Math.floor(squareSeg*100)+"%";
+	square_stats.style.top = Math.round(y-15)+"px";
+	square_stats.style.left = Math.round(x+35)+"px";
 
 	// Graph it
 	stats_ctx.fillStyle = "#C342FF";
@@ -553,9 +553,9 @@ window.writeStats = function(){
 	stats_ctx.fillRect(x,y,1,5);
 	
 		// Text
-	stats_text.innerHTML = Math.floor(circleSeg*100)+"%";
-	stats_text.style.top = Math.round(y-15)+"px";
-	stats_text.style.left = Math.round(x+35)+"px";
+	circle_stats.innerHTML = Math.floor(circleSeg*100)+"%";
+	circle_stats.style.top = Math.round(y-15)+"px";
+	circle_stats.style.left = Math.round(x+35)+"px";
 	
 		// Graph it
 	stats_ctx.fillStyle = "#56FF9C";
@@ -564,9 +564,9 @@ window.writeStats = function(){
 	stats_ctx.fillRect(x,y,1,5);
 
 	// Text
-	stats_text.innerHTML = Math.floor(pentagonSeg*100)+"%";
-	stats_text.style.top = Math.round(y-15)+"px";
-	stats_text.style.left = Math.round(x+35)+"px";
+	pentagon_stats.innerHTML = Math.floor(pentagonSeg*100)+"%";
+	pentagon_stats.style.top = Math.round(y-15)+"px";
+	pentagon_stats.style.left = Math.round(x+35)+"px";
 
 
 	// Button
