@@ -1,5 +1,5 @@
 /*******************
-Name: automatic.js
+Name: board.js
 Pre-condition: none
 Post-condition: The program has been/is running
 Description: This file serves as the main controller
