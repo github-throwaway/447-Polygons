@@ -173,7 +173,7 @@ function render(){
 	}
 
 	// Draw
-	canvas.style.top = (-window.SCROLL*0.5+100)+"px";
+	canvas.style.top = (-window.SCROLL*0.5+50)+"px";
 	ctx.clearRect(0,0,canvas.width,canvas.height);
 	ctx.save();
 	ctx.translate(0,0);
