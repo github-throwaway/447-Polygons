@@ -522,33 +522,28 @@ window.writeStats = function(){
 	var pentagonSeg = (pentagonAvg-0.25)*(4/3);
 	if(pentagonSeg<0) pentagonSeg=0;
 
+
 	// Graph it
-	stats_ctx.fillStyle = "#cc2727";
-	var x = STATS.steps - STATS.offset;
-	var y = 250 - segregation*250+10;
-	stats_ctx.fillRect(x,y,1,5);
-	
-	// Graph it
-	stats_ctx.fillStyle = "#2cff27";
+	stats_ctx.fillStyle = "#FFDD56";
 	var x = STATS.steps - STATS.offset;
 	var y = 250 - triangleSeg*250+10;
 	stats_ctx.fillRect(x,y,1,5);
 	
 		// Graph it
-	stats_ctx.fillStyle = "#abcf27";
+	stats_ctx.fillStyle = "#567DFF";
 	var x = STATS.steps - STATS.offset;
 	var y = 250 - squareSeg*250+10;
 	stats_ctx.fillRect(x,y,1,5);
 
 
 	// Graph it
-	stats_ctx.fillStyle = "#111f27";
+	stats_ctx.fillStyle = "#C342FF";
 	var x = STATS.steps - STATS.offset;
 	var y = 250 - circleSeg*250+10;
 	stats_ctx.fillRect(x,y,1,5);
 	
 		// Graph it
-	stats_ctx.fillStyle = "#224427";
+	stats_ctx.fillStyle = "#56FF9C";
 	var x = STATS.steps - STATS.offset;
 	var y = 250 - pentagonSeg*250+10;
 	stats_ctx.fillRect(x,y,1,5);
