@@ -82,28 +82,27 @@ function DoubleSlider2(dom,config){
 	    	var index = self.draggingSliderIndex;
 	    	var sliderWidth = 0;//0.025;
 	    //CHANGES HERE: changed how the boundaries of the sliders are calculated. Set it up so sliders can't cross each other
-	    if(index==0){
-	    	var edge = self.values[1]-sliderWidth;
-	    	if(val>edge) val=edge;
-	    }
-	    else if(index==1){
-	    	var back_edge = self.values[0]+ sliderWidth;
-	    	if(val<back_edge) val=back_edge;
-		var front_edge = self.values[2] - sliderWidth;
+		 if(index==0){
+	    		var edge = self.values[1]-sliderWidth;
+	    		if(val>edge) val=edge;
+	    	}
+	    	else if(index==1){
+	    		var back_edge = self.values[0]+ sliderWidth;
+	    		if(val<back_edge) val=back_edge;
+			var front_edge = self.values[2] - sliderWidth;
 			if(val > front_edge) val = front_edge;
-	    }
-	    //CHANGES HERE: The two else ifs below. Calculates the boundaries of the new sliders
-   	    else if(index==2){
-	    	var back_edge = self.values[1]+ sliderWidth;
+	    	}
+	    	//CHANGES HERE: The two else ifs below. Calculates the boundaries of the new sliders
+   	    	else if(index==2){
+	    		var back_edge = self.values[1]+ sliderWidth;
 	    		if(val<back_edge) val=back_edge;
 			var front_edge = self.values[3] - sliderWidth;
 			if(val > front_edge) val = front_edge;
-	    }
-	    else if(index==3){
+	    	}
+	    	else if(index==3){
 	    		var back_edge = self.values[2]+ sliderWidth;
 	    		if(val<back_edge) val=back_edge;
-			
-	     }
+		}
 	    	var edge = sliderWidth/2;
     		if(val<edge) val=edge;
 	    	var edge = 1-sliderWidth/2;
