@@ -454,11 +454,39 @@ window.writeStats = function(){
 
 	// Average Sameness Ratio
 	var total = 0;
+	var totTriangles = 0;
+	var totSquares = 0;
+	var totCircles = 0;
+	var totPentagons = 0;
+	
+	var numTriangles = 0;
+	var numSquares = 0;
+	var numCircles = 0;
+	var numPentagons = 0;
+	
 	for(var i=0;i<draggables.length;i++){
 		var d = draggables[i];
 		total += d.sameness || 0;
+		if (d.color = "triangle") {
+			totTriangles += d.sameness || 0;
+			numTriangles++;
+		}
+		else if (d.color = "square") {
+			totSquares += d.sameness || 0;
+			numSquares++;
+		}
+		else if (d.color = "circle") {
+			totCircles += d.sameness || 0;
+			numCircles++;
+		}
+		else if (d.color = "pentagon") {
+			totPentagons += d.sameness || 0;
+			numPentagons++;
+		}
 	}
 	var avg = total/draggables.length;
+	var triAvg = totTriangles / numTriangles;
+	
 	if(isNaN(avg)) debugger;
 
 	// If stats oversteps, bump back
@@ -475,10 +503,20 @@ window.writeStats = function(){
 	var segregation = (avg-0.25)*(4/3);
 	if(segregation<0) segregation=0;
 
+	// AVG -> SEGREGATION
+	var triSeg = (avg-0.25)*(4/3);
+	if(segregation<0) segregation=0;
+
 	// Graph it
 	stats_ctx.fillStyle = "#cc2727";
 	var x = STATS.steps - STATS.offset;
 	var y = 250 - segregation*250+10;
+	stats_ctx.fillRect(x,y,1,5);
+	
+	// Graph it
+	stats_ctx.fillStyle = "#2c2727";
+	var x = STATS.steps - STATS.offset;
+	var y = 250 - triSeg*250+10;
 	stats_ctx.fillRect(x,y,1,5);
 
 	// Text
