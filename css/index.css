@@ -34,11 +34,19 @@ a:hover{
 	margin: auto;
 	top:0; bottom:0; left:0; right:0;
 }
-#intro > #intro_background, #outro > #outro_background{
+#intro > #intro_background{
 	display: block;
 	position: absolute;
 	left:-640px; top:-275px;
 	width:1280px; height:550px;
+	border: none;
+}
+
+#outro > #outro_background{
+	display: block;
+	position: absolute;
+	left:-640px; top:-275px;
+	width:1280px; height:450px;
 	border: none;
 }
 
