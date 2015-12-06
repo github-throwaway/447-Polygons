@@ -111,16 +111,21 @@ div{
 
 span.highlight{
 	color:#cc2727;
+	font-weight: bold;
 }
 span.triangle_highlight{
 	color:#FFDD56;
+	font-weight: bold;
 }
 span.square_highlight{
 	color:#567DFF;
+	font-weight: bold;
 }
 span.circle_highlight{
 	color:#C342FF;
+	font-weight: bold;
 }
 span.pentagon_highlight{
 	color:#56FF9C;
+	font-weight: bold;
 }
