@@ -70,7 +70,7 @@
 <script src="automatic.js"></script>
 <script src="doubleslider.js"></script>
 <!-- Included new doubleslider2 js file-->
-<script src="doubleslider2.js"></script>
+<script src="quadslider.js"></script>
 <script>
 window.NUM_TRIANGLES_MOVED = 0;
 window.NUM_SQUARES_MOVED = 0;
@@ -103,7 +103,7 @@ var whatever = new DoubleSlider(document.getElementById("slider"),{
 		nonconform_text.innerHTML = Math.round(window.NONCONFORM*100)+"%";
 	}
 });
-var whatever = new DoubleSlider2(document.getElementById("slider2"),{
+var whatever = new Quadslider(document.getElementById("slider2"),{
 	backgrounds:[
 		//added backgrounds for the new shape colors on the slider bar
 		{color:"#FFDD56",icon:"ds_happy.png"},
