@@ -1,16 +1,7 @@
-/***
-new DoubleSlider(dom,{
-	backgrounds:[
-		{color:"#cc2727"},
-		{color:"#bada55"},
-		{color:"#2095dc"}
-	],
-	values:[0.1,0.9]
-});
-***/
+
 
 /*******************
-Name: DoubleSlider2
+Name: Quadslider
 Pre-condition: The required assets exist and
 are ready to be used. Also all 4 shapes must
 exist and be created without error 
@@ -19,7 +10,7 @@ with five options. There are four sliders (one
 for each shape) and one additional slider
 for empty space
 *******************/
-function DoubleSlider2(dom,config){
+function Quadslider(dom,config){
 
 	//intialize required variables
 	var self = this;
