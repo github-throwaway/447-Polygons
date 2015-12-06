@@ -43,24 +43,24 @@ div{
 #triangle_stats{
 	position: absolute;
 	color:#FFDD56;
-	font-size: 10px;
+	font-size: 15px;
 }
 #square_stats{
 	position: absolute;
 	color:#567DFF;
-	font-size: 10px;
+	font-size: 15px;
 }
 
 #circle_stats{
 	position: absolute;
 	color:#C342FF;
-	font-size: 10px;
+	font-size: 15px;
 }
 
 #pentagon_stats{
 	position: absolute;
 	color:#56FF9C;
-	font-size: 10px;
+	font-size: 15px;
 }
 
 #stats_canvas_container{
