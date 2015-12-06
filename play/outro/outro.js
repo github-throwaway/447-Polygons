@@ -1,3 +1,6 @@
+//outro.js populates the bottom of the page with various happy shapes.
+//the file has been modified to include the two new shapes
+
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
@@ -15,6 +18,7 @@ function addAsset(name,src){
 }
 addAsset("yayTriangle","yay_triangle.png");
 addAsset("yaySquare","yay_square.png");
+//include the new shapes
 addAsset("yayPentagon","yay_pentagon.png");
 addAsset("yayCircle", "yay_circle.png")
 
@@ -25,7 +29,7 @@ function Swinger(){
 	
 	self.swing = 0;
 	self.baseRotation = 0;
-	
+	//randomly populate the area with shapes
 	rand = Math.random();
 	if (rand < 0.25) {
 		self.color = 0;
@@ -64,6 +68,7 @@ function Swinger(){
 		ctx.translate(0,-20);
 
 		var img;
+		//include new shapes
 		if(self.color==0){
 			img = images.yaySquare;
 		}else if(self.color==1){
@@ -126,7 +131,7 @@ for(var i=0;i<1280;i+=50){
 	}
 
 }
-
+//the four following code blocks add one of each shape to the center of the area
 var s = new Swinger();
 s.x = 640-30;
 s.swing = s.x*0.1;
