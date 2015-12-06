@@ -485,7 +485,10 @@ window.writeStats = function(){
 		}
 	}
 	var avg = total/draggables.length;
-	var triAvg = totTriangles / numTriangles;
+	var triangleAvg = totTriangles / numTriangles;
+	var squareAvg = totSquares / numSquares;
+	var circleAvg = totCircles / numCircles;
+	var pentagonAvg = totPentagons / numPentagons;
 	
 	if(isNaN(avg)) debugger;
 
@@ -504,8 +507,20 @@ window.writeStats = function(){
 	if(segregation<0) segregation=0;
 
 	// AVG -> SEGREGATION
-	var triSeg = (triAvg-0.25)*(4/3);
+	var triangleSeg = (triangleAvg-0.25)*(4/3);
 	if(triSeg<0) triSeg=0;
+	
+		// AVG -> SEGREGATION
+	var squareSeg = (squareAvg-0.25)*(4/3);
+	if(squareSeg<0) squareSeg=0;
+	
+		// AVG -> SEGREGATION
+	var circleSeg = (circleAvg-0.25)*(4/3);
+	if(circleSeg<0) circleSeg=0;
+	
+		// AVG -> SEGREGATION
+	var pentagonSeg = (pentagonAvg-0.25)*(4/3);
+	if(pentagonSeg<0) pentagonSeg=0;
 
 	// Graph it
 	stats_ctx.fillStyle = "#cc2727";
