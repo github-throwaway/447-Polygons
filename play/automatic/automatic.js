@@ -462,11 +462,13 @@ window.writeStats = function(){
 	var totCircles = 0;
 	var totPentagons = 0;
 	
+	//counter to hold number of each shape
 	var numTriangles = 0;
 	var numSquares = 0;
 	var numCircles = 0;
 	var numPentagons = 0;
 	
+	//goes through array of shapes on grid and calculates total sameness of adjacent shapes and number of shapes for each
 	for(var i=0;i<draggables.length;i++){
 		var d = draggables[i];
 		total += d.sameness || 0;
@@ -487,8 +489,10 @@ window.writeStats = function(){
 			numPentagons++;
 		}
 	}
+	//no longer used, but left in just in case total avg graph functionality is desired
 	var avg = total/draggables.length;
 
+	//determines avg number of 
 	var triangleAvg = totTriangles / numTriangles || 0;
 	var squareAvg = totSquares / numSquares || 0;
 	var circleAvg = totCircles / numCircles || 0;
@@ -505,7 +509,9 @@ window.writeStats = function(){
 		stats_ctx.clearRect(0,0,stats_canvas.width,stats_canvas.height);
 		stats_ctx.drawImage(tmp_stats,-119,0);
 	}
-
+	//segregation is the level of sameness preference exhibited by shapes on the board.
+	//non-zero segregation means that more than 1/4 of surrounding shapes are the same
+	
 	// AVG -> SEGREGATION
 	var segregation = (avg-0.25)*(4/3);
 	if(segregation<0) segregation=0;
@@ -514,15 +520,15 @@ window.writeStats = function(){
 	var triangleSeg = (triangleAvg-0.25)*(4/3);
 	if(triangleSeg<0) triangleSeg=0;
 	
-		// AVG -> SEGREGATION
+	// AVG -> SEGREGATION
 	var squareSeg = (squareAvg-0.25)*(4/3);
 	if(squareSeg<0) squareSeg=0;
 	
-		// AVG -> SEGREGATION
+	// AVG -> SEGREGATION
 	var circleSeg = (circleAvg-0.25)*(4/3);
 	if(circleSeg<0) circleSeg=0;
 	
-		// AVG -> SEGREGATION
+	// AVG -> SEGREGATION
 	var pentagonSeg = (pentagonAvg-0.25)*(4/3);
 	if(pentagonSeg<0) pentagonSeg=0;
 
@@ -658,7 +664,7 @@ function step(){
 	var maxShaker = shaking[0];
 
 	//algorithm for moving the unhappiest shapes first
-	//it calculates the happiest and unhappiest shakers
+	//it calculates the shapes with highest diversity and highest sameness environment
 	//by going through a list of shakers
 	for (var i = 0; i < shaking.length; i++){
 		if (shaking[i].sameness < minShaker.sameness) {
@@ -668,7 +674,8 @@ function step(){
 			maxShaker = shaking[i];
 		}
 	}
-	
+	//this determines which shape is unhappiest. It is either the shape with highest sameness or highest diversity. 
+	//the distance from the tolerance level is what determines which one is the unhappiest.
 	if(minShaker.sameness < BIAS && NONCONFORM < maxShaker.sameness && Math.abs(BIAS - minShaker.sameness) < Math.abs(maxShaker.sameness - NONCONFORM)) {
 		shaker = maxShaker;
 	}
