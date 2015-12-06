@@ -23,7 +23,7 @@ a:hover{
 }
 
 #intro_container{
-	width:100%; height:300px;
+	width:100%; height:350px;
 	overflow: hidden;
 	position: relative;
 	background: #000;
@@ -45,7 +45,7 @@ a:hover{
 #intro > #intro_background{
 	display: block;
 	position: absolute;
-	left:-640px; top:-225px;
+	left:-640px; top:-175px;
 	width:1280px; height:350px;
 	border: none;
 }
