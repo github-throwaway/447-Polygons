@@ -452,52 +452,16 @@ run.
 *******************/
 window.writeStats = function(){
 
-	//if there are no draggables (i.e. empty space)
+//if there are no draggables (i.e. empty space)
 	if(!draggables || draggables.length==0) return;
 
 	// Average Sameness Ratio
 	var total = 0;
-	var totTriangles = 0;
-	var totSquares = 0;
-	var totCircles = 0;
-	var totPentagons = 0;
-	
-	//counter to hold number of each shape
-	var numTriangles = 0;
-	var numSquares = 0;
-	var numCircles = 0;
-	var numPentagons = 0;
-	
-	//goes through array of shapes on grid and calculates total sameness of adjacent shapes and number of shapes for each
 	for(var i=0;i<draggables.length;i++){
 		var d = draggables[i];
 		total += d.sameness || 0;
-		if (d.color == "triangle") {
-			totTriangles += d.sameness || 0;
-			numTriangles++;
-		}
-		else if (d.color == "square") {
-			totSquares += d.sameness || 0;
-			numSquares++;
-		}
-		else if (d.color == "circle") {
-			totCircles += d.sameness || 0;
-			numCircles++;
-		}
-		else if (d.color == "pentagon") {
-			totPentagons += d.sameness || 0;
-			numPentagons++;
-		}
 	}
-	//no longer used, but left in just in case total avg graph functionality is desired
 	var avg = total/draggables.length;
-
-	//determines avg number of 
-	var triangleAvg = totTriangles / numTriangles || 0;
-	var squareAvg = totSquares / numSquares || 0;
-	var circleAvg = totCircles / numCircles || 0;
-	var pentagonAvg = totPentagons / numPentagons || 0;
-	
 	if(isNaN(avg)) debugger;
 
 	// If stats oversteps, bump back
@@ -509,96 +473,21 @@ window.writeStats = function(){
 		stats_ctx.clearRect(0,0,stats_canvas.width,stats_canvas.height);
 		stats_ctx.drawImage(tmp_stats,-119,0);
 	}
-	//segregation is the level of sameness preference exhibited by shapes on the board.
-	//non-zero segregation means that more than 1/4 of surrounding shapes are the same
-	
+
 	// AVG -> SEGREGATION
 	var segregation = (avg-0.25)*(4/3);
 	if(segregation<0) segregation=0;
 
-	// AVG -> SEGREGATION
-	var triangleSeg = (triangleAvg-0.25)*(4/3);
-	if(triangleSeg<0) triangleSeg=0;
-	
-	// AVG -> SEGREGATION
-	var squareSeg = (squareAvg-0.25)*(4/3);
-	if(squareSeg<0) squareSeg=0;
-	
-	// AVG -> SEGREGATION
-	var circleSeg = (circleAvg-0.25)*(4/3);
-	if(circleSeg<0) circleSeg=0;
-	
-	// AVG -> SEGREGATION
-	var pentagonSeg = (pentagonAvg-0.25)*(4/3);
-	if(pentagonSeg<0) pentagonSeg=0;
+	// Graph it
+	stats_ctx.fillStyle = "#cc2727";
+	var x = STATS.steps - STATS.offset;
+	var y = 250 - segregation*250+10;
+	stats_ctx.fillRect(x,y,1,5);
 
-	if(totTriangles > 0) { 
-		triangle_stats.style.visibility = "visible";
-		// Graph it
-		stats_ctx.fillStyle = "#FFDD56";
-		var x = STATS.steps - STATS.offset;
-		var y = 250 - triangleSeg*250+10;
-		stats_ctx.fillRect(x,y,1,5);
-	
-		// Text
-		triangle_stats.innerHTML = Math.floor(triangleSeg*100)+"%";
-		triangle_stats.style.top = Math.round(y-15)+"px";
-		triangle_stats.style.left = Math.round(x+35)+"px";
-	}
-	else {
-		triangle_stats.style.visibility = "hidden";
-	}
-	
-	if (totSquares > 0) {	
-		square_stats.style.visibility = "visible";
-		// Graph it
-		stats_ctx.fillStyle = "#567DFF";
-		var x = STATS.steps - STATS.offset;
-		var y = 250 - squareSeg*250+10;
-		stats_ctx.fillRect(x,y,1,5);
-	
-		// Text
-		square_stats.innerHTML = Math.floor(squareSeg*100)+"%";
-		square_stats.style.top = Math.round(y-15)+"px";
-		square_stats.style.left = Math.round(x+35)+"px";
-	}
-	else {
-		square_stats.style.visibility = "hidden";	
-	}
-	
-	if (totCircles > 0) {
-		circle_stats.style.visibility = "visible";
-		// Graph it
-		stats_ctx.fillStyle = "#C342FF";
-		var x = STATS.steps - STATS.offset;
-		var y = 250 - circleSeg*250+10;
-		stats_ctx.fillRect(x,y,1,5);
-	
-		// Text
-		circle_stats.innerHTML = Math.floor(circleSeg*100)+"%";
-		circle_stats.style.top = Math.round(y-15)+"px";
-		circle_stats.style.left = Math.round(x+35)+"px";
-	}	
-	else {
-		circle_stats.style.visibility = "hidden";
-	}
-	
-	if (totPentagons > 0) {
-		pentagon_stats.style.visibility = "visible";
-		// Graph it
-		stats_ctx.fillStyle = "#56FF9C";
-		var x = STATS.steps - STATS.offset;
-		var y = 250 - pentagonSeg*250+10;
-		stats_ctx.fillRect(x,y,1,5);
-
-		// Text
-		pentagon_stats.innerHTML = Math.floor(pentagonSeg*100)+"%";
-		pentagon_stats.style.top = Math.round(y-15)+"px";
-		pentagon_stats.style.left = Math.round(x+35)+"px";
-	}
-	else {
-		pentagon_stats.style.visibility = "hidden";
-	}
+	// Text
+	stats_text.innerHTML = Math.floor(segregation*100)+"%";
+	stats_text.style.top = Math.round(y-15)+"px";
+	stats_text.style.left = Math.round(x+35)+"px";
 
 	// Button
 	if(START_SIM){
