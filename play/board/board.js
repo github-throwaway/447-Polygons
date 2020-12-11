@@ -651,7 +651,7 @@ window.requestAnimFrame = window.requestAnimationFrame ||
 	}
 })();
 
-window.IS_IN_SIGHT = false;  /////////CRUCIAL ELEMENT RIGHT HERE. Needs to be true in order to test on a local machine
+window.IS_IN_SIGHT = true;  /////////CRUCIAL ELEMENT RIGHT HERE. Needs to be true in order to test on a local machine
 
 window.onload=function(){
 	reset();
