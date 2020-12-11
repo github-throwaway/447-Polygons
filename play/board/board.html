@@ -112,6 +112,10 @@ var bias_text_triangle = document.getElementById("bias_text_triangle");
 var nonconform_text_triangle = document.getElementById("nonconform_text_triangle");
 var bias_text_square = document.getElementById("bias_text_square");
 var nonconform_text_square = document.getElementById("nonconform_text_square");
+var bias_text_circle = document.getElementById("bias_text_circle");
+var nonconform_text_circle = document.getElementById("nonconform_text_circle");
+var bias_text_pentagon = document.getElementById("bias_text_pentagon");
+var nonconform_text_pentagon = document.getElementById("nonconform_text_pentagon");
 
 /*var whatever = new DoubleSlider(document.getElementById("slider"),{
 	backgrounds:[
@@ -140,8 +144,8 @@ var sliderTriangle = new DoubleSlider(document.getElementById("slider_triangle")
 	],
 	values:[0.20,0.80],
 	onChange:function(values){
-		window.BIAS_TRIANGLE = values[0];
-		window.NONCONFORM_TRIANGLE = values[1];
+		window.BIAS_TRIANGLE = Math.round((values[0] + Number.EPSILON) * 100) / 100;
+		window.NONCONFORM_TRIANGLE = Math.round((values[1] + Number.EPSILON) * 100) / 100;
 		// Write stats
 		START_SIM = false;
 		window.writeStats();
@@ -158,8 +162,8 @@ var sliderSquare = new DoubleSlider(document.getElementById("slider_square"),{
 	],
 	values:[0.20,0.80],
 	onChange:function(values){
-		window.BIAS_SQUARE = values[0];
-		window.NONCONFORM_SQUARE = values[1];
+		window.BIAS_SQUARE = Math.round((values[0] + Number.EPSILON) * 100) / 100;
+		window.NONCONFORM_SQUARE = Math.round((values[1] + Number.EPSILON) * 100) / 100;
 		// Write stats
 		START_SIM = false;
 		window.writeStats();
@@ -176,8 +180,8 @@ var sliderCircle = new DoubleSlider(document.getElementById("slider_circle"),{
 	],
 	values:[0.20,0.80],
 	onChange:function(values){
-		window.BIAS_CIRCLE = values[0];
-		window.NONCONFORM_CIRCLE = values[1];
+		window.BIAS_CIRCLE = Math.round((values[0] + Number.EPSILON) * 100) / 100;
+		window.NONCONFORM_CIRCLE = Math.round((values[1] + Number.EPSILON) * 100) / 100;
 		// Write stats
 		START_SIM = false;
 		window.writeStats();
@@ -194,8 +198,8 @@ var sliderPentagon = new DoubleSlider(document.getElementById("slider_pentagon")
 	],
 	values:[0.20,0.80],
 	onChange:function(values){
-		window.BIAS_PENTAGON = values[0];
-		window.NONCONFORM_PENTAGON = values[1];
+		window.BIAS_PENTAGON = Math.round((values[0] + Number.EPSILON) * 100) / 100;
+		window.NONCONFORM_PENTAGON = Math.round((values[1] + Number.EPSILON) * 100) / 100;
 		// Write stats
 		START_SIM = false;
 		window.writeStats();

@@ -248,15 +248,15 @@ function Draggable(x,y){
 					break;
 				case "square":
 					if(self.sameness>NONCONFORM_SQUARE)
-						self.shaking = true;
+						self.nonconform = true;
 					break;
 				case "circle":
 					if(self.sameness>NONCONFORM_CIRCLE)
-						self.shaking = true;
+						self.nonconform = true;
 					break;
 				case "pentagon":
 					if(self.sameness>NONCONFORM_PENTAGON)
-						self.shaking = true;
+						self.nonconform = true;
 			}
 			//if(self.sameness > NONCONFORM) {
 			//	self.nonconform = true;
