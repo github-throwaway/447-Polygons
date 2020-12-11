@@ -12,8 +12,33 @@ var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var stats_canvas = document.getElementById("stats_canvas");
 var stats_ctx = stats_canvas.getContext("2d");
-var NONCONFORM = 1.00;
-var BIAS = 0.33;
+
+//var NONCONFORM = 1.00;
+var NONCONFORM_TRIANGLE = 1.00;
+var NONCONFORM_SQUARE = 1.00;
+var NONCONFORM_CIRCLE = 1.00;
+var NONCONFORM_PENTAGON = 1.00;
+
+var mapNonconform = new Map([
+	["triangle", NONCONFORM_TRIANGLE],
+	["square", NONCONFORM_SQUARE],
+	["circle", NONCONFORM_CIRCLE],
+	["pentagon", NONCONFORM_PENTAGON]
+]);
+
+//var BIAS = 0.33;
+var BIAS_TRIANGLE = 0.33;
+var BIAS_SQUARE = 0.33;
+var BIAS_CIRCLE = 0.33;
+var BIAS_PENTAGON = 0.33;
+
+var mapBias = new Map([
+	["triangle", BIAS_TRIANGLE],
+	["square", BIAS_SQUARE],
+	["circle", BIAS_CIRCLE],
+	["pentagon", BIAS_PENTAGON]
+]);
+
 var TILE_SIZE = 30;
 var PEEP_SIZE = 30;
 var GRID_SIZE = 20;
@@ -189,15 +214,53 @@ function Draggable(x,y){
 			}else{
 				self.sameness = 1;
 			}
-			if(self.sameness<BIAS || self.sameness>NONCONFORM){
+			//Map code doesn't work, using switch for now
+			/*if(self.sameness < mapBias.get(self.color) || self.sameness > mapNonconform.get(self.color)){
 				self.shaking = true;
+			}*/
+			switch (self.color) {
+				case "triangle":
+					if(self.sameness<BIAS_TRIANGLE || self.sameness>NONCONFORM_TRIANGLE)
+						self.shaking = true;
+					break;
+				case "square":
+					if(self.sameness<BIAS_SQUARE || self.sameness>NONCONFORM_SQUARE)
+						self.shaking = true;
+					break;
+				case "circle":
+					if(self.sameness<BIAS_CIRCLE || self.sameness>NONCONFORM_CIRCLE)
+						self.shaking = true;
+					break;
+				case "pentagon":
+					if(self.sameness<BIAS_PENTAGON || self.sameness>NONCONFORM_PENTAGON)
+						self.shaking = true;
 			}
+			//if(self.sameness<BIAS || self.sameness>NONCONFORM){
+			//	self.shaking = true;
+			//}
 			if(self.sameness>0.99){
 				self.bored = true;
 			}
-			if(self.sameness > NONCONFORM) {
-				self.nonconform = true;
+			switch (self.color) {
+				case "triangle":
+					if(self.sameness>NONCONFORM_TRIANGLE)
+						self.nonconform = true;
+					break;
+				case "square":
+					if(self.sameness>NONCONFORM_SQUARE)
+						self.shaking = true;
+					break;
+				case "circle":
+					if(self.sameness>NONCONFORM_CIRCLE)
+						self.shaking = true;
+					break;
+				case "pentagon":
+					if(self.sameness>NONCONFORM_PENTAGON)
+						self.shaking = true;
 			}
+			//if(self.sameness > NONCONFORM) {
+			//	self.nonconform = true;
+			//}
 			if(neighbors==0){
 				self.shaking = false;
 			}
@@ -565,13 +628,18 @@ function step(){
 	}
 	//this determines which shape is unhappiest. It is either the shape with highest sameness or highest diversity. 
 	//the distance from the tolerance level is what determines which one is the unhappiest.
-	if(minShaker.sameness < BIAS && NONCONFORM < maxShaker.sameness && Math.abs(BIAS - minShaker.sameness) < Math.abs(maxShaker.sameness - NONCONFORM)) {
+
+	//Define bias and nonconform for specific shapes
+	let minShakerBias = mapBias[minShaker.color];
+	let maxShakerNonconform = mapNonconform[maxShaker.color];
+
+	if(minShaker.sameness < minShakerBias && maxShakerNonconform < maxShaker.sameness && Math.abs(minShakerBias - minShaker.sameness) < Math.abs(maxShaker.sameness - maxShakerNonconform)) {
 		shaker = maxShaker;
 	}
-	else if (minShaker.sameness < BIAS && NONCONFORM < maxShaker.sameness && Math.abs(BIAS - minShaker.sameness) >= Math.abs(maxShaker.sameness - NONCONFORM)) {
+	else if (minShaker.sameness < minShakerBias && maxShakerNonconform < maxShaker.sameness && Math.abs(minShakerBias - minShaker.sameness) >= Math.abs(maxShaker.sameness - maxShakerNonconform)) {
 		shaker = minShaker;
 	}
-	else if (NONCONFORM < maxShaker.sameness) {
+	else if (maxShakerNonconform < maxShaker.sameness) {
 		shaker = maxShaker;
 	}
 	else { 

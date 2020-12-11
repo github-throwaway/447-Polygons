@@ -29,10 +29,30 @@
 			</div>
 <!-- This modification displays the percentage of each shape currently on the board -->
 
-			I'll move if <span class="highlight">&lt;<span id="bias_text">33%</span></span> 
+			<!--I'll move if <span class="highlight">&lt;<span id="bias_text">33%</span></span>
 			or <span class="highlight">&gt;<span id="nonconform_text">100%</span></span> of my neighbors are like me.
 			<br>
 			<div id="slider"></div>
+			<br>-->
+			Triangle: I'll move if <span class="highlight">&lt;<span id="bias_text_triangle">33%</span></span>
+			or <span class="highlight">&gt;<span id="nonconform_text_triangle">100%</span></span> of my neighbors are like me.
+			<br>
+			<div id="slider_triangle"></div>
+			<br>
+			Square: I'll move if <span class="highlight">&lt;<span id="bias_text_square">33%</span></span>
+			or <span class="highlight">&gt;<span id="nonconform_text_square">100%</span></span> of my neighbors are like me.
+			<br>
+			<div id="slider_square"></div>
+			<br>
+			Circle: I'll move if <span class="highlight">&lt;<span id="bias_text_circle">33%</span></span>
+			or <span class="highlight">&gt;<span id="nonconform_text_circle">100%</span></span> of my neighbors are like me.
+			<br>
+			<div id="slider_circle"></div>
+			<br>
+			Pentagon: I'll move if <span class="highlight">&lt;<span id="bias_text_pentagon">33%</span></span>
+			or <span class="highlight">&gt;<span id="nonconform_text_pentagon">100%</span></span> of my neighbors are like me.
+			<br>
+			<div id="slider_pentagon"></div>
 			<br>
 			There are 
 			<span class="triangle_highlight"><span id="ratio_text_triangles">40</span>%</span> triangles, <span class="square_highlight"><span id="ratio_text_squares">40</span>%</span>
@@ -85,9 +105,15 @@ document.getElementById("circles_moved").style.paddingRight = "25px";
 document.getElementById("pentagons_moved").style.paddingRight = "25px";
 
 window.PICK_UP_ANYONE = true;
-var bias_text = document.getElementById("bias_text");
-var nonconform_text = document.getElementById("nonconform_text");
-var whatever = new DoubleSlider(document.getElementById("slider"),{
+//var bias_text = document.getElementById("bias_text");
+//var nonconform_text = document.getElementById("nonconform_text");
+
+var bias_text_triangle = document.getElementById("bias_text_triangle");
+var nonconform_text_triangle = document.getElementById("nonconform_text_triangle");
+var bias_text_square = document.getElementById("bias_text_square");
+var nonconform_text_square = document.getElementById("nonconform_text_square");
+
+/*var whatever = new DoubleSlider(document.getElementById("slider"),{
 	backgrounds:[
 		{color:"#555",icon:"sliders/ds_sad.png"},
 		{color:"#aaa",icon:"sliders/ds_happy.png"},
@@ -104,7 +130,80 @@ var whatever = new DoubleSlider(document.getElementById("slider"),{
 		bias_text.innerHTML = Math.round(window.BIAS*100)+"%";
 		nonconform_text.innerHTML = Math.round(window.NONCONFORM*100)+"%";
 	}
+});*/
+
+var sliderTriangle = new DoubleSlider(document.getElementById("slider_triangle"),{
+	backgrounds:[
+		{color:"#555",icon:"sliders/ds_sad.png"},
+		{color:"#aaa",icon:"sliders/ds_happy.png"},
+		{color:"#555",icon:"sliders/ds_sad.png"}
+	],
+	values:[0.20,0.80],
+	onChange:function(values){
+		window.BIAS_TRIANGLE = values[0];
+		window.NONCONFORM_TRIANGLE = values[1];
+		// Write stats
+		START_SIM = false;
+		window.writeStats();
+		bias_text_triangle.innerHTML = Math.round(window.BIAS_TRIANGLE*100)+"%";
+		nonconform_text_triangle.innerHTML = Math.round(window.NONCONFORM_TRIANGLE*100)+"%";
+	}
 });
+
+var sliderSquare = new DoubleSlider(document.getElementById("slider_square"),{
+	backgrounds:[
+		{color:"#555",icon:"sliders/ds_sad.png"},
+		{color:"#aaa",icon:"sliders/ds_happy.png"},
+		{color:"#555",icon:"sliders/ds_sad.png"}
+	],
+	values:[0.20,0.80],
+	onChange:function(values){
+		window.BIAS_SQUARE = values[0];
+		window.NONCONFORM_SQUARE = values[1];
+		// Write stats
+		START_SIM = false;
+		window.writeStats();
+		bias_text_square.innerHTML = Math.round(window.BIAS_SQUARE*100)+"%";
+		nonconform_text_square.innerHTML = Math.round(window.NONCONFORM_SQUARE*100)+"%";
+	}
+});
+
+var sliderCircle = new DoubleSlider(document.getElementById("slider_circle"),{
+	backgrounds:[
+		{color:"#555",icon:"sliders/ds_sad.png"},
+		{color:"#aaa",icon:"sliders/ds_happy.png"},
+		{color:"#555",icon:"sliders/ds_sad.png"}
+	],
+	values:[0.20,0.80],
+	onChange:function(values){
+		window.BIAS_CIRCLE = values[0];
+		window.NONCONFORM_CIRCLE = values[1];
+		// Write stats
+		START_SIM = false;
+		window.writeStats();
+		bias_text_circle.innerHTML = Math.round(window.BIAS_CIRCLE*100)+"%";
+		nonconform_text_circle.innerHTML = Math.round(window.NONCONFORM_CIRCLE*100)+"%";
+	}
+});
+
+var sliderPentagon = new DoubleSlider(document.getElementById("slider_pentagon"),{
+	backgrounds:[
+		{color:"#555",icon:"sliders/ds_sad.png"},
+		{color:"#aaa",icon:"sliders/ds_happy.png"},
+		{color:"#555",icon:"sliders/ds_sad.png"}
+	],
+	values:[0.20,0.80],
+	onChange:function(values){
+		window.BIAS_PENTAGON = values[0];
+		window.NONCONFORM_PENTAGON = values[1];
+		// Write stats
+		START_SIM = false;
+		window.writeStats();
+		bias_text_pentagon.innerHTML = Math.round(window.BIAS_PENTAGON*100)+"%";
+		nonconform_text_pentagon.innerHTML = Math.round(window.NONCONFORM_PENTAGON*100)+"%";
+	}
+});
+
 var whatever = new Quadslider(document.getElementById("slider2"),{
 	backgrounds:[
 		//added backgrounds for the new shape colors on the slider bar
