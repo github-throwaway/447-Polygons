@@ -55,9 +55,12 @@
 			<div id="slider_pentagon"></div>
 			<br>
 			There are 
-			<span class="triangle_highlight"><span id="ratio_text_triangles">40</span>%</span> triangles, <span class="square_highlight"><span id="ratio_text_squares">40</span>%</span>
-			squares, <span class="circle_highlight"><span id="ratio_text_circles">40</span>%</span> circles, and <span class="pentagon_highlight"><span id="ratio_text_pentagons">40</span>%</span>
-			 pentagons on the board. 
+			<span class="triangle_highlight"><span id="ratio_text_triangles">40</span>%</span> triangles,
+            <span class="triangle_highlight"><span id="ratio_text_triangles_dark">40</span>%</span> dark triangles,
+            <span class="square_highlight"><span id="ratio_text_squares">40</span>%</span> squares,
+            <span class="square_highlight"><span id="ratio_text_squares_dark">40</span>%</span> dark squares,
+            <span class="circle_highlight"><span id="ratio_text_circles">40</span>%</span> circles,
+            and <span class="pentagon_highlight"><span id="ratio_text_pentagons">40</span>%</span> pentagons on the board.
 			Board is
 			<span class="highlight" id="empty_text">20%</span> empty.
 			<br>
@@ -212,30 +215,38 @@ var whatever = new Quadslider(document.getElementById("slider2"),{
 	backgrounds:[
 		//added backgrounds for the new shape colors on the slider bar
 		{color:"#FFDD56",icon:"sliders/ds_happy.png"},
+        {color:"#aa9439",icon:"sliders/ds_happy.png"},
 		{color:"#567DFF",icon:"sliders/ds_happy.png"},
+        {color:"#3b56af",icon:"sliders/ds_happy.png"},
 		{color:"#C342FF",icon:"sliders/ds_happy.png"},
 		{color:"#56FF9C",icon:"sliders/ds_happy.png"},
 		{color:"#000",icon:"sliders/ds_sad.png"}
 	],
 	//sets up the initial position of the sliders on the bar
-	values:[0.20,0.40,0.60,0.80],
+	values:[0.10,0.20,0.30,0.40,0.60,0.80],
 	onChange:function(values){
 		// stores the position of each slider on the bar
 		var VALUE_1 = values[0];
 		var VALUE_2 = values[1];
 		var VALUE_3 = values[2];
 		var VALUE_4 = values[3];
+        var VALUE_5 = values[4];
+        var VALUE_6 = values[5];
 		//calculates the ratio of each shape
-		window.EMPTINESS = 1 - VALUE_4;
+		window.EMPTINESS = 1 - VALUE_6;
 		window.RATIO_TRIANGLES = VALUE_1;
-		window.RATIO_SQUARES = VALUE_2 - VALUE_1;
-		window.RATIO_CIRCLES = VALUE_3 - VALUE_2;
-		window.RATIO_PENTAGONS = VALUE_4 - VALUE_3;
+        window.RATIO_TRIANGLES_DARK = VALUE_2 - VALUE_1;
+		window.RATIO_SQUARES = VALUE_3 - VALUE_2;
+        window.RATIO_SQUARES_DARK = VALUE_4 - VALUE_3;
+		window.RATIO_CIRCLES = VALUE_5 - VALUE_4;
+		window.RATIO_PENTAGONS = VALUE_6 - VALUE_5;
 		// Write stats
 		START_SIM = false;
 		//determines the ratio of each shape on the board
 		document.getElementById("ratio_text_triangles").innerHTML = Math.round(window.RATIO_TRIANGLES*100);
+        document.getElementById("ratio_text_triangles_dark").innerHTML = Math.round(window.RATIO_TRIANGLES_DARK*100);
 		document.getElementById("ratio_text_squares").innerHTML = Math.round(window.RATIO_SQUARES*100);
+        document.getElementById("ratio_text_squares_dark").innerHTML = Math.round(window.RATIO_SQUARES_DARK*100);
 		document.getElementById("ratio_text_circles").innerHTML = Math.round(window.RATIO_CIRCLES*100);
 		document.getElementById("ratio_text_pentagons").innerHTML = Math.round(window.RATIO_PENTAGONS*100);
 		document.getElementById("empty_text").innerHTML = Math.round(window.EMPTINESS*100)+"%";

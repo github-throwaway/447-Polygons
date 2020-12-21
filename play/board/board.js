@@ -85,6 +85,13 @@ addAsset("sadCircle","../img/sad_circle.png");
 addAsset("yayPentagon","../img/yay_pentagon.png");
 addAsset("mehPentagon","../img/meh_pentagon.png");
 addAsset("sadPentagon","../img/sad_pentagon.png");
+// Dark shape images
+addAsset("yayTriangleDark","../img/yay_triangle_dark.png");
+addAsset("mehTriangleDark","../img/meh_triangle_dark.png");
+addAsset("sadTriangleDark","../img/sad_triangle_dark.png");
+addAsset("yaySquareDark","../img/yay_square_dark.png");
+addAsset("mehSquareDark","../img/meh_square_dark.png");
+addAsset("sadSquareDark","../img/sad_square_dark.png");
 
 //handles mouse actions
 var IS_PICKING_UP = false;
@@ -221,7 +228,7 @@ function Draggable(x,y){
 			switch (self.color) {
 				case "triangle":
 					if(self.sameness<BIAS_TRIANGLE || self.sameness>NONCONFORM_TRIANGLE)
-						self.shaking = true;
+						self.shaking = true; //TODO add dark logic
 					break;
 				case "square":
 					if(self.sameness<BIAS_SQUARE || self.sameness>NONCONFORM_SQUARE)
@@ -244,7 +251,7 @@ function Draggable(x,y){
 			switch (self.color) {
 				case "triangle":
 					if(self.sameness>NONCONFORM_TRIANGLE)
-						self.nonconform = true;
+						self.nonconform = true;//TODO add dark logic
 					break;
 				case "square":
 					if(self.sameness>NONCONFORM_SQUARE)
@@ -309,19 +316,25 @@ function Draggable(x,y){
 		var img;
 		if(self.color=="triangle"){
 			if(self.shaking){
-				img = images.sadTriangle;
+				if(self.value == "dark") img = images.sadTriangleDark;
+				else img = images.sadTriangle;
 			}else if(self.bored){
-				img = images.mehTriangle;
+				if(self.value == "dark") img = images.mehTriangleDark;
+				else img = images.mehTriangle;
 			}else{
-				img = images.yayTriangle;
+				if(self.value == "dark") img = images.yayTriangleDark;
+				else img = images.yayTriangle;
 			}
 		}else if(self.color=="square"){
 			if(self.shaking){
-				img = images.sadSquare;
+				if(self.value == "dark") img = images.sadSquareDark;
+				else img = images.sadSquare;
 			}else if(self.bored){
-				img = images.mehSquare;
+				if(self.value == "dark") img = images.mehSquareDark;
+				else img = images.mehSquare;
 			}else{
-				img = images.yaySquare;
+				if(self.value == "dark") img = images.yaySquareDark;
+				else img = images.yaySquare;
 			}
 		//sets up image associations corresponding to the new shapes
 		}else if(self.color=="circle"){
@@ -404,13 +417,21 @@ window.reset = function(){
 				if(rand < window.RATIO_TRIANGLES){ 
 					draggable.color = "triangle"; 
 				}
-				else if (rand < window.RATIO_TRIANGLES + window.RATIO_SQUARES) {
+				else if (rand < window.RATIO_TRIANGLES + window.RATIO_TRIANGLES_DARK) {
+					draggable.color = "triangle";
+					draggable.value = "dark";
+				}
+				else if (rand < window.RATIO_TRIANGLES + window.RATIO_TRIANGLES_DARK + window.RATIO_SQUARES) {
 					draggable.color = "square";
 				}
-				else if (rand < window.RATIO_TRIANGLES + window.RATIO_SQUARES + window.RATIO_CIRCLES) {
+				else if (rand < window.RATIO_TRIANGLES + window.RATIO_TRIANGLES_DARK + window.RATIO_SQUARES + window.RATIO_SQUARES_DARK) {
+					draggable.color = "square";
+					draggable.value = "dark";
+				}
+				else if (rand < window.RATIO_TRIANGLES + window.RATIO_TRIANGLES_DARK + window.RATIO_SQUARES + window.RATIO_SQUARES_DARK + window.RATIO_CIRCLES) {
 					draggable.color = "circle";
 				}
-				else if (rand < window.RATIO_TRIANGLES + window.RATIO_SQUARES + window.RATIO_CIRCLES + window.RATIO_PENTAGONS){
+				else if (rand < window.RATIO_TRIANGLES + window.RATIO_TRIANGLES_DARK + window.RATIO_SQUARES + window.RATIO_SQUARES_DARK + window.RATIO_CIRCLES + window.RATIO_PENTAGONS){
 					draggable.color = "pentagon";
 				}
 				draggables.push(draggable);
@@ -680,7 +701,7 @@ function step(){
 	shaker.gotoX = spot.x;
 	shaker.gotoY = spot.y;
 
-	//update the individual counters for each shape
+	//update the individual counters for each shape //TODO delete?
 	if (shaker.color == "triangle"){
 		window.NUM_TRIANGLES_MOVED++;
 		window.TOTAL_MOVES++;

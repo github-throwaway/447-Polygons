@@ -24,21 +24,21 @@ function Quadslider(dom,config){
 
 	// Create DOM
 	self.dom.className = "ds";
-	for(var i=0;i<5;i++){
+	for(var i=0;i<7;i++){
 
 		var dom = document.createElement("div");
 		dom.className = "ds_bg";
 		self.dom.appendChild(dom);
-		self.backgrounds[4-i] = dom;
+		self.backgrounds[6-i] = dom;
 
 		// CSS
-		dom.style.backgroundColor = config.backgrounds[4-i].color;
-		dom.style.backgroundImage = "url("+config.backgrounds[4-i].icon+")";
+		dom.style.backgroundColor = config.backgrounds[6-i].color;
+		dom.style.backgroundImage = "url("+config.backgrounds[6-i].icon+")";
 		if(i==0) dom.style.width = "100%";
 
 	}
 	//CHANGES HERE: changed i for this for loop from 2 to 4, adds two new sliders
-	for(var i=0;i<4;i++){
+	for(var i=0;i<6;i++){
 		
 		var dom = document.createElement("div");
 		dom.className = "ds_slider";
@@ -85,15 +85,30 @@ function Quadslider(dom,config){
 	    	}
 	    	//CHANGES HERE: The two else ifs below. Calculates the boundaries of the new sliders
    	    	else if(index==2){
-	    		var back_edge = self.values[1]+ sliderWidth;
-	    		if(val<back_edge) val=back_edge;
-			var front_edge = self.values[3] - sliderWidth;
-			if(val > front_edge) val = front_edge;
-	    	}
-	    	else if(index==3){
-	    		var back_edge = self.values[2]+ sliderWidth;
-	    		if(val<back_edge) val=back_edge;
-		}
+			 var back_edge = self.values[1]+ sliderWidth;
+			 if(val<back_edge) val=back_edge;
+			 var front_edge = self.values[3] - sliderWidth;
+			 if(val > front_edge) val = front_edge;
+		 }
+		 else if(index==3){
+			 //var back_edge = self.values[2]+ sliderWidth;
+			 //if(val<back_edge) val=back_edge;
+			 var back_edge = self.values[2]+ sliderWidth;
+			 if(val<back_edge) val=back_edge;
+			 var front_edge = self.values[4] - sliderWidth;
+			 if(val > front_edge) val = front_edge;
+		 }
+		 else if(index==4){
+			 var back_edge = self.values[3]+ sliderWidth;
+			 if(val<back_edge) val=back_edge;
+			 var front_edge = self.values[5] - sliderWidth;
+			 if(val > front_edge) val = front_edge;
+		 }
+		 else if(index==5){
+			 var back_edge = self.values[4]+ sliderWidth;
+			 if(val<back_edge) val=back_edge;
+		 }
+
 	    	var edge = sliderWidth/2;
     		if(val<edge) val=edge;
 	    	var edge = 1-sliderWidth/2;
@@ -138,7 +153,7 @@ function Quadslider(dom,config){
 	// UI Update
 	self.updateUI = function(){
 
-		for(var i=0;i<4;i++){
+		for(var i=0;i<6;i++){
 			var slider = self.sliders[i];
 			var val = self.values[i];
 			slider.style.left = (400*val - 5)+"px";
@@ -146,7 +161,7 @@ function Quadslider(dom,config){
 
 		var bg;
 		//CHANGES HERE: This section is what sets up the color between the sliders. Not sure if I did it totally correctly
-		var v0=self.values[0]*400, v1=self.values[1]*400,  v2=self.values[2]*400,  v3=self.values[3]*400, v4=self.values[4]*400;
+		var v0=self.values[0]*400, v1=self.values[1]*400,  v2=self.values[2]*400,  v3=self.values[3]*400, v4=self.values[4]*400, v5=self.values[5]*400;
 		bg = self.backgrounds[0];
 		bg.style.width = v0+"px";
 		bg = self.backgrounds[1];
@@ -158,6 +173,14 @@ function Quadslider(dom,config){
 		bg = self.backgrounds[3];
 		bg.style.left = v2+"px";
 		bg.style.width = (v3-v2)+"px";
+		//New for dark shapes
+		bg = self.backgrounds[4];
+		bg.style.left = v3+"px";
+		bg.style.width = (v4-v3)+"px";
+		bg = self.backgrounds[5];
+		bg.style.left = v4+"px";
+		bg.style.width = (v5-v4)+"px";
+
 			 
 
 	};
