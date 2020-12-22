@@ -211,7 +211,7 @@ function Draggable(x,y){
 				var dy = d.y-self.y;
 				if(dx*dx+dy*dy<DIAGONAL_SQUARED){
 					neighbors++;
-					if(d.color==self.color){
+					if(d.color==self.color || d.value == self.value){	// !! Bias logic. Currently same shape OR same value will count as "like me"
 						same++;
 					}
 				}
@@ -415,7 +415,8 @@ window.reset = function(){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
 				
 				if(rand < window.RATIO_TRIANGLES){ 
-					draggable.color = "triangle"; 
+					draggable.color = "triangle";
+					draggable.value = "light";
 				}
 				else if (rand < window.RATIO_TRIANGLES + window.RATIO_TRIANGLES_DARK) {
 					draggable.color = "triangle";
@@ -423,6 +424,7 @@ window.reset = function(){
 				}
 				else if (rand < window.RATIO_TRIANGLES + window.RATIO_TRIANGLES_DARK + window.RATIO_SQUARES) {
 					draggable.color = "square";
+					draggable.value = "light";
 				}
 				else if (rand < window.RATIO_TRIANGLES + window.RATIO_TRIANGLES_DARK + window.RATIO_SQUARES + window.RATIO_SQUARES_DARK) {
 					draggable.color = "square";
@@ -430,9 +432,11 @@ window.reset = function(){
 				}
 				else if (rand < window.RATIO_TRIANGLES + window.RATIO_TRIANGLES_DARK + window.RATIO_SQUARES + window.RATIO_SQUARES_DARK + window.RATIO_CIRCLES) {
 					draggable.color = "circle";
+					draggable.value = "light";
 				}
 				else if (rand < window.RATIO_TRIANGLES + window.RATIO_TRIANGLES_DARK + window.RATIO_SQUARES + window.RATIO_SQUARES_DARK + window.RATIO_CIRCLES + window.RATIO_PENTAGONS){
 					draggable.color = "pentagon";
+					draggable.value = "light";
 				}
 				draggables.push(draggable);
 			}
