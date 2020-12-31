@@ -92,6 +92,12 @@ addAsset("sadTriangleDark","../img/sad_triangle_dark.png");
 addAsset("yaySquareDark","../img/yay_square_dark.png");
 addAsset("mehSquareDark","../img/meh_square_dark.png");
 addAsset("sadSquareDark","../img/sad_square_dark.png");
+addAsset("yayPentagonDark","../img/yay_pentagon_dark.png");
+addAsset("mehPentagonDark","../img/meh_pentagon_dark.png");
+addAsset("sadPentagonDark","../img/sad_pentagon_dark.png");
+addAsset("yayCircleDark","../img/yay_circle_dark.png");
+addAsset("mehCircleDark","../img/meh_circle_dark.png");
+addAsset("sadCircleDark","../img/sad_circle_dark.png");
 
 //handles mouse actions
 var IS_PICKING_UP = false;
@@ -228,7 +234,7 @@ function Draggable(x,y){
 			switch (self.color) {
 				case "triangle":
 					if(self.sameness<BIAS_TRIANGLE || self.sameness>NONCONFORM_TRIANGLE)
-						self.shaking = true; //TODO add dark logic
+						self.shaking = true;
 					break;
 				case "square":
 					if(self.sameness<BIAS_SQUARE || self.sameness>NONCONFORM_SQUARE)
@@ -251,7 +257,7 @@ function Draggable(x,y){
 			switch (self.color) {
 				case "triangle":
 					if(self.sameness>NONCONFORM_TRIANGLE)
-						self.nonconform = true;//TODO add dark logic
+						self.nonconform = true;
 					break;
 				case "square":
 					if(self.sameness>NONCONFORM_SQUARE)
@@ -339,19 +345,25 @@ function Draggable(x,y){
 		//sets up image associations corresponding to the new shapes
 		}else if(self.color=="circle"){
 			if(self.shaking){
-				img = images.sadCircle;
+				if(self.value == "dark") img = images.sadCircleDark;
+				else img = images.sadCircle;
 			}else if(self.bored){
-				img = images.mehCircle;
+				if(self.value == "dark") img = images.mehCircleDark;
+				else img = images.mehCircle;
 			}else{
-				img = images.yayCircle;
+				if(self.value == "dark") img = images.yayCircleDark;
+				else img = images.yayCircle;
 			}
 		}else{
 			if(self.shaking){
-				img = images.sadPentagon;
+				if(self.value == "dark") img = images.sadPentagonDark;
+				else img = images.sadPentagon;
 			}else if(self.bored){
-				img = images.mehPentagon;
+				if(self.value == "dark") img = images.mehPentagonDark;
+				else img = images.mehPentagon;
 			}else{
-				img = images.yayPentagon;
+				if(self.value == "dark") img = images.yayPentagonDark;
+				else img = images.yayPentagon;
 			}
 		}
 
@@ -434,9 +446,17 @@ window.reset = function(){
 					draggable.color = "circle";
 					draggable.value = "light";
 				}
-				else if (rand < window.RATIO_TRIANGLES + window.RATIO_TRIANGLES_DARK + window.RATIO_SQUARES + window.RATIO_SQUARES_DARK + window.RATIO_CIRCLES + window.RATIO_PENTAGONS){
+				else if (rand < window.RATIO_TRIANGLES + window.RATIO_TRIANGLES_DARK + window.RATIO_SQUARES + window.RATIO_SQUARES_DARK + window.RATIO_CIRCLES + window.RATIO_CIRCLES_DARK) {
+					draggable.color = "circle";
+					draggable.value = "dark";
+				}
+				else if (rand < window.RATIO_TRIANGLES + window.RATIO_TRIANGLES_DARK + window.RATIO_SQUARES + window.RATIO_SQUARES_DARK + window.RATIO_CIRCLES + window.RATIO_CIRCLES_DARK + window.RATIO_PENTAGONS){
 					draggable.color = "pentagon";
 					draggable.value = "light";
+				}
+				else if (rand < window.RATIO_TRIANGLES + window.RATIO_TRIANGLES_DARK + window.RATIO_SQUARES + window.RATIO_SQUARES_DARK + window.RATIO_CIRCLES + window.RATIO_CIRCLES_DARK + window.RATIO_PENTAGONS + window.RATIO_PENTAGONS_DARK) {
+					draggable.color = "pentagon";
+					draggable.value = "dark";
 				}
 				draggables.push(draggable);
 			}
