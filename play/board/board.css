@@ -21,7 +21,7 @@ div{
 }
 #container{
 	position: relative;
-	width:1030px;
+	width:1030px;		/** TODO change board size 1030*/
 	height:600px;
 }
 #canvas{
@@ -107,4 +107,39 @@ span.circle_highlight{
 span.pentagon_highlight{
 	color:#56FF9C;
 	font-weight: bold;
+}
+
+.switch-field {
+	display: flex;
+	margin-bottom: 36px;
+	overflow: hidden;
+}
+
+.switch-field input {
+	position: absolute !important;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	width: 1px;
+	border: 0;
+	overflow: hidden;
+}
+
+.switch-field label {
+	background-color: #555;
+	color: rgba(0, 0, 0, 0.6);
+	font-size: 16px;
+	line-height: 1;
+	text-align: center;
+	padding: 8px 16px;
+	margin-right: -1px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.switch-field label:hover {
+	cursor: pointer;
+}
+
+.switch-field input:checked + label {
+	background-color: #aaa;
+	box-shadow: none;
 }

@@ -1,0 +1,281 @@
+<!doctype html>
+<html>
+<head>
+    <title>Automatic Simulation - SANDBOX</title>
+    <link href="largeboard.css" rel="stylesheet" type="text/css">
+    <link href="sliders/doubleslider.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        input{
+            margin-bottom: 15px;
+        }
+    </style>
+
+
+</head>
+<body>
+
+<div id="container">
+    <canvas id="canvas" width="900" height="900"></canvas> <!-- TODO board size -->
+    <div id="stats">
+        <!--sets up graph for updating segregation stats for each shape-->
+        <div id="stats_canvas_container">
+            <canvas id="stats_canvas" width="370" height="270"></canvas>
+            <div id="stats_text"></div>
+            <div id="triangle_stats"></div>
+            <div id="square_stats"></div>
+            <div id="circle_stats"></div>
+            <div id="pentagon_stats"></div>
+        </div>
+        <!-- This modification displays the percentage of each shape currently on the board -->
+
+        <!--I'll move if <span class="highlight">&lt;<span id="bias_text">33%</span></span>
+        or <span class="highlight">&gt;<span id="nonconform_text">100%</span></span> of my neighbors are like me.
+        <br>
+        <div id="slider"></div>
+        <br>-->
+        <span class="triangle_highlight">Triangle</span>: I'll move if <span class="highlight">&lt;<span id="bias_text_triangle">33%</span></span>
+        or <span class="highlight">&gt;<span id="nonconform_text_triangle">100%</span></span> of my neighbors are like me.
+        <br>
+        <div id="slider_triangle"></div>
+        <br>
+        <span class="square_highlight">Square</span>: I'll move if <span class="highlight">&lt;<span id="bias_text_square">33%</span></span>
+        or <span class="highlight">&gt;<span id="nonconform_text_square">100%</span></span> of my neighbors are like me.
+        <br>
+        <div id="slider_square"></div>
+        <br>
+        <span class="circle_highlight">Circle</span>: I'll move if <span class="highlight">&lt;<span id="bias_text_circle">33%</span></span>
+        or <span class="highlight">&gt;<span id="nonconform_text_circle">100%</span></span> of my neighbors are like me.
+        <br>
+        <div id="slider_circle"></div>
+        <br>
+        <span class="pentagon_highlight">Pentagon</span>: I'll move if <span class="highlight">&lt;<span id="bias_text_pentagon">33%</span></span>
+        or <span class="highlight">&gt;<span id="nonconform_text_pentagon">100%</span></span> of my neighbors are like me.
+        <br>
+        <div id="slider_pentagon"></div>
+        <br>
+        There are
+        <span class="triangle_highlight"><span id="ratio_text_triangles">40</span>%</span> triangles,
+        <span class="triangle_highlight"><span id="ratio_text_triangles_dark">40</span>%</span> dark triangles,
+        <span class="square_highlight"><span id="ratio_text_squares">40</span>%</span> squares,
+        <span class="square_highlight"><span id="ratio_text_squares_dark">40</span>%</span> dark squares,
+        <span class="circle_highlight"><span id="ratio_text_circles">40</span>%</span> circles,
+        <span class="circle_highlight"><span id="ratio_text_circles_dark">40</span>%</span> dark circles,
+        <span class="pentagon_highlight"><span id="ratio_text_pentagons">40</span>%</span> pentagons,
+        and <span class="pentagon_highlight"><span id="ratio_text_pentagons_dark">40</span>%</span> dark pentagons on the board.
+        Board is
+        <span class="highlight" id="empty_text">20%</span> empty.
+        <br>
+        <div id="slider2"></div>
+        <br>
+
+        <!-- board size toggle button-->
+        <form class="form">
+            <div class="switch-field">
+                <input type="radio" id="radio-one" name="switch-one" value="small" onclick="parent.location.href='../../index.html'" />
+                <label for="radio-one">Small board</label>
+                <!--<input type="radio" id="radio-two" name="switch-one" value="large" onclick="enlargeBoard()" />-->
+                <input type="radio" id="radio-two" name="switch-one" value="large" onclick="parent.location.href='../../large.html'" checked/>
+                <label for="radio-two">Large board</label>
+            </div>
+        </form>
+
+        <div class="ui" id="moving" onclick="START_SIM=!START_SIM; doneBuffer = 60; window.writeStats()"></div>
+        <div class="ui" id="reset" onclick="reset()" style="margin-left:9px"></div>
+
+    </div>
+</div>
+</body>
+</html>
+<!-- The Counter section displays the number of moves each shape has made on the grid -->
+<br>
+<div id="Counter" style="display: none";>
+    <div id="tot_moves">
+        <font face="Arial Black" color="#FFFFFF"  >Moves made: </font>
+    </div>
+    <div id="labels" style="display: none;">
+        <font face="cursive" color="#FFDD56">Triangles: </font><span id="tritext"><span id="triangles_moved">0</span></span>
+        <font face="cursive" color="#567DFF">Squares: </font><span id="sqtext"><span id="squares_moved">0</span></span>
+        <font face="cursive" color="#C342FF">Circles: </font><span id="cirtext"><span id="circles_moved">0</span></span>
+        <font face="cursive" color="#56FF9C">Pentagons: </font><span id="pentext"><span id="pentagons_moved">0</span></span>
+        <br><br>
+    </div>
+</div>
+
+<script src="../lib/Mouse.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="largeboard.js"></script>
+
+<script src="sliders/doubleslider.js"></script>
+<!-- Included new quadslider js file-->
+<script src="sliders/quadslider.js"></script>
+<script>
+    //keeps track of number of moves each shape has made
+    window.NUM_TRIANGLES_MOVED = 0;
+    window.NUM_SQUARES_MOVED = 0;
+    window.NUM_CIRCLES_MOVED = 0;
+    window.NUM_PENTAGONS_MOVED = 0;
+
+    //padding for the display of moves
+    document.getElementById("triangles_moved").style.paddingRight = "25px";
+    document.getElementById("squares_moved").style.paddingRight = "25px";
+    document.getElementById("circles_moved").style.paddingRight = "25px";
+    document.getElementById("pentagons_moved").style.paddingRight = "25px";
+
+    window.PICK_UP_ANYONE = true;
+    //var bias_text = document.getElementById("bias_text");
+    //var nonconform_text = document.getElementById("nonconform_text");
+
+    var bias_text_triangle = document.getElementById("bias_text_triangle");
+    var nonconform_text_triangle = document.getElementById("nonconform_text_triangle");
+    var bias_text_square = document.getElementById("bias_text_square");
+    var nonconform_text_square = document.getElementById("nonconform_text_square");
+    var bias_text_circle = document.getElementById("bias_text_circle");
+    var nonconform_text_circle = document.getElementById("nonconform_text_circle");
+    var bias_text_pentagon = document.getElementById("bias_text_pentagon");
+    var nonconform_text_pentagon = document.getElementById("nonconform_text_pentagon");
+
+    /*var whatever = new DoubleSlider(document.getElementById("slider"),{
+        backgrounds:[
+            {color:"#555",icon:"sliders/ds_sad.png"},
+            {color:"#aaa",icon:"sliders/ds_happy.png"},
+            {color:"#555",icon:"sliders/ds_sad.png"}
+        ],
+        values:[0.20,0.80],
+        onChange:function(values){
+
+            window.BIAS = values[0];
+            window.NONCONFORM = values[1];
+            // Write stats
+            START_SIM = false;
+            window.writeStats();
+            bias_text.innerHTML = Math.round(window.BIAS*100)+"%";
+            nonconform_text.innerHTML = Math.round(window.NONCONFORM*100)+"%";
+        }
+    });*/
+
+    var sliderTriangle = new DoubleSlider(document.getElementById("slider_triangle"),{
+        backgrounds:[
+            {color:"#555",icon:"sliders/ds_sad.png"},
+            {color:"#aaa",icon:"sliders/ds_happy.png"},
+            {color:"#555",icon:"sliders/ds_sad.png"}
+        ],
+        values:[0.20,1],
+        onChange:function(values){
+            window.BIAS_TRIANGLE = Math.round((values[0] + Number.EPSILON) * 100) / 100;
+            window.NONCONFORM_TRIANGLE = Math.round((values[1] + Number.EPSILON) * 100) / 100;
+            // Write stats
+            START_SIM = false;
+            window.writeStats();
+            bias_text_triangle.innerHTML = Math.round(window.BIAS_TRIANGLE*100)+"%";
+            nonconform_text_triangle.innerHTML = Math.round(window.NONCONFORM_TRIANGLE*100)+"%";
+        }
+    });
+
+    var sliderSquare = new DoubleSlider(document.getElementById("slider_square"),{
+        backgrounds:[
+            {color:"#555",icon:"sliders/ds_sad.png"},
+            {color:"#aaa",icon:"sliders/ds_happy.png"},
+            {color:"#555",icon:"sliders/ds_sad.png"}
+        ],
+        values:[0.20,1],
+        onChange:function(values){
+            window.BIAS_SQUARE = Math.round((values[0] + Number.EPSILON) * 100) / 100;
+            window.NONCONFORM_SQUARE = Math.round((values[1] + Number.EPSILON) * 100) / 100;
+            // Write stats
+            START_SIM = false;
+            window.writeStats();
+            bias_text_square.innerHTML = Math.round(window.BIAS_SQUARE*100)+"%";
+            nonconform_text_square.innerHTML = Math.round(window.NONCONFORM_SQUARE*100)+"%";
+        }
+    });
+
+    var sliderCircle = new DoubleSlider(document.getElementById("slider_circle"),{
+        backgrounds:[
+            {color:"#555",icon:"sliders/ds_sad.png"},
+            {color:"#aaa",icon:"sliders/ds_happy.png"},
+            {color:"#555",icon:"sliders/ds_sad.png"}
+        ],
+        values:[0.20,1],
+        onChange:function(values){
+            window.BIAS_CIRCLE = Math.round((values[0] + Number.EPSILON) * 100) / 100;
+            window.NONCONFORM_CIRCLE = Math.round((values[1] + Number.EPSILON) * 100) / 100;
+            // Write stats
+            START_SIM = false;
+            window.writeStats();
+            bias_text_circle.innerHTML = Math.round(window.BIAS_CIRCLE*100)+"%";
+            nonconform_text_circle.innerHTML = Math.round(window.NONCONFORM_CIRCLE*100)+"%";
+        }
+    });
+
+    var sliderPentagon = new DoubleSlider(document.getElementById("slider_pentagon"),{
+        backgrounds:[
+            {color:"#555",icon:"sliders/ds_sad.png"},
+            {color:"#aaa",icon:"sliders/ds_happy.png"},
+            {color:"#555",icon:"sliders/ds_sad.png"}
+        ],
+        values:[0.20,1],
+        onChange:function(values){
+            window.BIAS_PENTAGON = Math.round((values[0] + Number.EPSILON) * 100) / 100;
+            window.NONCONFORM_PENTAGON = Math.round((values[1] + Number.EPSILON) * 100) / 100;
+            // Write stats
+            START_SIM = false;
+            window.writeStats();
+            bias_text_pentagon.innerHTML = Math.round(window.BIAS_PENTAGON*100)+"%";
+            nonconform_text_pentagon.innerHTML = Math.round(window.NONCONFORM_PENTAGON*100)+"%";
+        }
+    });
+
+    var whatever = new Quadslider(document.getElementById("slider2"),{
+        backgrounds:[
+            //added backgrounds for the new shape colors on the slider bar
+            {color:"#FFDD56",icon:"sliders/ds_happy.png"},
+            {color:"#aa9439",icon:"sliders/ds_happy.png"},
+            {color:"#567DFF",icon:"sliders/ds_happy.png"},
+            {color:"#3b56af",icon:"sliders/ds_happy.png"},
+            {color:"#C342FF",icon:"sliders/ds_happy.png"},
+            {color:"#8300ff",icon:"sliders/ds_happy.png"},
+            {color:"#56FF9C",icon:"sliders/ds_happy.png"},
+            {color:"#39aa69",icon:"sliders/ds_happy.png"},
+            {color:"#000",icon:"sliders/ds_sad.png"}
+        ],
+        //sets up the initial position of the sliders on the bar
+        values:[0.10,0.20,0.30,0.40,0.50,0.60,0.70,0.80],
+        onChange:function(values){
+            // stores the position of each slider on the bar
+            var VALUE_1 = values[0];
+            var VALUE_2 = values[1];
+            var VALUE_3 = values[2];
+            var VALUE_4 = values[3];
+            var VALUE_5 = values[4];
+            var VALUE_6 = values[5];
+            var VALUE_7 = values[6];
+            var VALUE_8 = values[7];
+            //calculates the ratio of each shape
+            window.EMPTINESS = 1 - VALUE_8;
+            window.RATIO_TRIANGLES = VALUE_1;
+            window.RATIO_TRIANGLES_DARK = VALUE_2 - VALUE_1;
+            window.RATIO_SQUARES = VALUE_3 - VALUE_2;
+            window.RATIO_SQUARES_DARK = VALUE_4 - VALUE_3;
+            window.RATIO_CIRCLES = VALUE_5 - VALUE_4;
+            window.RATIO_CIRCLES_DARK = VALUE_6 - VALUE_5;
+            window.RATIO_PENTAGONS = VALUE_7 - VALUE_6;
+            window.RATIO_PENTAGONS_DARK = VALUE_8 - VALUE_7;
+            // Write stats
+            START_SIM = false;
+            //determines the ratio of each shape on the board
+            document.getElementById("ratio_text_triangles").innerHTML = Math.round(window.RATIO_TRIANGLES*100);
+            document.getElementById("ratio_text_triangles_dark").innerHTML = Math.round(window.RATIO_TRIANGLES_DARK*100);
+            document.getElementById("ratio_text_squares").innerHTML = Math.round(window.RATIO_SQUARES*100);
+            document.getElementById("ratio_text_squares_dark").innerHTML = Math.round(window.RATIO_SQUARES_DARK*100);
+            document.getElementById("ratio_text_circles").innerHTML = Math.round(window.RATIO_CIRCLES*100);
+            document.getElementById("ratio_text_circles_dark").innerHTML = Math.round(window.RATIO_CIRCLES_DARK*100);
+            document.getElementById("ratio_text_pentagons").innerHTML = Math.round(window.RATIO_PENTAGONS*100);
+            document.getElementById("ratio_text_pentagons_dark").innerHTML = Math.round(window.RATIO_PENTAGONS_DARK*100);
+            document.getElementById("empty_text").innerHTML = Math.round(window.EMPTINESS*100)+"%";
+
+        },
+        onLetGo:function(){
+            reset();
+        }
+    });
+</script>

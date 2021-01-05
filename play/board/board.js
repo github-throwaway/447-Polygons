@@ -41,7 +41,7 @@ var mapBias = new Map([
 
 var TILE_SIZE = 30;
 var PEEP_SIZE = 30;
-var GRID_SIZE = 20;
+var GRID_SIZE = 20; //TODO board size
 var DIAGONAL_SQUARED = (TILE_SIZE+5)*(TILE_SIZE+5) + (TILE_SIZE+5)*(TILE_SIZE+5);
 var MAX_MOVES = 10000;
 
@@ -565,7 +565,7 @@ window.writeStats = function(){
 
 	// Average Sameness Ratio
 	var total = 0;
-	for(var i=0;i<draggables.length;i++){
+	for(let i=0;i<draggables.length;i++){
 		var d = draggables[i];
 		total += d.sameness || 0;
 	}
@@ -583,7 +583,15 @@ window.writeStats = function(){
 	}
 
 	// AVG -> SEGREGATION
-	var segregation = (avg-0.25)*(4/3);
+	// var segregation = (avg-0.25)*(4/3);
+	// Previous segregation calculation doesn't hold for the flexible percentages of polygon types and the introduction of a second attribute (dark)
+	// Segregation is now the percentage of polygons with 100% neighbors like themselves.
+
+	var segregatedPolygons = 0;
+	for(let i=0;i<draggables.length;i++){
+		if (draggables[i].sameness == 1) segregatedPolygons++;
+	}
+	var segregation = segregatedPolygons/draggables.length;
 	if(segregation<0) segregation=0;
 
 	// Graph it
@@ -749,6 +757,15 @@ function step(){
 	}
 }
 
+function enlargeBoard(){
+	document.getElementById("container").style.width = "1330";
+	parent.document.getElementById("playable").style.width = "1350";
+	document.getElementById("canvas").style.width = "900";
+	document.getElementById("canvas").style.height = "900";
+	GRID_SIZE = 30;
+	//window.parent.$("#playable").load(" #playable > *");
+	alert("hey");
+}
 
 ////////////////////
 // ANIMATION LOOP //

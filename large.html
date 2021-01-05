@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+
+    <!-- Place this data between the <head> tags of your website -->
+    <title>Parable of the Polygons - a playable post on the shape of society</title>
+    <meta name="description" content="A playable post on how harmless choices can make a harmful world." />
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- CSS -->
+    <link href="css/index.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<!--	&lt;!&ndash; CARTOONS &ndash;&gt;-->
+<div id="cartoon_container">
+    <img id="cartoon" width="270" src=""/>
+    <div id="cartoon_arrow"></div>
+</div>
+
+<!--&lt;!&ndash; SPLASH &ndash;&gt;-->
+<div id="intro_container">
+    <div id="intro">
+        <iframe src="play/intro/intro.html" id="intro_background" scrolling="no"></iframe>
+    </div>
+</div>
+
+<!-- PLAYABLE -->
+<div class="playable" id="playable">
+    <iframe playable src="play/board/largeboard.html" style="position:relative;left:10px" width="1350" height="1000"></iframe> <!-- TODO board size-->
+</div>
+
+<!-- SPLASH -->
+<div id="outro_container">
+    <div id="outro">
+        <iframe src="play/outro/outro.html" id="outro_background" scrolling="no"></iframe>
+    </div>
+</div>
+
+</body>
+
+<script src="js/Mouse.js"></script>
+<script src="js/intro.js"></script>
+
+</html>
