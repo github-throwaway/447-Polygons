@@ -21,10 +21,14 @@ div{
 }
 #container{
 	position: relative;
-	width:1030px;		/** TODO change board size 1030*/
+	width:1030px;		/**board size*/
 	height:600px;
 }
 #canvas{
+	display: block;
+	float:left;
+}
+#canvas1{
 	display: block;
 	float:left;
 }

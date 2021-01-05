@@ -41,7 +41,7 @@ var mapBias = new Map([
 
 var TILE_SIZE = 30;
 var PEEP_SIZE = 30;
-var GRID_SIZE = 20; //TODO board size
+var GRID_SIZE = 20; //board size
 var DIAGONAL_SQUARED = (TILE_SIZE+5)*(TILE_SIZE+5) + (TILE_SIZE+5)*(TILE_SIZE+5);
 var MAX_MOVES = 10000;
 
@@ -394,7 +394,21 @@ Post-condition: a new board is created
 Description: This function creates a brand new
 board whenever the reset button is pressed
 *******************/
-window.reset = function(){
+window.reset = function(size){
+
+	if (size == "large"){
+		parent.document.getElementById('playableFrame').width = "1350";
+		document.getElementById('container').style.width = "1330px";
+		document.getElementById('canvas').width = "900";
+		document.getElementById('canvas').height = "900";
+		GRID_SIZE = 30;
+	} else if (size == "small"){
+		parent.document.getElementById('playableFrame').width = "1050";
+		document.getElementById('container').style.width = "1030px";
+		document.getElementById('canvas').width = "600";
+		document.getElementById('canvas').height = "600";
+		GRID_SIZE = 20;
+	}
 
 	//reset counters and setup corresponding HTML
 	window.NUM_TRIANGLES_MOVED = 0;
@@ -416,7 +430,7 @@ window.reset = function(){
 
 	stats_ctx.clearRect(0,0,stats_canvas.width,stats_canvas.height);
 	draggables = [];
-
+	console.log("height"+document.getElementById('canvas').style.height);
 	//sets up ratios of shapes based upon the default values
 	for(var x=0;x<GRID_SIZE;x++){
 		for(var y=0;y<GRID_SIZE;y++){
@@ -464,10 +478,14 @@ window.reset = function(){
 	}
 
 	// Write stats for first time
+	// Check amount of unhappy polygons
+	var unhappyPolygons = 0;
 	for(var i=0;i<draggables.length;i++){
 		draggables[i].update();
+		if (draggables[i].shaking == true) unhappyPolygons++;
 	}
 	writeStats();
+	console.log("Number of unhappy polygons: " + unhappyPolygons);
 
 }
 
@@ -757,15 +775,6 @@ function step(){
 	}
 }
 
-function enlargeBoard(){
-	document.getElementById("container").style.width = "1330";
-	parent.document.getElementById("playable").style.width = "1350";
-	document.getElementById("canvas").style.width = "900";
-	document.getElementById("canvas").style.height = "900";
-	GRID_SIZE = 30;
-	//window.parent.$("#playable").load(" #playable > *");
-	alert("hey");
-}
 
 ////////////////////
 // ANIMATION LOOP //
@@ -784,5 +793,5 @@ window.requestAnimFrame = window.requestAnimationFrame ||
 window.IS_IN_SIGHT = true;  /////////CRUCIAL ELEMENT RIGHT HERE. Needs to be true in order to test on a local machine
 
 window.onload=function(){
-	reset();
+	reset(false);
 }

@@ -15,7 +15,7 @@
 <body>
 
 	<div id="container">
-		<canvas id="canvas" width="600" height="600"></canvas> <!-- TODO board size -->
+		<canvas id="canvas" class="canvas1" width="600" height="600"></canvas> <!-- board size -->
 		<div id="stats">
 <!--sets up graph for updating segregation stats for each shape-->
 			<div id="stats_canvas_container">
@@ -71,11 +71,11 @@
 			<!-- board size toggle button-->
 			<form class="form">
 				<div class="switch-field">
-					<input type="radio" id="radio-one" name="switch-one" value="small" checked/>
+					<input type="radio" id="radio-one" name="switch-one" value="small" onclick="window.reset('small')" checked/>
 					<label for="radio-one">Small board</label>
 					<!--<input type="radio" id="radio-two" name="switch-one" value="large" onclick="enlargeBoard()" />-->
-					<input type="radio" id="radio-two" name="switch-one" value="large" onclick="parent.location.href='../../large.html'" />
-					<!--<input type="radio" id="radio-two" name="switch-one" value="large" onclick="document.getElementById('canvas').style.width = '1330'" />-->
+					<!--<input type="radio" id="radio-two" name="switch-one" value="large" onclick="parent.location.href='../../large.html'" />-->
+					<input type="radio" id="radio-two" name="switch-one" value="large" onclick="window.reset('large')" />
 					<label for="radio-two">Large board</label>
 				</div>
 			</form>
@@ -276,7 +276,7 @@ var whatever = new Quadslider(document.getElementById("slider2"),{
 		
 	},
 	onLetGo:function(){
-		reset();
+		reset(false);
 	}
 });
 </script>
