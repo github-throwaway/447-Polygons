@@ -39,6 +39,8 @@ var mapBias = new Map([
 	["pentagon", BIAS_PENTAGON]
 ]);
 
+var BIAS_TYPE = "OR";
+
 var TILE_SIZE = 30;
 var PEEP_SIZE = 30;
 var GRID_SIZE = 20; //board size
@@ -51,7 +53,7 @@ window.NUM_SQUARES_MOVED = 0;
 window.NUM_CIRCLES_MOVED = 0;
 window.NUM_PENTAGONS_MOVED = 0;
 window.TOTAL_MOVES = 0;
-window.RATIO_TRIANGLES = 0.20;
+window.RATIO_TRIANGLES = 0.20;	//update for dark shapes?
 window.RATIO_SQUARES = 0.20;
 window.RATIO_CIRCLES = 0.20;
 window.RATIO_PENTAGONS = 0.20;
@@ -217,8 +219,10 @@ function Draggable(x,y){
 				var dy = d.y-self.y;
 				if(dx*dx+dy*dy<DIAGONAL_SQUARED){
 					neighbors++;
-					if(d.color==self.color || d.value == self.value){	// !! Bias logic. Currently same shape OR same value will count as "like me"
-						same++;
+					if (BIAS_TYPE == "OR") {
+						if (d.color == self.color || d.value == self.value) same++;	// !! Bias logic. Currently same shape OR same value will count as "like me"
+					} else {
+						if (d.color == self.color && d.value == self.value) same++;
 					}
 				}
 			}
@@ -434,7 +438,6 @@ window.reset = function(size){
 
 	stats_ctx.clearRect(0,0,stats_canvas.width,stats_canvas.height);
 	draggables = [];
-	console.log("height"+document.getElementById('canvas').style.height);
 	//sets up ratios of shapes based upon the default values
 	for(var x=0;x<GRID_SIZE;x++){
 		for(var y=0;y<GRID_SIZE;y++){
@@ -501,7 +504,7 @@ function setupSliders(){
 			{color: "#aaa", icon: "sliders/ds_happy.png"},
 			{color: "#555", icon: "sliders/ds_sad.png"}
 		],
-		values: [0.20, 1],
+		values: [0.33, 1],
 		onChange: function (values) {
 			window.BIAS_TRIANGLE = Math.round((values[0] + Number.EPSILON) * 100) / 100;
 			window.NONCONFORM_TRIANGLE = Math.round((values[1] + Number.EPSILON) * 100) / 100;
@@ -519,7 +522,7 @@ function setupSliders(){
 			{color: "#aaa", icon: "sliders/ds_happy.png"},
 			{color: "#555", icon: "sliders/ds_sad.png"}
 		],
-		values: [0.20, 1],
+		values: [0.33, 1],
 		onChange: function (values) {
 			window.BIAS_SQUARE = Math.round((values[0] + Number.EPSILON) * 100) / 100;
 			window.NONCONFORM_SQUARE = Math.round((values[1] + Number.EPSILON) * 100) / 100;
@@ -537,7 +540,7 @@ function setupSliders(){
 			{color: "#aaa", icon: "sliders/ds_happy.png"},
 			{color: "#555", icon: "sliders/ds_sad.png"}
 		],
-		values: [0.20, 1],
+		values: [0.33, 1],
 		onChange: function (values) {
 			window.BIAS_CIRCLE = Math.round((values[0] + Number.EPSILON) * 100) / 100;
 			window.NONCONFORM_CIRCLE = Math.round((values[1] + Number.EPSILON) * 100) / 100;
@@ -555,7 +558,7 @@ function setupSliders(){
 			{color: "#aaa", icon: "sliders/ds_happy.png"},
 			{color: "#555", icon: "sliders/ds_sad.png"}
 		],
-		values: [0.20, 1],
+		values: [0.33, 1],
 		onChange: function (values) {
 			window.BIAS_PENTAGON = Math.round((values[0] + Number.EPSILON) * 100) / 100;
 			window.NONCONFORM_PENTAGON = Math.round((values[1] + Number.EPSILON) * 100) / 100;
@@ -908,6 +911,17 @@ function step(){
 	}
 }
 
+function changeBias(biasType) {
+	let unhappyPolygons = 0;
+	if (biasType == "OR") BIAS_TYPE = "OR";
+	else if (biasType == "AND") BIAS_TYPE = "AND";
+	for (let i = 0; i < draggables.length; i++) {
+		let d = draggables[i];
+		d.update();
+		if (d.shaking == true) unhappyPolygons++;
+	}
+	console.log("Number of unhappy polygons: " + unhappyPolygons);
+}
 
 ////////////////////
 // ANIMATION LOOP //
