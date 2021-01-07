@@ -74,7 +74,7 @@
 				</div>
 			</form>
 
-			<!-- bias tyope toggle button-->
+			<!-- bias type toggle button-->
 			<form class="form">
 				<div class="switch-field">
 					<input type="radio" id="bias-radio-one" name="switch-one" value="OR" onclick="changeBias('OR')" checked/>
@@ -87,6 +87,13 @@
 						Strict "like me"</label>
 				</div>
 			</form>
+
+			<span class="headline">Dev Tools</span><br><br>
+			<!-- Button to turn dark shapes light-->
+			<div class="switch-field">
+			<input onclick="turnDarkShapesLight()" id="dark-to-light-button" checked /><label for="dark-to-light-button">
+				Turn dark shapes light</label>
+			</div>
 
 			<div class="ui" id="moving" onclick="START_SIM=!START_SIM; doneBuffer = 60; window.writeStats()"></div>
 			<div class="ui" id="reset" onclick="reset()" style="margin-left:9px"></div>

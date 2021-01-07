@@ -486,16 +486,56 @@ window.reset = function(size){
 
 	// Write stats for first time
 	// Check amount of unhappy polygons
-	var unhappyPolygons = 0;
 	for(var i=0;i<draggables.length;i++){
 		draggables[i].update();
-		if (draggables[i].shaking == true) unhappyPolygons++;
 	}
+	getHappinessStats();
 	writeStats();
-	console.log("Number of unhappy polygons: " + unhappyPolygons);
-
 };
 
+/**
+ * Logs Stats on happiness in the console
+ */
+function getHappinessStats() {
+	let unhappyTriangles = 0;
+	let unhappyTrianglesDark = 0;
+	let unhappySquares = 0;
+	let unhappySquaresDark = 0;
+	let unhappyCircles = 0;
+	let unhappyCirclesDark = 0;
+	let unhappyPentagons = 0;
+	let unhappyPentagonsDark = 0;
+	for (var i = 0; i < draggables.length; i++) {
+		draggables[i].update();
+		if (draggables[i].shaking == true) {
+			switch (draggables[i].color) {
+				case "triangle":
+					if(draggables[i].value == "dark") unhappyTrianglesDark++;
+					else unhappyTriangles++;
+					break;
+				case "square":
+					if(draggables[i].value == "dark") unhappySquaresDark++;
+					else unhappySquares++;
+					break;
+				case "circle":
+					if(draggables[i].value == "dark") unhappyCirclesDark++;
+					else unhappyCircles++;
+					break;
+				case "pentagon":
+					if(draggables[i].value == "dark") unhappyPentagonsDark++;
+					else unhappyPentagons++;
+			}
+		}
+	}
+	let unhappyPolygonsLight = unhappyTriangles + unhappySquares + unhappyCircles + unhappyPentagons;
+	let unhappyPolygonsDark = unhappyTrianglesDark + unhappySquaresDark + unhappyCirclesDark + unhappyPentagonsDark;
+	let unhappyPolygons = unhappyPolygonsDark + unhappyPolygonsLight;
+	console.log("Number of unhappy polygons: " + unhappyPolygons + ", Percentage:" + (unhappyPolygons/draggables.length)*100 + "%"
+	+ "\n Unhappy light Triangles: " + unhappyTriangles + ", Unhappy dark Triangles: " + unhappyTrianglesDark
+	+ "\n Unhappy light Squares: " + unhappySquares + ", Unhappy dark Squares: " + unhappySquaresDark
+	+ "\n Unhappy light Circles: " + unhappyCircles + ", Unhappy dark Circles: " + unhappyCirclesDark
+	+ "\n Unhappy light Pentagons: " + unhappyPentagons + ", Unhappy dark Pentagons: " + unhappyPentagonsDark );
+}
 
 function setupSliders(){
 	var sliderTriangle = new DoubleSlider(document.getElementById("slider_triangle"), {
@@ -911,6 +951,12 @@ function step(){
 	}
 }
 
+/**
+ * Changes the bias type for all polygons. Polygons will perceive other polygons as "like themselves" only if:
+ * AND: they are the same shape AND have the same color value
+ * OR: they are either the same shape OR have the same color value
+ * @param biasType can be OR or AND
+ */
 function changeBias(biasType) {
 	let unhappyPolygons = 0;
 	if (biasType == "OR") BIAS_TYPE = "OR";
@@ -920,7 +966,14 @@ function changeBias(biasType) {
 		d.update();
 		if (d.shaking == true) unhappyPolygons++;
 	}
-	console.log("Number of unhappy polygons: " + unhappyPolygons);
+	getHappinessStats();
+}
+
+function turnDarkShapesLight(){
+    for (let i = 0; i < draggables.length; i++) {
+        if (draggables[i].value != "light") draggables[i].value = "light";
+    }
+    changeBias("AND");
 }
 
 ////////////////////

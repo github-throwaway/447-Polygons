@@ -45,6 +45,11 @@ div{
 	font-size: 20px;
 }
 
+.headline{
+	float:left;
+	font-size: 16px;
+	text-align: left;
+}
 
 #stats_canvas_container{
 	background:url(../img/stats.png);
